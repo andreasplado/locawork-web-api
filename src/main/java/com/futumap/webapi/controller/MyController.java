@@ -17,7 +17,7 @@ public class MyController {
 
     @GetMapping("/showCities")
     public String findCities(Model model) {
-        model.addAttribute("cities", (List<City>) cityService.findAll());
+        model.addAttribute("cities", cityService.findAll());
 
         return "showCities";
     }
