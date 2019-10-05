@@ -19,6 +19,6 @@ public class MyController {
     public String findCities(Model model) {
         model.addAttribute("cities", (List<City>) cityService.findAll());
 
-        return "showCities";
+        return "showCities.html";
     }
 }
