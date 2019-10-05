@@ -53,7 +53,7 @@ public class CityController {
         cityService.save(city);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/fruit/{id}").buildAndExpand(city.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/city/{id}").buildAndExpand(city.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
