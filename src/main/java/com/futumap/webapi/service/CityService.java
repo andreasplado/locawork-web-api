@@ -27,7 +27,8 @@ public class CityService implements ICityService {
 
     @Override
     public CityEntity update(CityEntity cityEntity) {
-        if(!repository.existsById(cityEntity.getId().longValue())){
+        System.out.println(repository);
+        if(!repository.existsById(cityEntity.getId().longValue()){
             repository.save(cityEntity);
         }
         return cityEntity;
