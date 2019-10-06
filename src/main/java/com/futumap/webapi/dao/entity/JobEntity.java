@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "jobs")
-public class CityEntity {
+public class JobEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,11 +41,11 @@ public class CityEntity {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
-    public CityEntity() {
+    public JobEntity() {
 
     }
 
-    public CityEntity(String title, String description, double salary, String longitude, String latitude) {
+    public JobEntity(String title, String description, double salary, String longitude, String latitude) {
         this.setTitle(title);
         this.setDescription(description);
         this.setSalary(salary);
