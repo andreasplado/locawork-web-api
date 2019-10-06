@@ -18,7 +18,7 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/")
     public ResponseEntity<List<JobEntity>> getAll() {
         List<JobEntity> cities = jobService.findAll();
 
@@ -29,7 +29,7 @@ public class JobController {
         return new ResponseEntity<List<JobEntity>>(cities, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/getbylocation")
     public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam("latitude") double latitude, @RequestParam("longitude") double longitude, @RequestParam("radius") double radius) {
         List<JobEntity> cities = jobService.findByRadius(longitude, latitude, radius);
 
