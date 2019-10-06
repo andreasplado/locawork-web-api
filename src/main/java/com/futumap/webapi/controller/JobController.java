@@ -29,7 +29,7 @@ public class JobController {
         return new ResponseEntity<List<JobEntity>>(cities, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/location", method = RequestMethod.GET)
+    @RequestMapping(value="getjobsbylocation", method = RequestMethod.GET)
     public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam("latitude") String latitude, @RequestParam("longitude") String longitude, @RequestParam("radius") String radius) {
         List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, radius);
 
