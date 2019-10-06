@@ -1,0 +1,1 @@
+CREATE TABLE cities(id serial PRIMARY KEY, name VARCHAR(255), population integer, createdAt VARCHAR(255) , updatedAt VARCHAR(255));
