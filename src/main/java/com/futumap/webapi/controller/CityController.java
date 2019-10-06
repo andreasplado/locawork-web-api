@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/cities")
+@RequestMapping("/jobs")
 public class CityController {
 
     @Autowired
