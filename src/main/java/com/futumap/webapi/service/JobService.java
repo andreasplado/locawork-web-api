@@ -19,8 +19,9 @@ public class JobService implements IJobService {
         return repository.findAll();
     }
 
+
     @Override
-    public List<JobEntity> findByRadius(double longitude, double latitude, double radius) {
+    public List<JobEntity> findNearestJobs(String longitude, String latitude, String radius) {
         return repository.findNearestJobs(longitude, latitude, radius);
     }
 
