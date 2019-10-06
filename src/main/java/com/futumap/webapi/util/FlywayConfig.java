@@ -22,7 +22,7 @@ public class FlywayConfig {
 
     @Bean
     @Primary
-    public SchemaManagementProvider flywayDefaultDdlModeProvider(ObjectProvider<Flyway> flyways) {
+    public SchemaManagementProvider flywayDefaultProvider(ObjectProvider<Flyway> flyways) {
         return new SchemaManagementProvider() {
             @Override
             public SchemaManagement getSchemaManagement(DataSource dataSource) {
