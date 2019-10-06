@@ -30,14 +30,14 @@ public class JobController {
     }
 
     @RequestMapping(value = "/location", method = RequestMethod.GET)
-    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam("latitude") String latitude, @RequestParam("longitude") String longitude, @RequestParam("radius") String radius) {
-        List<JobEntity> cities = jobService.findByRadius(longitude, latitude, radius);
+    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam("latitude") double latitude, @RequestParam("longitude") double longitude, @RequestParam("radius") double radius) {
+        List<JobEntity> jobs = jobService.findByRadius(longitude, latitude, radius);
 
-        if (cities == null || cities.isEmpty()) {
+        if (jobs == null || jobs.isEmpty()) {
             return new ResponseEntity<List<JobEntity>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<List<JobEntity>>(cities, HttpStatus.OK);
+        return new ResponseEntity<List<JobEntity>>(jobs, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
