@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -30,9 +31,10 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam(value="longitude") String longitude,
-                                                       @RequestParam(value="latitude") String latitude,
-                                                       @RequestParam(value="distance") String distance) {
+    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Map<String,String> requestParams) {
+        String longitude=requestParams.get("longitude");
+        String latitude=requestParams.get("latitude");
+        String distance=requestParams.get("distance");
         List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, distance);
 
         if (jobs == null || jobs.isEmpty()) {
