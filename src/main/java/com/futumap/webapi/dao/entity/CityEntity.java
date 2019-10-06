@@ -35,7 +35,7 @@ public class CityEntity {
     @Column(name = "latitude")
     private String latitude;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private Date createdAt;
 
     @Column(name = "updated_at", nullable = false)
@@ -98,7 +98,7 @@ public class CityEntity {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    private void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
@@ -106,7 +106,7 @@ public class CityEntity {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    private void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
@@ -114,7 +114,7 @@ public class CityEntity {
         return title;
     }
 
-    public void setTitle(String title) {
+    private void setTitle(String title) {
         this.title = title;
     }
 
@@ -122,7 +122,7 @@ public class CityEntity {
         return description;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 
@@ -130,7 +130,7 @@ public class CityEntity {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    private void setSalary(double salary) {
         this.salary = salary;
     }
 }
