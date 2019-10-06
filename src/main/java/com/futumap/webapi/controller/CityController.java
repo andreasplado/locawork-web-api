@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -53,9 +54,9 @@ public class CityController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CityEntity> update(@PathVariable Long id, @RequestBody CityEntity cityEntity) {
+    public ResponseEntity<CityEntity> update(@PathVariable int id, @RequestBody CityEntity cityEntity) {
 
-        if (!cityService.exists(id)) {
+        if (cityService.exists((long) id)) {
             return new ResponseEntity<CityEntity>(HttpStatus.NOT_FOUND);
         }
         cityService.update(cityService.update(cityEntity));
