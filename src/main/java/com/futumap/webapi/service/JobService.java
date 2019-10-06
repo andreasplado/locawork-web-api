@@ -20,7 +20,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findByRadius(double longitude, double latitude, double radius) {
+    public List<JobEntity> findByRadius(String longitude, String latitude, String radius) {
         return repository.findNearestJobs(longitude, latitude, radius);
     }
 
