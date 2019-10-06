@@ -59,7 +59,7 @@ public class CityController {
         if (!cityService.exists(id)) {
             return new ResponseEntity<CityEntity>(HttpStatus.NOT_FOUND);
         }
-        cityService.update(cityService.update(cityEntity));
+        cityService.update(cityEntity);
         return new ResponseEntity<CityEntity>(cityEntity, HttpStatus.OK);
     }
 
