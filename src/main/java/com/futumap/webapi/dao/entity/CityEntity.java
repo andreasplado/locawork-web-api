@@ -2,6 +2,7 @@ package com.futumap.webapi.dao.entity;
 
 import org.joda.time.DateTime;
 
+import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -10,9 +11,8 @@ import javax.persistence.*;
 public class CityEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "NUMERIC(19,0)")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private BigInteger id;
 
     @Column(name = "name")
     private String name;
@@ -36,12 +36,12 @@ public class CityEntity {
         this.setCreatedAt(new Date());
     }
 
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id = BigInteger.valueOf(id);
     }
 
     public String getName() {
