@@ -1,1 +1,0 @@
-CREATE TABLE cities(id int PRIMARY KEY, name VARCHAR(255), population integer, createdAt VARCHAR(255) , updatedAt VARCHAR(255));
