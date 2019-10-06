@@ -28,24 +28,24 @@ public class CityService implements ICityService {
     @Override
     public CityEntity update(CityEntity cityEntity) {
         System.out.println(repository);
-        if(!repository.existsById(cityEntity.getId().longValue())){
+        if(!repository.existsById(cityEntity.getId())){
             repository.save(cityEntity);
         }
         return cityEntity;
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         repository.deleteById(id);
     }
 
     @Override
-    public Optional<CityEntity> findById(Long id) {
+    public Optional<CityEntity> findById(Integer id) {
         return repository.findById(id);
     }
 
     @Override
-    public boolean exists(Long id) {
+    public boolean exists(Integer id) {
         return repository.existsById(id);
     }
 

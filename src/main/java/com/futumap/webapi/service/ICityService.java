@@ -10,7 +10,7 @@ public interface ICityService {
     List<CityEntity> findAll();
     CityEntity save (CityEntity cityEntity);
     CityEntity update(CityEntity cityEntity);
-    void delete(Long id);
-    Optional<CityEntity> findById(Long id);
-    boolean exists(Long id);
+    void delete(Integer id);
+    Optional<CityEntity> findById(Integer id);
+    boolean exists(Integer id);
 }

@@ -20,7 +20,7 @@ public class CityEntity {
             pkColumnValue="course",
             allocationSize=30
     )
-    private BigInteger id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -44,12 +44,12 @@ public class CityEntity {
         this.setCreatedAt(new Date());
     }
 
-    public BigInteger getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = BigInteger.valueOf(id);
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

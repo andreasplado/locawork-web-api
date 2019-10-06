@@ -34,7 +34,7 @@ public class CityController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public ResponseEntity<CityEntity> get(@PathVariable("id") Long id) {
+    public ResponseEntity<CityEntity> get(@PathVariable("id") Integer id) {
 
         if (!cityService.exists(id)) {
             return new ResponseEntity<CityEntity>(HttpStatus.NOT_FOUND);
@@ -54,17 +54,17 @@ public class CityController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CityEntity> update(@PathVariable BigInteger id, @RequestBody CityEntity cityEntity) {
+    public ResponseEntity<CityEntity> update(@PathVariable Integer id, @RequestBody CityEntity cityEntity) {
 
-        /*if (cityService.exists((id)) {
+        if (cityService.exists(id)) {
             return new ResponseEntity<CityEntity>(HttpStatus.NOT_FOUND);
-        }*/
+        }
         cityService.update(cityService.update(cityEntity));
         return new ResponseEntity<CityEntity>(cityEntity, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
         Optional<CityEntity> cityEntity = cityService.findById(id);
 
         if (!cityEntity.isPresent()) {
