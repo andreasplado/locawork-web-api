@@ -12,6 +12,14 @@ public class CityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @TableGenerator(
+            name="city",
+            table="GENERATOR_TABLE",
+            pkColumnName = "key",
+            valueColumnName = "next",
+            pkColumnValue="course",
+            allocationSize=30
+    )
     private BigInteger id;
 
     @Column(name = "name")
