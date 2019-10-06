@@ -45,7 +45,7 @@ public class CityController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody CityEntity city, UriComponentsBuilder ucBuilder) {
-
+        System.out.println(cityService);
         if (cityService.exists(city.getId().longValue())) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
