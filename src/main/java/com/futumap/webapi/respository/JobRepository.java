@@ -12,9 +12,6 @@ import java.util.List;
 @Repository
 public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
-
-    @Query(value="SELECT * \n" +
-            "FROM jobs \n" +
-            "WHERE ST_Dwithin(geom, st_point(?1, ?2,?3);", nativeQuery = true)
+    @Query(value="SELECT * FROM jobs WHERE ST_DWithin(location, ST_SetSRID(ST_MakePoint(?1, ?2), 3785), ?3);", nativeQuery = true)
     List<JobEntity> findNearestJobs(@Param("longitude") String longitude, @Param("latitude") String latitude, @Param("distance") String distance);
 }
