@@ -54,11 +54,11 @@ public class CityController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public ResponseEntity<CityEntity> update(@PathVariable int id, @RequestBody CityEntity cityEntity) {
+    public ResponseEntity<CityEntity> update(@PathVariable BigInteger id, @RequestBody CityEntity cityEntity) {
 
-        if (cityService.exists((long) id)) {
+        /*if (cityService.exists((id)) {
             return new ResponseEntity<CityEntity>(HttpStatus.NOT_FOUND);
-        }
+        }*/
         cityService.update(cityService.update(cityEntity));
         return new ResponseEntity<CityEntity>(cityEntity, HttpStatus.OK);
     }
