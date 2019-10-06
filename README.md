@@ -9,3 +9,6 @@
 #Update or create with Flyway
 ### change application.properties
 ```spring.jpa.hibernate.ddl-auto=create```
+
+#View server logs
+```heroku logs --tail -a futumap```
