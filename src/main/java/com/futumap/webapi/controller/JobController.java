@@ -35,6 +35,7 @@ public class JobController {
         String longitude=requestParams.get("longitude");
         String latitude=requestParams.get("latitude");
         String distance=requestParams.get("distance");
+        System.out.println("long:" + longitude + "lat" + latitude + "dist:" + distance);
         List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, distance);
 
         if (jobs == null || jobs.isEmpty()) {
