@@ -7,13 +7,13 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cities")
+@Table(name = "jobs")
 public class CityEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @TableGenerator(
-            name="city",
+            name="job",
             table="GENERATOR_TABLE",
             pkColumnName = "key",
             valueColumnName = "next",
@@ -22,11 +22,17 @@ public class CityEntity {
     )
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "population")
-    private Long population;
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "longitude")
+    private String longitude;
+
+    @Column(name = "latitude")
+    private String latitude;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -38,9 +44,11 @@ public class CityEntity {
 
     }
 
-    public CityEntity(String name, Long population) {
-        this.setName(name);
-        this.setPopulation(population);
+    public CityEntity(String title, String description, String longitude, String latitude) {
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setLongitude(longitude);
+        this.setLatitude(latitude);
         this.setCreatedAt(new Date());
     }
 
@@ -50,22 +58,6 @@ public class CityEntity {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(Long population) {
-        this.population = population;
     }
 
     public Date getCreatedAt() {
@@ -98,6 +90,38 @@ public class CityEntity {
     @PreRemove
     protected void preRemove() {
         this.updatedAt = new Date();
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 
