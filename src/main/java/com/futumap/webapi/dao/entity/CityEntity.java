@@ -1,8 +1,6 @@
 package com.futumap.webapi.dao.entity;
 
 import org.joda.time.DateTime;
-
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -28,13 +26,16 @@ public class CityEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "salary")
+    private double salary;
+
     @Column(name = "longitude")
     private String longitude;
 
     @Column(name = "latitude")
     private String latitude;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     private Date createdAt;
 
     @Column(name = "updated_at", nullable = false)
@@ -44,9 +45,10 @@ public class CityEntity {
 
     }
 
-    public CityEntity(String title, String description, String longitude, String latitude) {
+    public CityEntity(String title, String description, double salary, String longitude, String latitude) {
         this.setTitle(title);
         this.setDescription(description);
+        this.setSalary(salary);
         this.setLongitude(longitude);
         this.setLatitude(latitude);
         this.setCreatedAt(new Date());
@@ -122,6 +124,14 @@ public class CityEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 }
 
