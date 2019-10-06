@@ -46,6 +46,9 @@ public class CityController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody CityEntity city, UriComponentsBuilder ucBuilder) {
         System.out.println(city);
+        if (cityService.exists(city.getId().longValue())) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
 
         cityService.save(city);
 
@@ -57,7 +60,7 @@ public class CityController {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity<CityEntity> update(@PathVariable Long id, @RequestBody CityEntity cityEntity) {
 
-        if (!cityService.exists(id)) {
+        if (cityEntity.getId().longValue() != id) {
             return new ResponseEntity<CityEntity>(HttpStatus.NOT_FOUND);
         }
         cityService.update(cityService.update(cityEntity));
