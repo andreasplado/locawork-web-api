@@ -22,8 +22,10 @@ public class JobService implements IJobService {
 
 
     @Override
-    public List<JobEntity> findNearestJobs(BigDecimal longitude, BigDecimal latitude, Double distance) {
-        return repository.findNearestJobs(longitude, latitude, distance);
+    public List<JobEntity> findNearestJobs(Double longitude, Double latitude, Double distance) {
+        BigDecimal convertedLong = new BigDecimal(longitude);
+        BigDecimal convertedLat = new BigDecimal(latitude);
+        return repository.findNearestJobs(convertedLong, convertedLat, distance);
     }
 
     @Override

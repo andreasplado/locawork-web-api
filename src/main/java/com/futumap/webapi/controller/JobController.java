@@ -33,7 +33,7 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam BigDecimal longitude, @RequestParam BigDecimal latitude, @RequestParam Double distance) {
+    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Double longitude, @RequestParam Double latitude, @RequestParam Double distance) {
         System.out.println("long:" + longitude + "lat" + latitude + "dist:" + distance);
         List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, distance);
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface IJobService {
 
     List<JobEntity> findAll();
-    List<JobEntity> findNearestJobs(BigDecimal longitude, BigDecimal latitude, Double distance);
+    List<JobEntity> findNearestJobs(Double longitude, Double latitude, Double distance);
     JobEntity save (JobEntity jobEntity);
     JobEntity update(JobEntity jobEntity);
     void delete(Integer id);
