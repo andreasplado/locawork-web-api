@@ -27,13 +27,13 @@ public class JobEntity {
     private String description;
 
     @Column(name = "salary")
-    private double salary;
+    private Double salary;
 
     @Column(name = "longitude")
-    private String longitude;
+    private Double longitude;
 
     @Column(name = "latitude")
-    private String latitude;
+    private Double latitude;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -45,7 +45,7 @@ public class JobEntity {
 
     }
 
-    public JobEntity(String title, String description, double salary, String longitude, String latitude) {
+    public JobEntity(String title, String description, Double salary, Double longitude, Double latitude) {
         this.setTitle(title);
         this.setDescription(description);
         this.setSalary(salary);
@@ -94,19 +94,19 @@ public class JobEntity {
         this.updatedAt = new Date();
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    private void setLongitude(String longitude) {
+    private void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    private void setLatitude(String latitude) {
+    private void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
@@ -126,11 +126,11 @@ public class JobEntity {
         this.description = description;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    private void setSalary(double salary) {
+    private void setSalary(Double salary) {
         this.salary = salary;
     }
 }
