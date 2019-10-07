@@ -8,6 +8,7 @@
 
 ##Adding Posgre SQL extensions:
 ```CREATE EXTENSION earthdistance;```
+```CREATE EXTENSION cube;```
 
 #Update or create with Flyway
 ### change application.properties

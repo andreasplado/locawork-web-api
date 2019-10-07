@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -31,12 +33,12 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Map<String,String> requestParams) {
-        String longitude=requestParams.get("longitude");
-        String latitude=requestParams.get("latitude");
-        String distance=requestParams.get("distance");
+    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Map<String,BigDecimal> requestParams) {
+        BigDecimal longitude=requestParams.get("longitude");
+        BigDecimal latitude=requestParams.get("latitude");
+        BigDecimal distance=requestParams.get("distance");
         System.out.println("long:" + longitude + "lat" + latitude + "dist:" + distance);
-        List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, distance);
+        List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, distance.doubleValue());
 
         if (jobs == null || jobs.isEmpty()) {
             return new ResponseEntity<List<JobEntity>>(HttpStatus.NO_CONTENT);
