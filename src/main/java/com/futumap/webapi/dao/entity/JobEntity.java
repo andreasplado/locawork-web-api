@@ -31,11 +31,11 @@ public class JobEntity {
     @Column(name = "salary")
     private Double salary;
 
-    @Column(name = "longitude")
-    private Double longitude;
-
     @Column(name = "latitude")
     private Double latitude;
+
+    @Column(name = "longitude")
+    private Double longitude;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -96,20 +96,20 @@ public class JobEntity {
         this.updatedAt = new Date();
     }
 
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    private void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
     public Double getLatitude() {
         return latitude;
     }
 
     private void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    private void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public String getTitle() {

@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
@@ -33,9 +32,8 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Double longitude, @RequestParam Double latitude, @RequestParam Double distance) {
-        System.out.println("long:" + longitude + "lat" + latitude + "dist:" + distance);
-        List<JobEntity> jobs = jobService.findNearestJobs(longitude, latitude, distance);
+    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
+        List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance);
 
         if (jobs == null || jobs.isEmpty()) {
             return new ResponseEntity<List<JobEntity>>(HttpStatus.NO_CONTENT);

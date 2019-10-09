@@ -16,3 +16,32 @@
 
 #View server logs
 ```heroku logs --tail -a futumap```
+
+#Endpoints
+###Getting all jobs
+```https://futumap.herokuapp.com/jobs/```
+### Updating job
+Updating job with id 4<br>
+``` https://futumap.herokuapp.com/jobs/4```
+```
+{
+	"id": 4,
+	"title": "Muru niitmine",
+	"description" : "Tule niida aias muru. Kokku on 100 ruutmeetrit.",
+	"salary" : 100,
+	"longitude": "58.698017",
+	"latitude": "-152.522067"
+}
+```
+
+### Deleting job
+Deleting job with id 4 <br>
+``` https://futumap.herokuapp.com/jobs/4```
+###Gettin jobs by location in a distance
+Gettin jobs by location in a distance. Distance is in meters. Add your longitude and latitude after '='.
+Example with Longitude 152.522067 and latitude 58.698017<br>
+```https://futumap.herokuapp.com/jobs/getjobsbylocation?longitude=-152.522067&latitude=58.698017&distance=10000000```
+
+
+
+
