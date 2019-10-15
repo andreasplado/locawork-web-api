@@ -1,8 +1,6 @@
 package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobEntity;
-
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 

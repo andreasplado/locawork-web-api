@@ -28,6 +28,9 @@ public class JobEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "gategory", nullable = false)
+    private String catogory_id;
+
     @Column(name = "salary")
     private Double salary;
 
@@ -36,6 +39,9 @@ public class JobEntity {
 
     @Column(name = "longitude")
     private Double longitude;
+
+    @Column(name = "category_id")
+    private String categoryId;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -134,6 +140,22 @@ public class JobEntity {
 
     private void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public String getCatogory_id() {
+        return catogory_id;
+    }
+
+    public void setCatogory(String catogory_id) {
+        this.catogory_id = catogory_id;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 }
 
