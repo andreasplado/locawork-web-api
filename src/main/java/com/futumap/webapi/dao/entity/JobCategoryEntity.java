@@ -2,9 +2,6 @@ package com.futumap.webapi.dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Entity
 @Table(name = "categories")
@@ -21,6 +18,10 @@ public class JobCategoryEntity {
 
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
+
+    public JobCategoryEntity() {
+
+    }
 
     public JobCategoryEntity(String name){
         this.name = name;
