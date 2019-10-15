@@ -28,9 +28,8 @@ public class JobEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category", referencedColumnName = "id")
-    private JobCategoryEntity category;
+    @Column(name = "category_id")
+    private Integer categoryId;
 
     @Column(name = "salary")
     private Double salary;
@@ -140,12 +139,12 @@ public class JobEntity {
         this.salary = salary;
     }
 
-    public JobCategoryEntity getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(JobCategoryEntity category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 }
 
