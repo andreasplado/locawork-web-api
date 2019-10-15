@@ -28,8 +28,8 @@ public class JobEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "gategory", nullable = false)
-    private String catogory_id;
+    @Column(name = "category_id")
+    private String categoryId;
 
     @Column(name = "salary")
     private Double salary;
@@ -39,9 +39,6 @@ public class JobEntity {
 
     @Column(name = "longitude")
     private Double longitude;
-
-    @Column(name = "category_id")
-    private String categoryId;
 
     @Column(name = "created_at")
     private Date createdAt;
