@@ -29,7 +29,7 @@ public class JobEntity {
     private String description;
 
     @Column(name = "category_id")
-    private String categoryId;
+    private Integer categoryId;
 
     @Column(name = "salary")
     private Double salary;
