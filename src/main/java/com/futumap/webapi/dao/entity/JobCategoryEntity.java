@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 public class JobCategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

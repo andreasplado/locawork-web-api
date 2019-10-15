@@ -1,5 +1,6 @@
 package com.futumap.webapi.controller;
 
+import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
+
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
@@ -32,14 +33,20 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<List<JobEntity>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
+    public ResponseEntity<List<Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance);
+        List<JobCategoryEntity> categories = jobService.findJobCategories();
+        List<Object> combined = new ArrayList<>();
+        combined.addAll(jobs);
+        combined.addAll(categories);
 
-        if (jobs == null || jobs.isEmpty()) {
-            return new ResponseEntity<List<JobEntity>>(HttpStatus.NO_CONTENT);
+        if (combined.isEmpty()) {
+            return new ResponseEntity<List<Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<List<JobEntity>>(jobs, HttpStatus.OK);
+        System.out.println(combined.get(1));
+
+        return new ResponseEntity<List<Object>>(combined, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)

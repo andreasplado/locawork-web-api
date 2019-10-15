@@ -1,5 +1,6 @@
 package com.futumap.webapi.service;
 
+import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +9,7 @@ public interface IJobService {
 
     List<JobEntity> findAll();
     List<JobEntity> findNearestJobs(Double longitude, Double latitude, Double distance);
+    List<JobCategoryEntity> findJobCategories();
     JobEntity save (JobEntity jobEntity);
     JobEntity update(JobEntity jobEntity);
     void delete(Integer id);

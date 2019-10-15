@@ -1,8 +1,5 @@
 package com.futumap.webapi.dao.entity;
 
-import org.joda.time.DateTime;
-
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 
