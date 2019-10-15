@@ -22,14 +22,19 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    public ResponseEntity<List<JobEntity>> getAll() {
-        List<JobEntity> cities = jobService.findAll();
+    public ResponseEntity<List<Object>> getAll() {
+        List<JobEntity> jobs = jobService.findAll();
+        List<JobCategoryEntity> categories = jobService.findJobCategories();
+        List<Object> combined = new ArrayList<>();
 
-        if (cities == null || cities.isEmpty()) {
-            return new ResponseEntity<List<JobEntity>>(HttpStatus.NO_CONTENT);
+        combined.addAll(jobs);
+        combined.addAll(categories);
+
+        if (combined.isEmpty()) {
+            return new ResponseEntity<List<Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<List<JobEntity>>(cities, HttpStatus.OK);
+        return new ResponseEntity<List<Object>>(combined, HttpStatus.OK);
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
