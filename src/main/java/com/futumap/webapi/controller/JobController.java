@@ -2,6 +2,7 @@ package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
+import com.futumap.webapi.service.JobCategoryService;
 import com.futumap.webapi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -21,10 +22,13 @@ public class JobController {
     @Autowired
     private JobService jobService;
 
+    @Autowired
+    private JobCategoryService jobCategoryService;
+
     @GetMapping
     public ResponseEntity<List<Object>> getAll() {
         List<JobEntity> jobs = jobService.findAll();
-        List<JobCategoryEntity> categories = jobService.findJobCategories();
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
         List<Object> combined = new ArrayList<>();
 
         combined.addAll(jobs);
@@ -40,7 +44,7 @@ public class JobController {
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance);
-        List<JobCategoryEntity> categories = jobService.findJobCategories();
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
         List<Object> combined = new ArrayList<>();
         combined.addAll(jobs);
         combined.addAll(categories);

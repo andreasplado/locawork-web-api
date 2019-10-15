@@ -9,7 +9,6 @@ public interface IJobService {
 
     List<JobEntity> findAll();
     List<JobEntity> findNearestJobs(Double longitude, Double latitude, Double distance);
-    List<JobCategoryEntity> findJobCategories();
     JobEntity save (JobEntity jobEntity);
     JobEntity update(JobEntity jobEntity);
     void delete(Integer id);
