@@ -22,10 +22,9 @@ public class JobCategoryEntity {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
-    public JobCategoryEntity(String name, Date createdAt, Date updatedAt){
+    public JobCategoryEntity(String name){
         this.name = name;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.setCreatedAt(new Date());
     }
 
     public String getName() {
@@ -42,6 +41,14 @@ public class JobCategoryEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @PrePersist
