@@ -139,14 +139,6 @@ public class JobEntity {
         this.salary = salary;
     }
 
-    public String getCatogory_id() {
-        return catogory_id;
-    }
-
-    public void setCatogory(String catogory_id) {
-        this.catogory_id = catogory_id;
-    }
-
     public Integer getCategoryId() {
         return categoryId;
     }
