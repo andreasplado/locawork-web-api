@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.util.Optional;
 
-@RequestMapping("/jobcategories")
+@RequestMapping("/categories")
 public class CategoryController {
 
     @Autowired
