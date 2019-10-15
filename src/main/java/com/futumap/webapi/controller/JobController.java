@@ -27,7 +27,7 @@ public class JobController {
     private JobCategoryService jobCategoryService;
 
     @GetMapping
-    public ResponseEntity<List<Object>> getAll() {
+    public ResponseEntity<HashMap<String,Object>> getAll() {
         List<JobEntity> jobs = jobService.findAll();
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
@@ -36,10 +36,10 @@ public class JobController {
         combined.put("categories", categories);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<List<Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<List<Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
