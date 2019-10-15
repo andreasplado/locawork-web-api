@@ -22,8 +22,10 @@ public class JobCategoryEntity {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
-    public JobCategoryEntity(String name){
+    public JobCategoryEntity(String name, Date createdAt, Date updatedAt){
         this.name = name;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getName() {
