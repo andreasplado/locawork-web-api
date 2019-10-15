@@ -1,7 +1,6 @@
 package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobCategoryEntity;
-import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.service.JobCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
