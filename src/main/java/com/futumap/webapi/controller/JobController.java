@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,10 +30,10 @@ public class JobController {
     public ResponseEntity<List<Object>> getAll() {
         List<JobEntity> jobs = jobService.findAll();
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
-        List<Object> combined = new ArrayList<>();
+        HashMap<String, Object> combined = new HashMap<>();
 
-        combined.addAll(jobs);
-        combined.addAll(categories);
+        combined.put("jobs", jobs);
+        combined.put("categories", categories);
 
         if (combined.isEmpty()) {
             return new ResponseEntity<List<Object>>(HttpStatus.NO_CONTENT);
