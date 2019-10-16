@@ -20,6 +20,9 @@ import java.util.Optional;
 @RequestMapping("/jobs")
 public class JobController {
 
+    private static String KEY_JOBS = "jobs";
+    private static String KEY_CATEGORIES = "categories";
+
     @Autowired
     private JobService jobService;
 
@@ -32,8 +35,8 @@ public class JobController {
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
 
-        combined.put("jobs", jobs);
-        combined.put("categories", categories);
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, categories);
 
         if (combined.isEmpty()) {
             return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
@@ -43,20 +46,18 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<List<Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
+    public ResponseEntity<HashMap<String,Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
-        List<Object> combined = new ArrayList<>();
-        combined.addAll(jobs);
-        combined.addAll(categories);
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, categories);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<List<Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
         }
 
-        System.out.println(combined.get(1));
-
-        return new ResponseEntity<List<Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
