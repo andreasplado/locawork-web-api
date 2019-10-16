@@ -22,14 +22,14 @@ public class CategoryController {
     private JobCategoryService jobCategoryService;
 
     @GetMapping
-    public ResponseEntity<HashMap<String,Object>> getAll() {
+    public ResponseEntity<List<JobCategoryEntity>> getAll() {
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
 
         if (categories != null && categories.isEmpty()) {
-            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<JobCategoryEntity>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<List<JobCategoryEntity>>(categories, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST)
