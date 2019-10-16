@@ -1,6 +1,7 @@
 package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobCategoryEntity;
+import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.service.JobCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -8,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +20,17 @@ public class CategoryController {
 
     @Autowired
     private JobCategoryService jobCategoryService;
+
+    @GetMapping
+    public ResponseEntity<HashMap<String,Object>> getAll() {
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
+
+        if (categories != null && categories.isEmpty()) {
+            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody JobCategoryEntity categoryEntity, UriComponentsBuilder ucBuilder) {
