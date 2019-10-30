@@ -40,7 +40,9 @@ Deleting job with id 4 <br>
 ###Gettin jobs by location in a distance
 Gettin jobs by location in a distance. Distance is in METERS! Add your longitude and latitude after '='.
 Example with Longitude 152.522067 and latitude 58.698017<br>
-```https://futumap.herokuapp.com/jobs/getjobsbylocation?longitude=-152.522067&latitude=58.698017&distance=10000000```
+googleAccountId is currently logged in user to filter out account from finding job.
+
+```https://futumap.herokuapp.com/jobs/getjobsbylocation?longitude=-152.522067&latitude=58.698017&distance=10000000&googleAccountId=108921010361347349816```
 
 
 
