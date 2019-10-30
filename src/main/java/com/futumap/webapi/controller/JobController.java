@@ -46,8 +46,8 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
-        List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance);
+    public ResponseEntity<HashMap<String,Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String googleAccountId) {
+        List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance, googleAccountId);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
