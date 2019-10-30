@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
-    @Query(value="SELECT * from jobs j WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND accountGoogleId !=?4", nativeQuery = true)
+    @Query(value="SELECT * from jobs j WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND j.account_google_id !=?4", nativeQuery = true)
     List<JobEntity> findNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("accountGoogleId") String accountGoogleId);
 }
