@@ -22,6 +22,9 @@ public class JobEntity {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "account_google_id")
+    private String accountGoogleId;
+
     @Column(name = "description")
     private String description;
 
@@ -33,6 +36,7 @@ public class JobEntity {
 
     @Column(name = "latitude")
     private Double latitude;
+
 
     @Column(name = "longitude")
     private Double longitude;
@@ -142,6 +146,14 @@ public class JobEntity {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public String getAccountGoogleId() {
+        return accountGoogleId;
+    }
+
+    public void setAccountGoogleId(String accountGoogleId) {
+        this.accountGoogleId = accountGoogleId;
     }
 }
 
