@@ -1,6 +1,5 @@
 package com.futumap.webapi.service;
 
-import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class JobService implements IJobService {
     }
 
 
-    @Override
     public List<JobEntity> findNearestJobs(Double latitude, Double longitude, Double distance, String accountGoogleId) {
         return repository.findNearestJobs(latitude, longitude, distance, accountGoogleId);
     }

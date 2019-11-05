@@ -73,11 +73,10 @@ public class JobController {
 
     @RequestMapping(value="/getjobsbygoogleaccount", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String,Object>> getAll(@RequestParam String googleAccountId) {
-        List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance, googleAccountId);
-        List<JobCategoryEntity> categories = jobCategoryService.findAll();
+        List<JobEntity> jobs = jobService.findAllCurrentUserJobs(googleAccountId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, categories);
+        combined.put(KEY_CATEGORIES, jobs);
 
         if (combined.isEmpty()) {
             return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
