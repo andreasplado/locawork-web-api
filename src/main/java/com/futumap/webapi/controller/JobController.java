@@ -71,6 +71,22 @@ public class JobController {
         return cityEntity.map(entity -> new ResponseEntity<>(entity, HttpStatus.OK)).orElse(null);
     }
 
+    @RequestMapping(value="/getjobsbygoogleaccount", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String,Object>> getAll(@RequestParam String googleAccountId) {
+        List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance, googleAccountId);
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, categories);
+
+        if (combined.isEmpty()) {
+            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+    }
+
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> create(@RequestBody JobEntity job, UriComponentsBuilder ucBuilder) {
         jobService.save(job);
