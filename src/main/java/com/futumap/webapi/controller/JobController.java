@@ -87,12 +87,12 @@ public class JobController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Void> create(@RequestBody JobEntity job, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<JobEntity> create(@RequestBody JobEntity job, UriComponentsBuilder ucBuilder) {
         jobService.save(job);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/city/{id}").buildAndExpand(job.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<JobEntity>(headers, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
