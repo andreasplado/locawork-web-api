@@ -24,8 +24,8 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findAllCurrentUserJobs(String accountGoogleId) {
-        return repository.findPostedJobs(accountGoogleId);
+    public List<JobEntity> findAllCurrentUserJobs(String gmail) {
+        return repository.findPostedJobs(gmail);
     }
 
     @Override
