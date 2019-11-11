@@ -13,6 +13,7 @@ public interface IJobService {
     JobEntity save (JobEntity jobEntity);
     JobEntity update(JobEntity jobEntity);
     void delete(Integer id);
+    void deleteAll();
     Optional<JobEntity> findById(Integer id);
     boolean exists(Integer id);
 }

@@ -48,6 +48,11 @@ public class JobService implements IJobService {
     }
 
     @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    @Override
     public Optional<JobEntity> findById(Integer id) {
         return repository.findById(id);
     }
