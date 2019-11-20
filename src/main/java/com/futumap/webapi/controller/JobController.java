@@ -5,13 +5,11 @@ import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.service.JobCategoryService;
 import com.futumap.webapi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -46,8 +44,23 @@ public class JobController {
     }
 
     @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,Object>> getByRadius(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String googleAccountId) {
-        List<JobEntity> jobs = jobService.findNearestJobs(latitude, longitude, distance, googleAccountId);
+    public ResponseEntity<HashMap<String,Object>> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String googleAccountId) {
+        List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, googleAccountId);
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, categories);
+
+        if (combined.isEmpty()) {
+            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/getalljobsbylocation", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String,Object>> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
+        List<JobEntity> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
