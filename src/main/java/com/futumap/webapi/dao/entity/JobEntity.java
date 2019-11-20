@@ -47,6 +47,9 @@ public class JobEntity {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
+    @Column(name = "regitredAccount")
+    private String registredAccount;
+
     public JobEntity() {
 
     }
@@ -154,6 +157,14 @@ public class JobEntity {
 
     public void setAccountGoogleId(String accountGoogleId) {
         this.accountGoogleId = accountGoogleId;
+    }
+
+    public String getRegistredAccount() {
+        return registredAccount;
+    }
+
+    public void setRegistredAccount(String registredAccount) {
+        this.registredAccount = registredAccount;
     }
 }
 

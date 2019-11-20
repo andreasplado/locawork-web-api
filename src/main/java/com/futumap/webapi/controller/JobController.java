@@ -115,6 +115,16 @@ public class JobController {
         return new ResponseEntity<JobEntity>(jobEntity, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "registerjob/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<JobEntity> registerjob(@PathVariable Integer id, @RequestBody JobEntity jobEntity) {
+
+        if (!jobService.exists(id)) {
+            return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
+        }
+        jobService.update(jobEntity);
+        return new ResponseEntity<JobEntity>(jobEntity, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
         Optional<JobEntity> cityEntity = jobService.findById(id);
