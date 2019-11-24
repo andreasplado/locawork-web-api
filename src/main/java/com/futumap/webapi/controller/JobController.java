@@ -98,6 +98,20 @@ public class JobController {
         return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
     }
 
+    @RequestMapping(value="/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String,Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
+        List<JobEntity> jobs = jobService.findAppliedJobs(googleAccountEmail);
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, jobs);
+
+        if (combined.isEmpty()) {
+            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+    }
+
 
     @RequestMapping(method = RequestMethod.POST)
     public JobEntity create(@RequestBody JobEntity job, UriComponentsBuilder ucBuilder) {
