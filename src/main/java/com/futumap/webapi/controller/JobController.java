@@ -118,11 +118,13 @@ public class JobController {
     @RequestMapping(value = "registerjob/{id}", method = RequestMethod.PUT)
     public ResponseEntity<JobEntity> registerjob(@PathVariable("id") Integer id, @RequestBody JobEntity jobEntity) {
 
-        if (!jobService.exists(id)) {
+        if (jobService.exists(id)) {
+            jobService.update(jobEntity);
+            return new ResponseEntity<JobEntity>(jobEntity, HttpStatus.OK);
+
+        }else{
             return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
         }
-        jobService.update(jobEntity);
-        return new ResponseEntity<JobEntity>(jobEntity, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
