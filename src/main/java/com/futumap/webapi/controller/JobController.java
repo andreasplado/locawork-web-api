@@ -116,7 +116,7 @@ public class JobController {
     }
 
     @RequestMapping(value = "registerjob/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<JobEntity> registerjob(@PathVariable Integer id, @RequestBody JobEntity jobEntity) {
+    public ResponseEntity<JobEntity> registerjob(@PathVariable("id") Integer id, @RequestBody JobEntity jobEntity) {
 
         if (!jobService.exists(id)) {
             return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
