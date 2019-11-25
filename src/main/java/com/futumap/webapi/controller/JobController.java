@@ -28,7 +28,7 @@ public class JobController {
     private JobCategoryService jobCategoryService;
 
     @GetMapping
-    public ResponseEntity<HashMap<String,Object>> getAll() {
+    public ResponseEntity<HashMap<String, Object>> getAll() {
         List<JobEntity> jobs = jobService.findAll();
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
@@ -37,14 +37,14 @@ public class JobController {
         combined.put(KEY_CATEGORIES, categories);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
         }
 
         return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,Object>> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String googleAccountId) {
+    @RequestMapping(value = "/getjobsbylocation", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String googleAccountId) {
         List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, googleAccountId);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
@@ -52,14 +52,14 @@ public class JobController {
         combined.put(KEY_CATEGORIES, categories);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/getalljobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,Object>> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
+    @RequestMapping(value = "/getalljobsbylocation", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobEntity> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
@@ -67,10 +67,10 @@ public class JobController {
         combined.put(KEY_CATEGORIES, categories);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -84,32 +84,32 @@ public class JobController {
         return cityEntity.map(entity -> new ResponseEntity<>(entity, HttpStatus.OK)).orElse(null);
     }
 
-    @RequestMapping(value="/getjobsbygoogleaccount", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,Object>> getAll(@RequestParam String googleAccountEmail) {
+    @RequestMapping(value = "/getjobsbygoogleaccount", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getAll(@RequestParam String googleAccountEmail) {
         List<JobEntity> jobs = jobService.findAllCurrentUserJobs(googleAccountEmail);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, jobs);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String,Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
+    @RequestMapping(value = "/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
         List<JobEntity> jobs = jobService.findAppliedJobs(googleAccountEmail);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, jobs);
 
         if (combined.isEmpty()) {
-            return new ResponseEntity<HashMap<String,Object>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<HashMap<String,Object>>(combined, HttpStatus.OK);
+        return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
 
@@ -125,7 +125,7 @@ public class JobController {
         if (jobService.exists(id)) {
             jobService.update(jobEntity);
             return new ResponseEntity<JobEntity>(jobEntity, HttpStatus.OK);
-        }else{
+        } else {
             return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
         }
     }
@@ -137,21 +137,23 @@ public class JobController {
             jobService.update(jobEntity);
             return new ResponseEntity<JobEntity>(jobEntity, HttpStatus.OK);
 
-        }else{
+        } else {
             return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
         }
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
-        Optional<JobEntity> cityEntity = jobService.findById(id);
+    public ResponseEntity<JobEntity> delete(@PathVariable("id") Integer id) {
 
-        if (!cityEntity.isPresent()) {
-            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        if (jobService.exists(id)) {
+            jobService.delete(id);
+
+            return new ResponseEntity<JobEntity>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
         }
 
-        jobService.delete(id);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+
     }
 
     @RequestMapping(value = "deleteall", method = RequestMethod.DELETE)
