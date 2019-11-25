@@ -146,7 +146,7 @@ public class JobController {
     public ResponseEntity<JobEntity> delete(@PathVariable("id") Integer id) {
 
         if (!jobService.exists(id)) {
-            return new ResponseEntity<JobEntity>(HttpStatus.ACCEPTED);
+            return new ResponseEntity<JobEntity>(HttpStatus.OK);
         }else {
             jobService.delete(id);
             return new ResponseEntity<JobEntity>(HttpStatus.OK);
