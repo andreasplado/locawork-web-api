@@ -144,8 +144,13 @@ public class JobController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity<JobEntity> delete(@PathVariable("id") Integer id) {
-        jobService.delete(id);
-        return new ResponseEntity<JobEntity>(HttpStatus.OK);
+
+        if (!jobService.exists(id)) {
+            return new ResponseEntity<JobEntity>(HttpStatus.NOT_FOUND);
+        }else {
+            jobService.delete(id);
+            return new ResponseEntity<JobEntity>(HttpStatus.OK);
+        }
 
 
     }
