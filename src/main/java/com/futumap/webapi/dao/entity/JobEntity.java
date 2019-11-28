@@ -34,6 +34,12 @@ public class JobEntity {
     @Column(name = "salary")
     private Double salary;
 
+    @Column(name = "job_start_time")
+    private Date jobStartTime;
+
+    @Column(name = "job_end_time")
+    private Date jobEndTime;
+
     @Column(name = "latitude")
     private Double latitude;
 
@@ -46,6 +52,7 @@ public class JobEntity {
 
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
+
 
     @Column(name = "regitredAccount")
     private String registredAccount;
@@ -165,6 +172,22 @@ public class JobEntity {
 
     public void setRegistredAccount(String registredAccount) {
         this.registredAccount = registredAccount;
+    }
+
+    public Date getJobStartTime() {
+        return jobStartTime;
+    }
+
+    public void setJobStartTime(Date jobStartTime) {
+        this.jobStartTime = jobStartTime;
+    }
+
+    public Date getJobEndTime() {
+        return jobEndTime;
+    }
+
+    public void setJobEndTime(Date jobEndTime) {
+        this.jobEndTime = jobEndTime;
     }
 }
 
