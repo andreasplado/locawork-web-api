@@ -57,6 +57,9 @@ public class JobEntity {
     @Column(name = "regitredAccount")
     private String registredAccount;
 
+    @Column(name = "applyer_contact")
+    private String applyerContact;
+
     public JobEntity() {
 
     }
@@ -188,6 +191,14 @@ public class JobEntity {
 
     public void setJobEndTime(Date jobEndTime) {
         this.jobEndTime = jobEndTime;
+    }
+
+    public String getApplyerContact() {
+        return applyerContact;
+    }
+
+    public void setApplyerContact(String applyerContact) {
+        this.applyerContact = applyerContact;
     }
 }
 
