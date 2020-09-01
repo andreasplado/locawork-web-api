@@ -42,6 +42,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.userDetailsService();
     }
 
+
+
+    @Autowired
+    public void globalUserDetails(AuthenticationManagerBuilder builder) throws Exception {
+        builder.inMemoryAuthentication()
+                .withUser("user").password("password").roles("ADMIN")
+                .and()
+                .withUser("admin").password("password").roles("USER");
+    }
+
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
