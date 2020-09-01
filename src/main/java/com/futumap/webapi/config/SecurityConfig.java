@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN", "USER").and()
                 .withUser("appuser")
                 .password("{bcrypt}pass123").roles("USER")
-                .authorities("ROLE_USER", "ROLE_ADMIN");
+                .authorities("ROLE_ADMIN","ROLE_USER");
     }
 
     @Bean
