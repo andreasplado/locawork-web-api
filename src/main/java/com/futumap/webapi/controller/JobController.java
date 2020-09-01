@@ -105,7 +105,7 @@ public class JobController {
     }
 
     @RequestMapping(value = "/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
         List<JobEntity> jobs = jobService.findAppliedJobs(googleAccountEmail);
         HashMap<String, Object> combined = new HashMap<>();
