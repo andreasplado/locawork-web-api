@@ -45,11 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder builder) throws Exception {
-        builder.inMemoryAuthentication()
-                .withUser("user").password("password").roles("ADMIN")
-                .and()
-                .withUser("admin").password("password").roles("USER");
+    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin")
+                .password("pass")
+                .roles("ADMIN", "USER").and()
+                .withUser("appuser")
+                .password("pass123").roles("USER");
     }
 
     @Bean
