@@ -48,10 +48,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("admin")
-                .password("pass")
+                .password("{noop}pass")
                 .roles("ADMIN", "USER").and()
                 .withUser("appuser")
-                .password("pass123").roles("USER");
+                .password("{noop}pass123").roles("USER");
     }
 
     @Bean
