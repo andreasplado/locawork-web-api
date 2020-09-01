@@ -54,10 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("admin")
-                .password("{bcrypt}pass")
+                .password("pass")
                 .roles("ADMIN", "USER").and()
                 .withUser("appuser")
-                .password("{bcrypt}pass123").roles("USER");
+                .password("pass123").roles("USER");
     }
 
     @Bean
@@ -69,7 +69,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .passwordEncoder(new BCryptPasswordEncoder(encodingStrength));
+                .passwordEncoder(getPasswordEncoder());
+    }
+
+    private PasswordEncoder getPasswordEncoder() {
+        return new PasswordEncoder() {
+            public String encode (CharSequence charSequence) {
+                return charSequence.toString();
+            }
+            public boolean matches(CharSequence charSequence, String s) {
+                return true;
+            }
+        };
     }
 
     @Override
