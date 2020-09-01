@@ -48,8 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
-
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
@@ -57,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .password("{bcrypt}pass")
                 .roles("ADMIN", "USER").and()
                 .withUser("appuser")
-                .password("{bcrypt}pass123").roles("USER");
+                .password("{bcrypt}pass123").roles("USER")
+                .authorities("ROLE_USER", "ROLE_ADMIN");
     }
 
     @Bean
