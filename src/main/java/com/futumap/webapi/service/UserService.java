@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,7 @@ public class UserService implements IUserService {
 
     @Override
     public boolean existsByUsername(String username) {
-        return repository.userExists(username);
+        BigInteger bigInteger = repository.userExists(username);
+        return BigInteger.valueOf(0).compareTo(bigInteger) < 0;
     }
 }

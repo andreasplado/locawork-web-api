@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
@@ -14,6 +15,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     UserEntity findByUsername(@Param("username") String username);
 
     @Query(value="SELECT count (*) from users j WHERE j.username >?1", nativeQuery = true)
-    boolean userExists(@Param("username") String username);
+    BigInteger userExists(@Param("username") String username);
 
 }
