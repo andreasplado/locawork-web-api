@@ -54,10 +54,6 @@ public class UserEntity implements UserDetails {
         this.password = password;
     }
 
-    public void setAccountExpired(boolean isAccountExpired){
-        this.isAccountExpired = isAccountExpired;
-    }
-
     public void setAccountLocked(boolean isAccountNonLocked){
         this.isAccountNonLocked = isAccountNonLocked;
     }
