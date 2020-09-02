@@ -54,8 +54,8 @@ public class UserEntity implements UserDetails {
         this.password = password;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String googleAccountId) {
+        this.googleAccountId = googleAccountId;
     }
 
     public void setAccountExpired(boolean isAccountExpired){
@@ -110,7 +110,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.googleAccountId;
     }
 
     @Override
