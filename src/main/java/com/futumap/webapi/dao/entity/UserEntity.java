@@ -24,22 +24,16 @@ public class UserEntity implements UserDetails {
     )
     private Integer id;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "is_account_expired")
     private boolean isAccountExpired;
 
-    @Column(name = "is_credentials_non_expired")
     private boolean isCredentialsNonExpired;
 
-    @Column(name = "is_account_non_locked")
     private boolean isAccountNonLocked;
 
-    @Column(name = "is_enabled")
     private boolean isEnabled;
 
     @Column(name = "created_at")
