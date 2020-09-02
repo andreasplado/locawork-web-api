@@ -27,9 +27,6 @@ public class UserEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "username")
-    private String username;
-
     @Column(name = "google_account_id")
     private String googleAccountId;
 
@@ -134,5 +131,13 @@ public class UserEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public String getGoogleAccountId() {
+        return googleAccountId;
+    }
+
+    public void setGoogleAccountId(String googleAccountId) {
+        this.googleAccountId = googleAccountId;
     }
 }
