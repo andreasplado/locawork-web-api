@@ -53,7 +53,10 @@ public class UserService implements IUserService {
 
     @Override
     public boolean existsByUsername(String username) {
-        BigInteger bigInteger = repository.userExists(username);
-        return BigInteger.valueOf(0).compareTo(bigInteger) < 0;
+        List<UserEntity> userEntities = repository.userExists(username);
+        if(userEntities.size() > 0){
+            return true;
+        }
+        return false;
     }
 }
