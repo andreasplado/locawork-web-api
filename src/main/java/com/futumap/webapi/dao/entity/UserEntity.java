@@ -30,6 +30,9 @@ public class UserEntity implements UserDetails {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "google_account_id")
+    private String googleAccountId;
+
     @Column(name = "is_account_expired")
     private boolean isAccountExpired;
 
