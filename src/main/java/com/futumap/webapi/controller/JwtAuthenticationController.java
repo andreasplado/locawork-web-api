@@ -39,7 +39,13 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
-        userService.save(userEntity);
+
+        if(userService.existsByUsername(userEntity.getUsername())){
+            return (ResponseEntity<?>) ResponseEntity.badRequest();
+        }else{
+            userService.save(userEntity);
+        }
+
         return ResponseEntity.ok(userEntity);
     }
 

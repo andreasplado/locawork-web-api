@@ -14,4 +14,5 @@ public interface IUserService {
     void delete(Integer id);
     Optional<UserEntity> findById(Integer id);
     boolean exists(Integer id);
+    boolean existsByUsername(String username);
 }

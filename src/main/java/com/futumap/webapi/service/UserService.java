@@ -49,4 +49,9 @@ public class UserService implements IUserService {
     public boolean exists(Integer id) {
         return repository.existsById(id);
     }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return repository.userExists(username) > 0;
+    }
 }
