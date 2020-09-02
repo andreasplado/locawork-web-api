@@ -24,9 +24,6 @@ public class UserEntity implements UserDetails {
     )
     private Integer id;
 
-    @Column(name = "authorities")
-    private List<GrantedAuthority> authorities;
-
     @Column(name = "password")
     private String password;
 
@@ -103,7 +100,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
     @Override
