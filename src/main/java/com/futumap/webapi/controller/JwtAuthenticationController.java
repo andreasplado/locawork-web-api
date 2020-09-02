@@ -1,7 +1,5 @@
 package com.futumap.webapi.controller;
 
-import java.util.Objects;
-
 import com.futumap.webapi.config.JwtTokenUtil;
 import com.futumap.webapi.dao.entity.JwtRequest;
 import com.futumap.webapi.dao.entity.JwtResponse;
@@ -34,7 +32,7 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userService
-                .findByName(authenticationRequest.getUsername());
+                .findByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }

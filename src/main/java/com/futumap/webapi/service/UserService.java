@@ -1,7 +1,6 @@
 package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.UserEntity;
-import com.futumap.webapi.respository.CategoryRepository;
 import com.futumap.webapi.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,8 +32,8 @@ public class UserService implements IUserService {
         return userEntity;
     }
 
-    public UserDetails findByName(String googleAccountId){
-        return repository.findByGoogleAccountId(googleAccountId);
+    public UserDetails findByUsername(String googleAccountId){
+        return repository.findByUsername(googleAccountId);
     }
     @Override
     public void delete(Integer id) {

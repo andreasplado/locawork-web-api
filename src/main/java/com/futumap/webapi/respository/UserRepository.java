@@ -10,6 +10,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    @Query(value="SELECT * from users j WHERE j.google_account_id !=?1", nativeQuery = true)
-    UserEntity findByGoogleAccountId(@Param("name") String googleAccountId);
+    @Query(value="SELECT * from users j WHERE j.username !=?1", nativeQuery = true)
+    UserEntity findByUsername(@Param("username") String username);
 }
