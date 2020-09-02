@@ -34,7 +34,7 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getGoogleAccountId());
         final UserDetails userDetails = userService
-                .findByName(authenticationRequest.getGoogleAccountId());
+                .findByName(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
