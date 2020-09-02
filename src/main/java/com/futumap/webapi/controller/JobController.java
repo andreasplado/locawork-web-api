@@ -54,7 +54,7 @@ public class JobController {
 
         if (combined.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found");
+            responseModel.setMessage("You have no jobs found");
             return ResponseEntity.ok(responseModel);
         }
 
@@ -71,7 +71,7 @@ public class JobController {
 
         if (combined.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
         }
@@ -84,7 +84,7 @@ public class JobController {
 
         if (!jobService.exists(id)) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
         }
@@ -102,7 +102,7 @@ public class JobController {
 
         if (combined.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
         }
@@ -119,7 +119,7 @@ public class JobController {
 
         if (combined.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
         }
 
         return ResponseEntity.ok(combined);
@@ -140,7 +140,7 @@ public class JobController {
             return ResponseEntity.ok(jobEntity);
         } else {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
             return ResponseEntity.ok(responseModel);
         }
     }
@@ -154,7 +154,7 @@ public class JobController {
             return ResponseEntity.ok(jobEntity);
         } else {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
         }
@@ -165,14 +165,14 @@ public class JobController {
 
         if (!jobService.exists(id)) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You have no jobs found!");
+            responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
         }else {
             jobService.delete(id);
 
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("You deleted job successfully!");
+            responseModel.setMessage("You deleted job successfully!");
 
             return ResponseEntity.ok(responseModel);
         }

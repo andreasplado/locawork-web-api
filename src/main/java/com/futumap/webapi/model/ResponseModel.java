@@ -2,13 +2,13 @@ package com.futumap.webapi.model;
 
 public class ResponseModel {
 
-    private String responseMessage;
+    private String message;
 
-    public String getResponseMessage() {
-        return responseMessage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setResponseMessage(String errorMessage) {
-        this.responseMessage = errorMessage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

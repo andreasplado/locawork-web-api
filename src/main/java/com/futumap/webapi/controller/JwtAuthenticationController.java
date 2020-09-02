@@ -42,7 +42,8 @@ public class JwtAuthenticationController {
     public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
         if(userService.existsByUsername(userEntity.getUsername())){
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("User already exists!");
+            responseModel.setMessage("User already exists!");
+
             return ResponseEntity.ok(responseModel);
         }else{
             userService.save(userEntity);

@@ -25,7 +25,7 @@ public class UserController {
 
         if (userEntities != null && userEntities.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("Users not found!");
+            responseModel.setMessage("Users not found!");
             return ResponseEntity.ok(responseModel);
         }
 
@@ -46,7 +46,7 @@ public class UserController {
 
         if (!userService.exists(id)) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("User already exists!");
+            responseModel.setMessage("User already exists!");
             return ResponseEntity.ok(responseModel);
         }
         userService.update(userEntity);
@@ -60,7 +60,7 @@ public class UserController {
 
         if (!userEntity.isPresent()) {
             ResponseModel responseModel = new ResponseModel();
-            responseModel.setResponseMessage("User not found!");
+            responseModel.setMessage("User not found!");
             return ResponseEntity.ok(responseModel);
         }
 
