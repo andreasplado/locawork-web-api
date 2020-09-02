@@ -39,6 +39,9 @@ public class UserEntity implements UserDetails {
     @Column(name = "is_account_non_locked")
     private boolean isAccountNonLocked;
 
+    @Column(name = "is_enabled")
+    private boolean isEnabled;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -129,7 +132,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return this.isEnabled;
     }
 
     public void setUsername(String username) {
