@@ -39,7 +39,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
+    public ResponseEntity<?> register(@RequestBody UserEntity userEntity)  {
         if(userService.existsByUsername(userEntity.getUsername())){
             ResponseModel responseModel = new ResponseModel();
             responseModel.setMessage("User already exists!");

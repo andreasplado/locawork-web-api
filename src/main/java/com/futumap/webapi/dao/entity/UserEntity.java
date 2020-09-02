@@ -54,7 +54,7 @@ public class UserEntity implements UserDetails {
         this.password = password;
     }
 
-    public void setAccountLocked(boolean isAccountNonLocked){
+    public void setAccountNonLocked(boolean isAccountNonLocked){
         this.isAccountNonLocked = isAccountNonLocked;
     }
 
