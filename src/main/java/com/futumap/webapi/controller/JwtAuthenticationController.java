@@ -41,8 +41,7 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
-        final UserDetails userDetails = userService
-                .save(userEntity);
+        userService.save(userEntity);
         return ResponseEntity.ok(userEntity);
     }
 

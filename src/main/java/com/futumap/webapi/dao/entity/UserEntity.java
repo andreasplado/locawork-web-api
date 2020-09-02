@@ -27,11 +27,14 @@ public class UserEntity implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "google_account_id")
-    private String googleAccountId;
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "is_account_expired")
     private boolean isAccountExpired;
+
+    @Column(name = "is_credentials_non_expired")
+    private boolean isCredentialsNonExpired;
 
     @Column(name = "is_account_non_locked")
     private boolean isAccountNonLocked;
@@ -52,10 +55,6 @@ public class UserEntity implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setUsername(String googleAccountId) {
-        this.googleAccountId = googleAccountId;
     }
 
     public void setAccountExpired(boolean isAccountExpired){
@@ -110,7 +109,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.googleAccountId;
+        return this.username;
     }
 
     @Override
@@ -125,7 +124,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return this.isAccountExpired;
     }
 
     @Override
@@ -133,11 +132,11 @@ public class UserEntity implements UserDetails {
         return false;
     }
 
-    public String getGoogleAccountId() {
-        return googleAccountId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setGoogleAccountId(String googleAccountId) {
-        this.googleAccountId = googleAccountId;
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        isCredentialsNonExpired = credentialsNonExpired;
     }
 }

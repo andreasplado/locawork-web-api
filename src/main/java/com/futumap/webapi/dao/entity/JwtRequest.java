@@ -7,6 +7,7 @@ public class JwtRequest implements Serializable {
     private String username;
     private String googleAccountId;
 
+    //need default constructor for JSON Parsing
     public JwtRequest() {
     }
 
