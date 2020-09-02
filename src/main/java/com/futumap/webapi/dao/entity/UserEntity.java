@@ -1,11 +1,15 @@
 package com.futumap.webapi.dao.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,8 +23,20 @@ public class UserEntity {
     )
     private Integer id;
 
-    @Column(name = "google_account_id")
-    private String googleAccountId;
+    @Column(name = "authorities")
+    private Collection<? extends GrantedAuthority> authorities;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "is_account_expired")
+    private boolean isAccountExpired;
+
+    @Column(name = "is_account_non_locked")
+    private boolean isAccountNonLocked;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -28,21 +44,28 @@ public class UserEntity {
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
-    public UserEntity() {
-
-    }
-
-    public UserEntity(String googleAccountId, String password) {
-        this.setGoogleAccountId(googleAccountId);
-        this.setCreatedAt(new Date());
-    }
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setAccountExpired(boolean isAccountExpired){
+        this.isAccountExpired = isAccountExpired;
+    }
+
+    public void setAccountLocked(boolean isAccountNonLocked){
+        this.isAccountNonLocked = isAccountNonLocked;
     }
 
     public Date getCreatedAt() {
@@ -77,12 +100,38 @@ public class UserEntity {
         this.updatedAt = new Date();
     }
 
-    public String getGoogleAccountId() {
-        return googleAccountId;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
-    private void setGoogleAccountId(String googleAccountId) {
-        this.googleAccountId = googleAccountId;
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.isAccountExpired;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.isAccountNonLocked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
