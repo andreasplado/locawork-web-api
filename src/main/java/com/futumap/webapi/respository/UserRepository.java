@@ -13,7 +13,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query(value="SELECT * from users j WHERE j.username ==?1", nativeQuery = true)
     UserEntity findByUsername(@Param("username") String username);
 
-    @Query(value="SELECT count (*) from users j WHERE j.username ==?1", nativeQuery = true)
-    int userExists(@Param("username") String username);
+    @Query(value="SELECT count (*) from users j WHERE j.username >?1", nativeQuery = true)
+    boolean userExists(@Param("username") String username);
 
 }
