@@ -4,10 +4,9 @@ import com.futumap.webapi.config.JwtTokenUtil;
 import com.futumap.webapi.dao.entity.JwtRequest;
 import com.futumap.webapi.dao.entity.JwtResponse;
 import com.futumap.webapi.dao.entity.UserEntity;
-import com.futumap.webapi.model.ErrorModel;
+import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -42,9 +41,9 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
         if(userService.existsByUsername(userEntity.getUsername())){
-            ErrorModel errorModel = new ErrorModel();
-            errorModel.setErrrMessage("User already exists!");
-            return ResponseEntity.ok(errorModel);
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.setResponseMessage("User already exists!");
+            return ResponseEntity.ok(responseModel);
         }else{
             userService.save(userEntity);
             return ResponseEntity.ok(userEntity);
