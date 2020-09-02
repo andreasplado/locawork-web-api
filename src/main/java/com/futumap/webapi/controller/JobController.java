@@ -29,7 +29,6 @@ public class JobController {
     private JobCategoryService jobCategoryService;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<HashMap<String, Object>> getAll() {
         List<JobEntity> jobs = jobService.findAll();
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
@@ -46,7 +45,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "/getjobsbylocation", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<HashMap<String, Object>> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String googleAccountId) {
         List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, googleAccountId);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
@@ -62,7 +60,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "/getalljobsbylocation", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<HashMap<String, Object>> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobEntity> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
@@ -78,7 +75,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<JobEntity> get(@PathVariable("id") Integer id) {
 
         if (!jobService.exists(id)) {
@@ -90,7 +86,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "/getjobsbygoogleaccount", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<HashMap<String, Object>> getAll(@RequestParam String googleAccountEmail) {
         List<JobEntity> jobs = jobService.findAllCurrentUserJobs(googleAccountEmail);
         HashMap<String, Object> combined = new HashMap<>();
@@ -105,7 +100,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
     public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
         List<JobEntity> jobs = jobService.findAppliedJobs(googleAccountEmail);
         HashMap<String, Object> combined = new HashMap<>();
@@ -121,14 +115,12 @@ public class JobController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     public JobEntity create(@RequestBody JobEntity job, UriComponentsBuilder ucBuilder) {
         jobService.save(job);
         return job;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     public ResponseEntity<JobEntity> update(@PathVariable Integer id, @RequestBody JobEntity jobEntity) {
 
         if (jobService.exists(id)) {
@@ -140,7 +132,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "registerjob/{id}", method = RequestMethod.PUT)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     public ResponseEntity<JobEntity> registerjob(@PathVariable("id") Integer id, @RequestBody JobEntity jobEntity) {
 
         if (jobService.exists(id)) {
@@ -153,7 +144,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     public ResponseEntity<JobEntity> delete(@PathVariable("id") Integer id) {
 
         if (!jobService.exists(id)) {
@@ -167,7 +157,6 @@ public class JobController {
     }
 
     @RequestMapping(value = "deleteall", method = RequestMethod.DELETE)
-    @PreAuthorize("hasAuthority('ADMIN_USER') or hasAuthority('STANDARD_USER')")
     public ResponseEntity<Void> deleteaLL() {
         jobService.deleteAll();
         return new ResponseEntity<Void>(HttpStatus.OK);
