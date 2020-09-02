@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class JwtRequest implements Serializable {
     private static final long serialVersionUID = 5926468583005150707L;
     private String username;
-    private String googleAccountId;
+    private String password;
 
     //need default constructor for JSON Parsing
     public JwtRequest() {
     }
 
-    public JwtRequest(String username, String googleAccountId) {
+    public JwtRequest(String username, String password) {
         this.setUsername(username);
-        this.setGoogleAccountId(googleAccountId);
+        this.set(password);
     }
 
     public String getUsername() {
@@ -24,11 +24,11 @@ public class JwtRequest implements Serializable {
         this.username = username;
     }
 
-    public String getGoogleAccountId() {
-        return googleAccountId;
+    public String getPassword() {
+        return this.password;
     }
 
-    public void setGoogleAccountId(String googleAccountId) {
-        this.googleAccountId = googleAccountId;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
