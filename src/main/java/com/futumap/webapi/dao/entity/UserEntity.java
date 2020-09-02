@@ -46,10 +46,6 @@ public class UserEntity implements UserDetails {
         this.password = password;
     }
 
-    public void setAccountNonLocked(boolean isAccountNonLocked){
-        this.isAccountNonLocked = isAccountNonLocked;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -119,13 +115,5 @@ public class UserEntity implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-        isCredentialsNonExpired = credentialsNonExpired;
-    }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-        isAccountNonExpired = accountNonExpired;
     }
 }
