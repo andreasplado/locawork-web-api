@@ -6,6 +6,7 @@ public class JwtRequest implements Serializable {
     private static final long serialVersionUID = 5926468583005150707L;
     private String username;
     private String password;
+    private String googleAccountId;
 
     //need default constructor for JSON Parsing
     public JwtRequest() {
@@ -30,5 +31,13 @@ public class JwtRequest implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getGoogleAccountId() {
+        return googleAccountId;
+    }
+
+    public void setGoogleAccountId(String googleAccountId) {
+        this.googleAccountId = googleAccountId;
     }
 }
