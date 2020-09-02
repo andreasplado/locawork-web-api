@@ -28,7 +28,7 @@ public class UserEntity implements UserDetails {
 
     private String username;
 
-    private boolean isAccountExpired;
+    private boolean isAccountNonExpired;
 
     private boolean isCredentialsNonExpired;
 
@@ -111,7 +111,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.isCredentialsNonExpired;
+        return this.isAccountNonExpired;
     }
 
     @Override
@@ -141,7 +141,7 @@ public class UserEntity implements UserDetails {
         isCredentialsNonExpired = credentialsNonExpired;
     }
 
-    public boolean isAccountExpired() {
-        return isAccountExpired;
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        isAccountNonExpired = accountNonExpired;
     }
 }
