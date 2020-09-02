@@ -28,14 +28,6 @@ public class UserEntity implements UserDetails {
 
     private String username;
 
-    private boolean isAccountNonExpired;
-
-    private boolean isCredentialsNonExpired;
-
-    private boolean isAccountNonLocked;
-
-    private boolean isEnabled;
-
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -122,11 +114,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.isEnabled;
-    }
-
-    public void setEnabled(boolean isEnabled){
-        this.isEnabled = isEnabled;
+        return true;
     }
 
     public void setUsername(String username) {
