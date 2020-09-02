@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.futumap.webapi.config.JwtTokenUtil;
 import com.futumap.webapi.dao.entity.JwtRequest;
 import com.futumap.webapi.dao.entity.JwtResponse;
+import com.futumap.webapi.dao.entity.UserEntity;
 import com.futumap.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,16 +32,23 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getGoogleAccountId());
         final UserDetails userDetails = userService
                 .findByName(authenticationRequest.getGoogleAccountId());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    private void authenticate(String username, String password) throws Exception {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
+        final UserDetails userDetails = userService
+                .save(userEntity);
+        return ResponseEntity.ok(userEntity);
+    }
+
+    private void authenticate(String username, String googleAccountId) throws Exception {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, googleAccountId));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
