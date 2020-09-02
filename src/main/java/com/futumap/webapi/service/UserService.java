@@ -33,8 +33,8 @@ public class UserService implements IUserService {
         return userEntity;
     }
 
-    public UserDetails findByUsername(String googleAccountId){
-        return repository.findByUsername(googleAccountId);
+    public UserDetails findByUsername(String username){
+        return repository.findByUsername(username);
     }
     @Override
     public void delete(Integer id) {
