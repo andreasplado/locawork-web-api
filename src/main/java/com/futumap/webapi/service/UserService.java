@@ -52,6 +52,6 @@ public class UserService implements IUserService {
 
     @Override
     public boolean existsByUsername(String username) {
-        return repository.userExists(username) > 0;
+        return repository.userExists(username);
     }
 }
