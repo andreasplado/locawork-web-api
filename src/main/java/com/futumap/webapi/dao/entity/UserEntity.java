@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -24,7 +25,7 @@ public class UserEntity implements UserDetails {
     private Integer id;
 
     @Column(name = "authorities")
-    private Collection<? extends GrantedAuthority> authorities;
+    private List<GrantedAuthority> authorities;
 
     @Column(name = "password")
     private String password;
