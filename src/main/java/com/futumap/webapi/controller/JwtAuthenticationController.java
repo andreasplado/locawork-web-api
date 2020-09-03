@@ -48,7 +48,7 @@ public class JwtAuthenticationController {
             return ResponseEntity.ok(responseModel);
         }else{
 
-            BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder();
+            BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
             String password = bcrypt.encode(userEntity.getPassword());
             userEntity.setPassword(password);
 
