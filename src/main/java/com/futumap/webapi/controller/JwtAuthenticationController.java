@@ -66,7 +66,7 @@ public class JwtAuthenticationController {
 
     private void authenticate(String username, String password) throws Exception {
         try {
-            Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
+            BCryptPasswordEncoder pbkdf2PasswordEncoder = new BCryptPasswordEncoder();
             String encodedPass = pbkdf2PasswordEncoder.encode(password);
             System.out.println("Password:"  + password);
             System.out.println("Encoded pass" + encodedPass);
