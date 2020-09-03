@@ -1,10 +1,11 @@
 package com.futumap.webapi.controller;
 
+import java.util.Objects;
+
 import com.futumap.webapi.config.JwtTokenUtil;
 import com.futumap.webapi.dao.entity.JwtRequest;
 import com.futumap.webapi.dao.entity.JwtResponse;
 import com.futumap.webapi.dao.entity.UserEntity;
-import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
@@ -28,38 +32,24 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-        System.out.println("Password:"  + authenticationRequest.getPassword());
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getGoogleAccountId());
         final UserDetails userDetails = userService
-                .findByUsername(authenticationRequest.getUsername());
+                .findByName(authenticationRequest.getGoogleAccountId());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> register(@RequestBody UserEntity userEntity)  {
-        if(userService.existsByUsername(userEntity.getUsername())){
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("User already exists!");
-
-            return ResponseEntity.ok(responseModel);
-        }else{
-            Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
-            String encodedPass = pbkdf2PasswordEncoder.encode(userEntity.getPassword());
-            userEntity.setPassword(encodedPass);
-            userService.save(userEntity);
-            return ResponseEntity.ok(userEntity);
-        }
+    public ResponseEntity<?> register(@RequestBody UserEntity userEntity) throws Exception {
+        final UserDetails userDetails = userService
+                .save(userEntity);
+        final String token = jwtTokenUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    private void authenticate(String username, String password) throws Exception {
+    private void authenticate(String username, String googleAccountId) throws Exception {
         try {
-            Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
-            String encodedPass = pbkdf2PasswordEncoder.encode(password);
-            System.out.println("Password:"  + password);
-            System.out.println("Encoded pass" + encodedPass);
-
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, encodedPass));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, googleAccountId));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
