@@ -7,7 +7,10 @@ import com.futumap.webapi.dao.entity.UserEntity;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@Import(SecurityConfig.class)
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
