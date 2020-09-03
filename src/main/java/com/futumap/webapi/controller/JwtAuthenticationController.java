@@ -26,12 +26,15 @@ import java.util.Collection;
 @CrossOrigin
 public class JwtAuthenticationController {
     @Autowired
-    @Qualifier("authenticationManager")
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private UserService userService;
+
+    public JwtAuthenticationController(@Qualifier("appAuthenticationManager") AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {

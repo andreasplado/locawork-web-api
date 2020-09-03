@@ -46,8 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new Pbkdf2PasswordEncoder();
     }
 
-    @Bean
     @Override
+    @Bean(name="appAuthenticationManager")
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
