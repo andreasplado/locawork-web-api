@@ -17,4 +17,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query(value="SELECT * from users j WHERE j.username =?1", nativeQuery = true)
     List<UserEntity> userExists(@Param("username") String username);
 
+    @Query(value="SELECT * from users j WHERE j.username =?1 AND j.password =?2", nativeQuery = true)
+    UserEntity getUser(@Param("username") String username, @Param("password") String password);
 }

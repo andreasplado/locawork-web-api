@@ -59,4 +59,9 @@ public class UserService implements IUserService {
         }
         return false;
     }
+
+    @Override
+    public boolean doesPasswordAndUserMatches(String username, String password) {
+        return repository.getUser(username, password) != null;
+    }
 }
