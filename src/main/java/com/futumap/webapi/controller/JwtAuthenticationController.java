@@ -48,7 +48,9 @@ public class JwtAuthenticationController {
 
             return ResponseEntity.ok(responseModel);
         }else{
-            userEntity.setPassword(new Pbkdf2PasswordEncoder().encode(userEntity.getPassword()));
+            Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
+            String encodedPass = pbkdf2PasswordEncoder.encode(userEntity.getPassword());
+            userEntity.setPassword(encodedPass);
             userService.save(userEntity);
             return ResponseEntity.ok(userEntity);
         }
@@ -56,7 +58,8 @@ public class JwtAuthenticationController {
 
     private void authenticate(String username, String password) throws Exception {
         try {
-            String encodedPass = new Pbkdf2PasswordEncoder().encode(password);
+            Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
+            String encodedPass = pbkdf2PasswordEncoder.encode(password);
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, encodedPass));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
