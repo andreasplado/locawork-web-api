@@ -14,6 +14,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +48,7 @@ public class JwtAuthenticationController {
 
             return ResponseEntity.ok(responseModel);
         }else{
+            userEntity.setPassword(new Pbkdf2PasswordEncoder().encode(userEntity.getPassword()));
             userService.save(userEntity);
             return ResponseEntity.ok(userEntity);
         }
@@ -54,7 +56,8 @@ public class JwtAuthenticationController {
 
     private void authenticate(String username, String password) throws Exception {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            String encodedPass = new Pbkdf2PasswordEncoder().encode(password);
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, encodedPass));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
