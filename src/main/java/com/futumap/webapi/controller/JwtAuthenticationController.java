@@ -58,8 +58,11 @@ public class JwtAuthenticationController {
     }
 
     private void authenticate(String username, String password) throws Exception {
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
+        String encodedPass = bCryptPasswordEncoder.encode(password);
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, encodedPass));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
