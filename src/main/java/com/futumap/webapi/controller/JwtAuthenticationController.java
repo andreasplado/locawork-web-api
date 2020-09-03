@@ -47,20 +47,12 @@ public class JwtAuthenticationController {
 
             return ResponseEntity.ok(responseModel);
         }else{
-
-            BCryptPasswordEncoder bcrypt= new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
-            String password = bcrypt.encode(userEntity.getPassword());
-            userEntity.setPassword(password);
-
             userService.save(userEntity);
             return ResponseEntity.ok(userEntity);
         }
     }
 
     private void authenticate(String username, String password) throws Exception {
-
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2B);
-        String encodedPass = bCryptPasswordEncoder.encode(password);
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, encodedPass));
         } catch (DisabledException e) {

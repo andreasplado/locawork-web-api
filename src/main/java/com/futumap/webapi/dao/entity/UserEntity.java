@@ -116,4 +116,5 @@ public class UserEntity implements UserDetails {
     public void setUsername(String username) {
         this.username = username;
     }
+
 }
