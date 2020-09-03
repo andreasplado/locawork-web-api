@@ -59,7 +59,7 @@ public class JwtAuthenticationController {
             System.out.println("Password:"  + password);
             System.out.println("Encoded pass" + encodedPass);
 
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "lol"));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, encodedPass));
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
