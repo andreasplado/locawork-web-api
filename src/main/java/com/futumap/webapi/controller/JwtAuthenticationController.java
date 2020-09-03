@@ -33,10 +33,6 @@ public class JwtAuthenticationController {
     @Autowired
     private UserService userService;
 
-    public JwtAuthenticationController(@Qualifier("appAuthenticationManager") AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
-
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
