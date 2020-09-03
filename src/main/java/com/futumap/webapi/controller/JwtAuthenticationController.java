@@ -29,6 +29,7 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        System.out.println("Password:"  + authenticationRequest.getPassword());
         final UserDetails userDetails = userService
                 .findByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -55,7 +56,8 @@ public class JwtAuthenticationController {
         try {
             Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
             String encodedPass = pbkdf2PasswordEncoder.encode(password);
-            System.out.println(encodedPass);
+            System.out.println("Password:"  + password);
+            System.out.println("Encoded pass" + encodedPass);
 
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, "lol"));
         } catch (DisabledException e) {
