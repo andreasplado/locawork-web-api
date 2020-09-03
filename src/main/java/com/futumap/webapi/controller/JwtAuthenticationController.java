@@ -7,6 +7,7 @@ import com.futumap.webapi.dao.entity.UserEntity;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
