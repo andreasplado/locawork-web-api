@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new Pbkdf2PasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
     @Override

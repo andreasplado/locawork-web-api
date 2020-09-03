@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,10 +54,12 @@ public class JwtAuthenticationController {
 
             return ResponseEntity.ok(responseModel);
         }else{
-            Pbkdf2PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
+            BCryptPasswordEncoder pbkdf2PasswordEncoder = new BCryptPasswordEncoder();
             String encodedPass = pbkdf2PasswordEncoder.encode(userEntity.getPassword());
+
             userEntity.setPassword(encodedPass);
             userService.save(userEntity);
+
             return ResponseEntity.ok(userEntity);
         }
     }
