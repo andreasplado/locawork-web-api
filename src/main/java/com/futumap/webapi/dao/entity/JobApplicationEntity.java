@@ -76,5 +76,13 @@ public class JobApplicationEntity {
     protected void preRemove() {
         this.updatedAt = new Date();
     }
+
+    public JobEntity getJobEntity() {
+        return jobEntity;
+    }
+
+    public void setJobEntity(JobEntity jobEntity) {
+        this.jobEntity = jobEntity;
+    }
 }
 

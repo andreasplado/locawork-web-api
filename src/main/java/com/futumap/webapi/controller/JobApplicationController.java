@@ -27,7 +27,7 @@ public class JobApplicationController {
     private JobApplicationService jobApplicationService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public JobApplicationEntity create(@RequestBody JobApplicationEntity jobApplicationEntity, UriComponentsBuilder ucBuilder) {
+    public JobApplicationEntity create(@RequestBody JobApplicationEntity jobApplicationEntity) {
         jobApplicationService.save(jobApplicationEntity);
         return jobApplicationEntity;
     }
