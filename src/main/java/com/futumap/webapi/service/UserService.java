@@ -59,7 +59,7 @@ public class UserService implements IUserService {
     @Override
     public boolean googleAccountExists(String googleAccountId) {
         UserEntity userEntity= repository.findByGoogleAccount(googleAccountId);
-        if(userEntity == null){
+        if(userEntity.getAccountGoogleId() == null){
             return false;
         }
         return true;
