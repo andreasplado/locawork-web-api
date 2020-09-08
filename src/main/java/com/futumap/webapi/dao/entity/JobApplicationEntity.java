@@ -19,8 +19,7 @@ public class JobApplicationEntity {
     )
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name ="fk_job_entity")
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="job_applications")
     private JobEntity jobEntity;
 
     @Column(name = "created_at")
