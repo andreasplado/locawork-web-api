@@ -1,9 +1,7 @@
 package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
-import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.respository.JobApplicationRepository;
-import com.futumap.webapi.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,28 +12,33 @@ import java.util.Optional;
 public class JobApplicationService implements IJobApplicationService {
 
     @Autowired
-    private JobApplicationRepository repository;
+    private JobApplicationRepository jobApplicationRepository;
 
     @Override
     public List<JobApplicationEntity> findAll() {
-        return repository.findAll();
+        return jobApplicationRepository.findAll();
     }
 
     @Override
-    public List<JobApplicationEntity> findJobApplications(String accountGoogleId) {
-        return repository.getJobApplications(accountGoogleId);
+    public List<JobApplicationEntity> findNonApprovedJobApplications(String accountGoogleId) {
+        return jobApplicationRepository.getNonApprovedJobApplications(accountGoogleId);
+    }
+
+    @Override
+    public List<JobApplicationEntity> findApprovedJobApplications(String accountGoogleId) {
+        return jobApplicationRepository.getApprovedJobApplications(accountGoogleId);
     }
 
 
     @Override
     public JobApplicationEntity save(JobApplicationEntity jobEntity) {
-        return repository.save(jobEntity);
+        return jobApplicationRepository.save(jobEntity);
     }
 
     @Override
     public JobApplicationEntity update(JobApplicationEntity jobApplicationEntity) {
-        if(repository.existsById(jobApplicationEntity.getId())){
-            repository.save(jobApplicationEntity);
+        if(jobApplicationRepository.existsById(jobApplicationEntity.getId())){
+            jobApplicationRepository.save(jobApplicationEntity);
         }
         return jobApplicationEntity;
     }
@@ -43,22 +46,22 @@ public class JobApplicationService implements IJobApplicationService {
 
     @Override
     public void delete(Integer id) {
-        repository.deleteById(id);
+        jobApplicationRepository.deleteById(id);
     }
 
     @Override
     public void deleteAll() {
-        repository.deleteAll();
+        jobApplicationRepository.deleteAll();
     }
 
     @Override
     public Optional<JobApplicationEntity> findById(Integer id) {
-        return repository.findById(id);
+        return jobApplicationRepository.findById(id);
     }
 
     @Override
     public boolean exists(Integer id) {
-        return repository.existsById(id);
+        return jobApplicationRepository.existsById(id);
     }
 
 }

@@ -10,7 +10,8 @@ public interface IJobApplicationService {
 
     List<JobApplicationEntity> findAll();
 
-    List<JobApplicationEntity> findJobApplications(String accountGoogleId);
+    List<JobApplicationEntity> findNonApprovedJobApplications(String accountGoogleId);
+    List<JobApplicationEntity> findApprovedJobApplications(String accountGoogleId);
     JobApplicationEntity save(JobApplicationEntity jobEntity);
     JobApplicationEntity update(JobApplicationEntity jobEntity);
     void delete(Integer id);
