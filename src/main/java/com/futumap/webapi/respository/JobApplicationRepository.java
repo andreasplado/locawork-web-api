@@ -14,6 +14,6 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
             " INNER JOIN jobs j ON ja.fk_job_entity = j.id" +
-            " WHERE j.account_google_id !=?1", nativeQuery = true)
+            " WHERE j.account_google_id !=?1 AND ja.is_approved=FALSE", nativeQuery = true)
     List<JobApplicationEntity> getJobApplications(@Param("googleAccount") String accountGoogleId);
 }

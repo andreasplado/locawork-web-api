@@ -23,6 +23,9 @@ public class JobApplicationEntity {
     @JoinColumn(name ="fk_job_entity")
     private JobEntity jobEntity;
 
+    @Column(name = "is_approved")
+    private boolean isApproved;
+
     @Column(name = "created_at")
     private Date createdAt;
 
