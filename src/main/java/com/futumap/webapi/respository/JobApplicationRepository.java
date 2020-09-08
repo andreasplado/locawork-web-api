@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface JobApplicationRepository extends JpaRepository<JobApplicationEntity, Integer> {
 
-    @Query(value="SELECT * from job_applications ja INNER JOIN jobs j WHERE j.account_google_id !=?1", nativeQuery = true)
+    @Query(value="SELECT ja, j FROM job_applications ja INNER JOIN ja.job j WHERE j.account_google_id !=?1", nativeQuery = true)
     List<JobApplicationEntity> getJobApplications(@Param("googleAccount") String accountGoogleId);
 }
