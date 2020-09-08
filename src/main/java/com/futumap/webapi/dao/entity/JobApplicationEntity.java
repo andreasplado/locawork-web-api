@@ -20,7 +20,7 @@ public class JobApplicationEntity {
     private Integer id;
 
     @OneToOne
-    @JoinColumn(name ="fk_job_entity")
+    @JoinColumn(name ="fk_job")
     private JobEntity jobEntity;
 
     @Column(name = "is_approved")

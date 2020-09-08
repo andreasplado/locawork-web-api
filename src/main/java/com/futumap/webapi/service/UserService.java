@@ -3,10 +3,8 @@ package com.futumap.webapi.service;
 import com.futumap.webapi.dao.entity.UserEntity;
 import com.futumap.webapi.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +31,9 @@ public class UserService implements IUserService {
         return userEntity;
     }
 
-    public UserDetails findByUsername(String username){
-        return repository.findByUsername(username);
+    @Override
+    public UserEntity findByGoogleAccount(String googleAccountId){
+        return repository.findByGoogleAccount(googleAccountId);
     }
     @Override
     public void delete(Integer id) {
@@ -49,19 +48,5 @@ public class UserService implements IUserService {
     @Override
     public boolean exists(Integer id) {
         return repository.existsById(id);
-    }
-
-    @Override
-    public boolean existsByUsername(String username) {
-        List<UserEntity> userEntities = repository.userExists(username);
-        if(userEntities.size() > 0){
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean doesPasswordAndUserMatches(String username, String password) {
-        return repository.getUser(username, password) != null;
     }
 }

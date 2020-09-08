@@ -11,9 +11,6 @@ public interface IJobService {
     List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, String accountGoogleId);
 
     List<JobEntity> findAllCurrentUserJobs(String accountGoogleId);
-    List<JobEntity> findAppliedJobs(String accountGoogleId);
-
-    List<JobApplicationEntity> findJobApplications(String accountGoogleId);
     List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance);
     JobEntity save (JobEntity jobEntity);
     JobEntity update(JobEntity jobEntity);

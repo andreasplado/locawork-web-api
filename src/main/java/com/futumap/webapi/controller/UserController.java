@@ -32,12 +32,24 @@ public class UserController {
         return ResponseEntity.ok(userEntities);
     }
 
+    @RequestMapping(value = "{account_google_id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getByGoogleAccount(@PathVariable("account_google_id") String accountGoogleId) {
+        UserEntity userEntity = userService.findByGoogleAccount(accountGoogleId);
+
+        if (userEntity != null) {
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.setMessage("Users not found!");
+            return ResponseEntity.ok(responseModel);
+        }
+
+        return ResponseEntity.ok(userEntity);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody UserEntity userEntity, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<?> create(@RequestBody UserEntity userEntity) {
         userService.save(userEntity);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/city/{id}").buildAndExpand(userEntity.getId()).toUri());
         return ResponseEntity.ok(headers);
     }
 

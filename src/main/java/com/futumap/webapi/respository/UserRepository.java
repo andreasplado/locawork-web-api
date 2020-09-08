@@ -11,12 +11,6 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    @Query(value="SELECT * from users j WHERE j.username ==?1", nativeQuery = true)
-    UserEntity findByUsername(@Param("username") String username);
-
-    @Query(value="SELECT * from users j WHERE j.username =?1", nativeQuery = true)
-    List<UserEntity> userExists(@Param("username") String username);
-
-    @Query(value="SELECT * from users j WHERE j.username =?1 AND j.password =?2", nativeQuery = true)
-    UserEntity getUser(@Param("username") String username, @Param("password") String password);
+    @Query(value="SELECT * from users u WHERE u.account_google_id=?1", nativeQuery = true)
+    UserEntity findByGoogleAccount(@Param("account_google_id") String googleAccountId);
 }

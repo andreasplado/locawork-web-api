@@ -22,8 +22,9 @@ public class JobEntity {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "account_google_id")
-    private String accountGoogleId;
+    @OneToOne
+    @JoinColumn(name ="fk_user")
+    private UserEntity user;
 
     @Column(name = "description")
     private String description;
@@ -34,15 +35,8 @@ public class JobEntity {
     @Column(name = "salary")
     private Double salary;
 
-    @Column(name = "job_start_time")
-    private String jobStartTime;
-
-    @Column(name = "job_end_time")
-    private String jobEndTime;
-
     @Column(name = "latitude")
     private Double latitude;
-
 
     @Column(name = "longitude")
     private Double longitude;
@@ -54,11 +48,9 @@ public class JobEntity {
     private Date updatedAt;
 
 
-    @Column(name = "regitredAccount")
-    private String registredAccount;
-
-    @Column(name = "applyer_contact")
-    private String applyerContact;
+    @OneToOne
+    @JoinColumn(name ="fk_job_applyer")
+    private UserEntity jobApplyer;
 
     public JobEntity() {
 
@@ -161,44 +153,20 @@ public class JobEntity {
         this.categoryId = categoryId;
     }
 
-    public String getAccountGoogleId() {
-        return accountGoogleId;
+    public UserEntity getJobApplyer() {
+        return jobApplyer;
     }
 
-    public void setAccountGoogleId(String accountGoogleId) {
-        this.accountGoogleId = accountGoogleId;
+    public void setJobApplyer(UserEntity jobApplyer) {
+        this.jobApplyer = jobApplyer;
     }
 
-    public String getRegistredAccount() {
-        return registredAccount;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setRegistredAccount(String registredAccount) {
-        this.registredAccount = registredAccount;
-    }
-
-    public String getJobStartTime() {
-        return jobStartTime;
-    }
-
-    public void setJobStartTime(String jobStartTime) {
-        this.jobStartTime = jobStartTime;
-    }
-
-    public String getJobEndTime() {
-        return jobEndTime;
-    }
-
-    public void setJobEndTime(String jobEndTime) {
-        this.jobEndTime = jobEndTime;
-    }
-
-    public String getApplyerContact() {
-        return applyerContact;
-    }
-
-    public void setApplyerContact(String applyerContact) {
-        this.applyerContact = applyerContact;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }
 

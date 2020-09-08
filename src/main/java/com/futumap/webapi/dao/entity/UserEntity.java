@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserEntity implements UserDetails {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,9 +24,14 @@ public class UserEntity implements UserDetails {
     )
     private Integer id;
 
-    private String password;
+    @Column(name = "account_google_id")
+    private String accountGoogleId;
 
-    private String username;
+    @Column(name = "account_email")
+    private String email;
+
+    @Column(name = "contact")
+    private String contact;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -40,10 +45,6 @@ public class UserEntity implements UserDetails {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Date getCreatedAt() {
@@ -78,43 +79,29 @@ public class UserEntity implements UserDetails {
         this.updatedAt = new Date();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+
+    public String getAccountGoogleId() {
+        return accountGoogleId;
     }
 
-    @Override
-    public String getPassword() {
-        return this.password;
+    public void setAccountGoogleId(String accountGoogleId) {
+        this.accountGoogleId = accountGoogleId;
     }
 
-    @Override
-    public String getUsername() {
-        return this.username;
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public String getContact() {
+        return contact;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
+    public void setContact(String contact) {
+        this.contact = contact;
     }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
 }

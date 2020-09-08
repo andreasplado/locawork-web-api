@@ -14,6 +14,5 @@ public interface IUserService {
     void delete(Integer id);
     Optional<UserEntity> findById(Integer id);
     boolean exists(Integer id);
-    boolean existsByUsername(String username);
-    boolean doesPasswordAndUserMatches(String username, String password);
+    UserEntity findByGoogleAccount(String googleAccountId);
 }
