@@ -26,8 +26,8 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/get-non-approved-job-applications", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String, Object>> getNonApprovedJobApplications(@RequestParam String googleAccountEmail) {
-        List<JobApplicationEntity> jobApplications = jobApplicationService.findNonApprovedJobApplications(googleAccountEmail);
+    public ResponseEntity<HashMap<String, Object>> getNonApprovedJobApplications(@RequestParam int userId) {
+        List<JobApplicationEntity> jobApplications = jobApplicationService.findNonApprovedJobApplications(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOB_APPLICATIONS, jobApplications);
 
@@ -40,8 +40,8 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/get-approved-job-applications", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String, Object>> getApprovedJobApplications(@RequestParam String googleAccountEmail) {
-        List<JobApplicationEntity> jobApplications = jobApplicationService.findApprovedJobApplications(googleAccountEmail);
+    public ResponseEntity<HashMap<String, Object>> getApprovedJobApplications(@RequestParam int userId) {
+        List<JobApplicationEntity> jobApplications = jobApplicationService.findApprovedJobApplications(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOB_APPLICATIONS, jobApplications);
 

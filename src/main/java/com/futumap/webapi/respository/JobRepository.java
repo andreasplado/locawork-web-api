@@ -14,8 +14,8 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
     @Query(value="SELECT j.* u.* from jobs j " +
             "INNER JOIN users u ON j.fk_user = u.id " +
-            "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND u.account_google_id=?4", nativeQuery = true)
-    List<JobEntity> findNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("googleAccount") String accountGoogleId);
+            "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND u.id=?4", nativeQuery = true)
+    List<JobEntity> findNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("user_id") int userId);
 
     @Query(value="SELECT j.* u.* from jobs j " +
             "INNER JOIN users u ON j.fk_user = u.id " +

@@ -20,13 +20,13 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
-    public List<JobApplicationEntity> findNonApprovedJobApplications(String accountGoogleId) {
-        return jobApplicationRepository.getNonApprovedJobApplications(accountGoogleId);
+    public List<JobApplicationEntity> findNonApprovedJobApplications(int userId) {
+        return jobApplicationRepository.getNonApprovedJobApplications(userId);
     }
 
     @Override
-    public List<JobApplicationEntity> findApprovedJobApplications(String accountGoogleId) {
-        return jobApplicationRepository.getApprovedJobApplications(accountGoogleId);
+    public List<JobApplicationEntity> findApprovedJobApplications(int userId) {
+        return jobApplicationRepository.getApprovedJobApplications(userId);
     }
 
 
