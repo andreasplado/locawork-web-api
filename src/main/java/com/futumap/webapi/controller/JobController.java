@@ -1,6 +1,5 @@
 package com.futumap.webapi.controller;
 
-import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.model.ResponseModel;
@@ -46,8 +45,8 @@ public class JobController {
     }
 
     @RequestMapping(value = "/getjobsbylocation", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam int userId) {
-        List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
+    public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam String email) {
+        List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, email);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
@@ -96,7 +95,7 @@ public class JobController {
 
     @RequestMapping(value = "/getjobsbygoogleaccount", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(@RequestParam String googleAccountEmail) {
-        List<JobEntity> jobs = jobService.findAllCurrentUserJobs(googleAccountEmail);
+        List<JobEntity> jobs = jobService.findAllPostedJobs(googleAccountEmail);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, jobs);
