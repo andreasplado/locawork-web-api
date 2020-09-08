@@ -62,24 +62,6 @@ public class JobController {
         return ResponseEntity.ok(combined);
     }
 
-
-    @RequestMapping(value = "/getjobapplications", method = RequestMethod.GET)
-    public ResponseEntity<?> getApplyesApplications(@RequestParam String googleAccountId) {
-        List<JobApplicationEntity> jobs = jobService.findJobApplications(googleAccountId);
-        List<JobCategoryEntity> categories = jobCategoryService.findAll();
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, categories);
-
-        if (combined.isEmpty()) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found");
-            return ResponseEntity.ok(responseModel);
-        }
-
-        return ResponseEntity.ok(combined);
-    }
-
     @RequestMapping(value = "/getalljobsbylocation", method = RequestMethod.GET)
     public ResponseEntity<?> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobEntity> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
@@ -124,21 +106,6 @@ public class JobController {
             responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
-        }
-
-        return ResponseEntity.ok(combined);
-    }
-
-    @RequestMapping(value = "/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
-        List<JobEntity> jobs = jobService.findAppliedJobs(googleAccountEmail);
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, jobs);
-
-        if (combined.isEmpty()) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found!");
         }
 
         return ResponseEntity.ok(combined);
