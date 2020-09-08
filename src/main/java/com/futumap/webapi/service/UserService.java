@@ -32,8 +32,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserEntity findByGoogleAccount(String googleAccountId){
-        return repository.findByGoogleAccount(googleAccountId);
+    public boolean existByEmail(String email){
+        return repository.existsByEmail(email);
     }
 
     @Override
@@ -54,16 +54,5 @@ public class UserService implements IUserService {
     @Override
     public boolean exists(Integer id) {
         return repository.existsById(id);
-    }
-
-    @Override
-    public boolean googleAccountExists(String googleAccountId) {
-        UserEntity userEntity= repository.findByGoogleAccount(googleAccountId);
-        System.out.println("UserEntity: " + userEntity.getAccountGoogleId());
-
-        if(userEntity == null){
-            return false;
-        }
-        return true;
     }
 }

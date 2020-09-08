@@ -11,6 +11,6 @@ import java.math.BigInteger;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
-    @Query(value="SELECT * from users u WHERE u.account_google_id=?1", nativeQuery = true)
-    UserEntity findByGoogleAccount(@Param("account_google_id") String googleAccountId);
+    @Query(value="SELECT CASE WHEN COUNT(u)> 0 then true else false end FROM users u WHERE u.account_email=?1", nativeQuery = true)
+    boolean existsByEmail(@Param("account_email") String accountEmail);
 }

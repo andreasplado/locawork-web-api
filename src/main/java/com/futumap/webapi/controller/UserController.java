@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody UserEntity userEntity) {
-        if(userService.googleAccountExists(userEntity.getAccountGoogleId())){
+        if(userService.existByEmail(userEntity.getEmail())){
             userService.save(userEntity);
         }
 
