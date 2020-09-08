@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IJobService {
 
     List<JobEntity> findAll();
-    List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, String accountGoogleId);
+    List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, int userId);
 
     List<JobEntity> findAllCurrentUserJobs(String accountGoogleId);
     List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance);
