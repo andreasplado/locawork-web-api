@@ -57,7 +57,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean exists(String googleAccountId) {
+    public boolean googleAccountExists(String googleAccountId) {
         UserEntity userEntity= repository.findByGoogleAccount(googleAccountId);
         if(userEntity.getId()== null){
             return false;

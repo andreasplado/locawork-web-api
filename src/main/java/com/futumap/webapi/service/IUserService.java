@@ -15,7 +15,7 @@ public interface IUserService {
     void delete(Integer id);
     Optional<UserEntity> findById(Integer id);
     boolean exists(Integer id);
-    boolean exists(String googleAccountId);
+    boolean googleAccountExists(String googleAccountId);
     UserEntity findByGoogleAccount(String googleAccountId);
     UserEntity saveUser(UserEntity userEntity);
 }
