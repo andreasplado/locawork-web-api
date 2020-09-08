@@ -47,10 +47,11 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody UserEntity userEntity) {
-        userService.save(userEntity);
+        if(!userService.exists(userEntity.getAccountGoogleId())){
+            userService.save(userEntity);
+        }
 
-        HttpHeaders headers = new HttpHeaders();
-        return ResponseEntity.ok(headers);
+        return ResponseEntity.ok(userEntity);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)

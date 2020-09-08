@@ -35,6 +35,12 @@ public class UserService implements IUserService {
     public UserEntity findByGoogleAccount(String googleAccountId){
         return repository.findByGoogleAccount(googleAccountId);
     }
+
+    @Override
+    public UserEntity saveUser(UserEntity userEntity) {
+        return null;
+    }
+
     @Override
     public void delete(Integer id) {
         repository.deleteById(id);
@@ -48,5 +54,14 @@ public class UserService implements IUserService {
     @Override
     public boolean exists(Integer id) {
         return repository.existsById(id);
+    }
+
+    @Override
+    public boolean exists(String googleAccountId) {
+        UserEntity userEntity= repository.findByGoogleAccount(googleAccountId);
+        if(userEntity.getId()== null){
+            return false;
+        }
+        return true;
     }
 }

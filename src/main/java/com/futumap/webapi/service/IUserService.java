@@ -2,6 +2,7 @@ package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.dao.entity.UserEntity;
+import org.apache.catalina.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +15,7 @@ public interface IUserService {
     void delete(Integer id);
     Optional<UserEntity> findById(Integer id);
     boolean exists(Integer id);
+    boolean exists(String googleAccountId);
     UserEntity findByGoogleAccount(String googleAccountId);
+    UserEntity saveUser(UserEntity userEntity);
 }
