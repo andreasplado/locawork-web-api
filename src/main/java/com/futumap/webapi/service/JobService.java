@@ -1,5 +1,6 @@
 package com.futumap.webapi.service;
 
+import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class JobService implements IJobService {
     public List<JobEntity> findAppliedJobs(String accountGoogleId) {
         return repository.findAppliedJobs(accountGoogleId);
     }
+
+    @Override
+    public List<JobApplicationEntity> findJobApplications(String accountGoogleId) {
+        return repository.getJobApplications(accountGoogleId);
+    }
+
 
     @Override
     public JobEntity save(JobEntity jobEntity) {
