@@ -87,5 +87,13 @@ public class JobApplicationEntity {
     public void setJobEntity(JobEntity jobEntity) {
         this.jobEntity = jobEntity;
     }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
 }
 
