@@ -24,6 +24,11 @@ public class JobService implements IJobService {
     }
 
     @Override
+    public List<JobEntity> findApplyedJobs(String accountGoogleId) {
+        return repository.findApplyedJobs();
+    }
+
+    @Override
     public List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance) {
         return repository.findAllNearestJobs(latitude, longitude, distance);
     }

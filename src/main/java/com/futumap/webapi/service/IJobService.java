@@ -10,6 +10,7 @@ public interface IJobService {
     List<JobEntity> findAll();
     List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, String email);
 
+    List<JobEntity> findApplyedJobs(String accountGoogleId);
     List<JobEntity> findAllPostedJobs(String accountGoogleId);
     List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance);
     JobEntity save (JobEntity jobEntity);

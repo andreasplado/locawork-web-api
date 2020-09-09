@@ -112,9 +112,9 @@ public class JobController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public JobEntity create(@RequestBody JobEntity job, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<?> create(@RequestBody JobEntity job) {
         jobService.save(job);
-        return job;
+        return ResponseEntity.ok(job);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
@@ -161,8 +161,21 @@ public class JobController {
 
             return ResponseEntity.ok(responseModel);
         }
+    }
 
+    @RequestMapping(value = "/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam String googleAccountEmail) {
+        List<JobEntity> jobs = jobService.findApplyedJobs(googleAccountEmail);
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, jobs);
 
+        if (combined.isEmpty()) {
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.setMessage("You have no jobs found!");
+        }
+
+        return ResponseEntity.ok(combined);
     }
 
     @RequestMapping(value = "deleteall", method = RequestMethod.DELETE)
