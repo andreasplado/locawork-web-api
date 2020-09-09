@@ -38,6 +38,8 @@ public class UserController {
             userService.save(userEntity);
         }
 
+        userEntity = userService.findByEmail(userEntity.getEmail());
+
         return ResponseEntity.ok(userEntity);
     }
 
