@@ -22,7 +22,7 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
             "WHERE u.account_email=?1", nativeQuery = true)
     List<JobEntity> findPostedJobs(@Param("email") String email);
 
-    @Query(value="SELECT j.*, u.* from jobs j" +
+    @Query(value="SELECT j.*, u.* from jobs j " +
             "INNER JOIN users u ON j.fk_user = u.id " +
             "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude)", nativeQuery = true)
     List<JobEntity> findAllNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance);
