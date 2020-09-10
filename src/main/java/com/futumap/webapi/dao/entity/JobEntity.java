@@ -22,9 +22,8 @@ public class JobEntity {
     @Column(name = "title")
     private String title;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="fk_user", referencedColumnName = "id")
-    private UserEntity user;
+    @Column(name = "user_id")
+    private Integer userId;
 
     @Column(name = "description")
     private String description;
@@ -50,7 +49,7 @@ public class JobEntity {
 
     @OneToOne
     @JoinColumn(name ="fk_job_applyer")
-    private UserEntity jobApplyer;
+    private Integer jobApplyer;
 
     public JobEntity() {
 
@@ -153,20 +152,20 @@ public class JobEntity {
         this.categoryId = categoryId;
     }
 
-    public UserEntity getJobApplyer() {
+    public Integer getJobApplyer() {
         return jobApplyer;
     }
 
-    public void setJobApplyer(UserEntity jobApplyer) {
+    public void setJobApplyer(Integer jobApplyer) {
         this.jobApplyer = jobApplyer;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
 
