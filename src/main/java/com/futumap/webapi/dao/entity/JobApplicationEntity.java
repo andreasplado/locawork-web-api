@@ -19,7 +19,8 @@ public class JobApplicationEntity {
     )
     private Integer id;
 
-    @EmbeddedId
+    @OneToOne
+    @JoinColumn(name ="job_id")
     private JobEntity jobId;
 
     @Column(name = "is_approved")
