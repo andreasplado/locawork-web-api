@@ -47,7 +47,7 @@ public class JobEntity {
     private Date updatedAt;
 
 
-    @OneToOne
+    @Column(name = "job_applyer")
     private Integer jobApplyer;
 
     public JobEntity() {
