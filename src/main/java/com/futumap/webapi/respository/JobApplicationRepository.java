@@ -13,8 +13,8 @@ import java.util.List;
 public interface JobApplicationRepository extends JpaRepository<JobApplicationEntity, Integer> {
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
-            " INNER JOIN jobs j ON ja.fk_job = j.id" +
-            " WHERE job_applications_pkey!=?1 AND ja.is_approved=FALSE", nativeQuery = true)
+            " INNER JOIN jobs j ON ja.job_applications_pkey = j.id" +
+            " WHERE ja.job_applications_pkey!=?1 AND ja.is_approved=FALSE", nativeQuery = true)
     List<JobApplicationEntity> getNonApprovedJobApplications(@Param("user_id") int userId);
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
