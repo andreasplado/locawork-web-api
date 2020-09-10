@@ -19,9 +19,7 @@ public class JobApplicationEntity {
     )
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "applyed_job_id"))
+    @EmbeddedId
     private JobEntity jobId;
 
     @Column(name = "is_approved")
