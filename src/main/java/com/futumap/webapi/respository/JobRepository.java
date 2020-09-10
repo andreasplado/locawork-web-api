@@ -29,7 +29,7 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
     @Query(value="SELECT j.*, u.* from jobs j " +
             "INNER JOIN users u ON j.applyer_id = u.id " +
-            "WHERE j.appyer_id=0", nativeQuery = true)
+            "WHERE j.applyer_id=0", nativeQuery = true)
     List<JobEntity> findApplyedJobs();
 
     @Query(value="SELECT j.* from jobs j " +
