@@ -28,7 +28,7 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
     List<JobEntity> findAllNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance);
 
     @Query(value="SELECT j.*, u.* from jobs j " +
-            "INNER JOIN users u ON j.fk_job_applyer = u.id " +
+            "INNER JOIN users u ON j.job_applyer = u.id " +
             "WHERE j.appyer_id=0", nativeQuery = true)
     List<JobEntity> findApplyedJobs();
 
