@@ -19,8 +19,8 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findOtherUsersNearestJobs(Double latitude, Double longitude, Double distance, String email) {
-        return repository.findOtherUsersNearestJobs(latitude, longitude, distance, email);
+    public List<JobEntity> findOtherUsersNearestJobs(Double latitude, Double longitude, Double distance, Integer userId) {
+        return repository.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
     }
 
     @Override
@@ -34,8 +34,8 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findAllPostedJobs(String gmail) {
-        return repository.findPostedJobs(gmail);
+    public List<JobEntity> findAllPostedJobs(Integer userId) {
+        return repository.findPostedJobs(userId);
     }
 
     @Override

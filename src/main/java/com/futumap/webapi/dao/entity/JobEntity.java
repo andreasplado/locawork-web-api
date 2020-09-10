@@ -47,8 +47,8 @@ public class JobEntity {
     private Date updatedAt;
 
 
-    @Column(name = "job_applyer")
-    private Integer jobApplyer;
+    @Column(name = "applyer_id")
+    private Integer applyerId;
 
     public JobEntity() {
 
@@ -151,12 +151,12 @@ public class JobEntity {
         this.categoryId = categoryId;
     }
 
-    public Integer getJobApplyer() {
-        return jobApplyer;
+    public Integer getApplyerId() {
+        return applyerId;
     }
 
-    public void setJobApplyer(Integer jobApplyer) {
-        this.jobApplyer = jobApplyer;
+    public void setApplyerId(Integer applyerId) {
+        this.applyerId = applyerId;
     }
 
     public Integer getUserId() {

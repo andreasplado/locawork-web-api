@@ -13,23 +13,23 @@ import java.util.List;
 public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
     @Query(value="SELECT j.*, u.* from jobs j " +
-            "INNER JOIN users u ON j.fk_user = u.id " +
-            "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND u.account_email=?4", nativeQuery = true)
-    List<JobEntity> findOtherUsersNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("email") String email);
+            "INNER JOIN users u ON j.user_id = u.id " +
+            "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND u.user_id=?4", nativeQuery = true)
+    List<JobEntity> findOtherUsersNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("userId") Integer userId);
 
     @Query(value="SELECT j.*, u.* from jobs j " +
-            "INNER JOIN users u ON j.fk_user = u.id " +
-            "WHERE u.account_email=?1", nativeQuery = true)
-    List<JobEntity> findPostedJobs(@Param("email") String email);
+            "INNER JOIN users u ON j.user_id = u.id " +
+            "WHERE u.user_id=?1", nativeQuery = true)
+    List<JobEntity> findPostedJobs(@Param("userId") Integer userId);
 
     @Query(value="SELECT j.*, u.* from jobs j " +
-            "INNER JOIN users u ON j.fk_user = u.id " +
+            "INNER JOIN users u ON j.user_id = u.id " +
             "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude)", nativeQuery = true)
     List<JobEntity> findAllNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance);
 
     @Query(value="SELECT j.*, u.* from jobs j " +
             "INNER JOIN users u ON j.fk_job_applyer = u.id " +
-            "WHERE j.fk_job_applyer=0", nativeQuery = true)
+            "WHERE j.appyer_id=0", nativeQuery = true)
     List<JobEntity> findApplyedJobs();
 
     @Query(value="SELECT j.* from jobs j " +
