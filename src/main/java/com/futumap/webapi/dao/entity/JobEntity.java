@@ -22,8 +22,8 @@ public class JobEntity {
     @Column(name = "title")
     private String title;
 
-    @OneToOne
-    @JoinColumn(name ="fk_user")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="fk_user", referencedColumnName = "id")
     private UserEntity user;
 
     @Column(name = "description")
