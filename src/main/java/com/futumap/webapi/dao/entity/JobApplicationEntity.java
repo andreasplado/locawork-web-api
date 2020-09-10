@@ -22,6 +22,9 @@ public class JobApplicationEntity {
     @Column(name = "job_id")
     private Integer jobId;
 
+    @Column(name = "user_id")
+    private Integer userId;
+
     @Column(name = "is_approved")
     private boolean isApproved;
 
@@ -93,6 +96,14 @@ public class JobApplicationEntity {
 
     public void setApproved(boolean approved) {
         isApproved = approved;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
 
