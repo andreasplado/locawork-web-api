@@ -20,9 +20,9 @@ public class JobApplicationController {
     private JobApplicationService jobApplicationService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public JobApplicationEntity create(@RequestBody JobApplicationEntity jobApplicationEntity) {
+    public ResponseEntity<?> create(@RequestBody JobApplicationEntity jobApplicationEntity) {
         jobApplicationService.save(jobApplicationEntity);
-        return jobApplicationEntity;
+        return ResponseEntity.ok(jobApplicationEntity);
     }
 
     @RequestMapping(value = "/get-non-approved-job-applications", method = RequestMethod.GET)
