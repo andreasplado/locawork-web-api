@@ -19,9 +19,9 @@ public class JobApplicationEntity {
     )
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name ="fk_job")
-    private JobEntity jobEntity;
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private JobEntity jobId;
 
     @Column(name = "is_approved")
     private boolean isApproved;
@@ -80,12 +80,12 @@ public class JobApplicationEntity {
         this.updatedAt = new Date();
     }
 
-    public JobEntity getJobEntity() {
-        return jobEntity;
+    public JobEntity getJob() {
+        return jobId;
     }
 
-    public void setJobEntity(JobEntity jobEntity) {
-        this.jobEntity = jobEntity;
+    public void setJob(JobEntity jobId) {
+        this.jobId = jobId;
     }
 
     public boolean isApproved() {
