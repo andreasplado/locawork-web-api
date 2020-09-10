@@ -19,9 +19,8 @@ public class JobApplicationEntity {
     )
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name ="job_id")
-    private JobEntity jobId;
+    @Column(name = "job_id")
+    private Integer jobId;
 
     @Column(name = "is_approved")
     private boolean isApproved;
@@ -80,11 +79,11 @@ public class JobApplicationEntity {
         this.updatedAt = new Date();
     }
 
-    public JobEntity getJob() {
+    public Integer getJob() {
         return jobId;
     }
 
-    public void setJob(JobEntity jobId) {
+    public void setJob(Integer jobId) {
         this.jobId = jobId;
     }
 
