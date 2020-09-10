@@ -48,7 +48,6 @@ public class JobEntity {
 
 
     @OneToOne
-    @JoinColumn(name ="fk_job_applyer")
     private Integer jobApplyer;
 
     public JobEntity() {
