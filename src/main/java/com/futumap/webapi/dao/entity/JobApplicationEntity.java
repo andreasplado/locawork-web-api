@@ -19,7 +19,7 @@ public class JobApplicationEntity {
     )
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "id", foreignKey = @ForeignKey(name = "applyed_job_id"))
     private JobEntity jobId;
