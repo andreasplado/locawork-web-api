@@ -31,17 +31,17 @@ public class JobApplicationService implements IJobApplicationService {
     public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
 
 
-        return ((List<UserEntity>) userRepository
-                .findAll())
+        return userRepository
+                .findAll()
                 .stream()
-                .map(this::convertToUserLocationDTO)
+                .map((UserEntity user) -> convertToUserLocationDTO(user))
                 .collect(Collectors.toList());
     }
 
     private JobApplicationDTO convertToUserLocationDTO(UserEntity user) {
         JobApplicationDTO userLocationDTO = new JobApplicationDTO();
         userLocationDTO.setUserId(user.getId());
-        userLocationDTO.setSetEmail(user.getEmail());
+        userLocationDTO.setEmail(user.getEmail());
         return userLocationDTO;
     }
 

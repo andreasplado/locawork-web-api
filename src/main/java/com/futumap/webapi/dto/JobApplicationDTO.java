@@ -4,8 +4,7 @@ public class JobApplicationDTO {
 
     private Integer id;
     private Integer userId;
-    private Integer jobId;
-    private String setEmail;
+    private String email;
     private String jobTitle;
     private String jobDescription;
     private Double jobSalary;
@@ -18,12 +17,12 @@ public class JobApplicationDTO {
         this.userId = userId;
     }
 
-    public String getSetEmail() {
-        return setEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSetEmail(String setEmail) {
-        this.setEmail = setEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getJobTitle() {
