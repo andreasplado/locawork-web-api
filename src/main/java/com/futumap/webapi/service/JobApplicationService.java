@@ -36,12 +36,13 @@ public class JobApplicationService implements IJobApplicationService {
     @Override
     public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
         List<JobApplicationEntity> jobApplicationEntities = jobApplicationRepository.getNonApprovedJobApplications(userId);
-        UserEntity userEntity = userRepository.findSingleById(userId);
+
 
         List<JobApplicationDTO> jobApplicationDTOS = new ArrayList<>();
         for(int i=0; i<jobApplicationEntities.size(); i++){
 
             JobEntity jobEntity = jobRepository.findSingleById(jobApplicationEntities.get(i).getJob());
+            UserEntity userEntity = userRepository.findSingleById(jobApplicationEntities.get(i).getUserId());
             JobApplicationDTO jobApplicationDTO = new JobApplicationDTO();
             jobApplicationDTO.setJobTitle(jobEntity.getTitle());
             jobApplicationDTO.setJobSalary(jobEntity.getSalary());

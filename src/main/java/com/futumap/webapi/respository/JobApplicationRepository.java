@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface JobApplicationRepository extends JpaRepository<JobApplicationEntity, Integer> {
 
-    @Query(value="SELECT ja.id, ja.is_approved, j.title, j.description, j.salary FROM job_applications ja" +
+    @Query(value="SELECT ja.id, ja.is_approved, j.title, j.description, j.salary, ja.created_at, ja.updated_at FROM job_applications ja" +
             " INNER JOIN jobs j ON ja.job_id = j.id" +
             " WHERE ja.job_id!=?1 AND ja.is_approved=FALSE", nativeQuery = true)
     List<JobApplicationEntity> getNonApprovedJobApplications(@Param("user_id") int userId);
