@@ -16,4 +16,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Query(value="SELECT u.* FROM users u WHERE u.account_email=?1", nativeQuery = true)
     UserEntity findByEmail(@Param("account_email") String accountEmail);
+
+    @Query(value="SELECT u.* FROM users u WHERE u.id=?1", nativeQuery = true)
+    UserEntity findSingleById(@Param("id") Integer id);
 }

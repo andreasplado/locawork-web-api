@@ -1,7 +1,7 @@
 package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
-import com.futumap.webapi.dao.entity.JobEntity;
+import com.futumap.webapi.dto.JobApplicationDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,7 @@ import java.util.Optional;
 public interface IJobApplicationService {
 
     List<JobApplicationEntity> findAll();
-
-    List<JobApplicationEntity> findNonApprovedJobApplications(int userId);
+    List<JobApplicationDTO> findNonApprovedJobApplications(int userId);
     List<JobApplicationEntity> findApprovedJobApplications(int userId);
     JobApplicationEntity save(JobApplicationEntity jobEntity);
     JobApplicationEntity update(JobApplicationEntity jobEntity);

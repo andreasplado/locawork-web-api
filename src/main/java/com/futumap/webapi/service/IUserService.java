@@ -1,8 +1,6 @@
 package com.futumap.webapi.service;
 
-import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.dao.entity.UserEntity;
-import org.apache.catalina.User;
 
 import java.util.List;
 import java.util.Optional;

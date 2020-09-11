@@ -1,6 +1,7 @@
 package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
+import com.futumap.webapi.dto.JobApplicationDTO;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.JobApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/get-non-approved-job-applications", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String, Object>> getNonApprovedJobApplications(@RequestParam int userId) {
-        List<JobApplicationEntity> jobApplications = jobApplicationService.findNonApprovedJobApplications(userId);
+        List<JobApplicationDTO> jobApplications = jobApplicationService.findNonApprovedJobApplications(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOB_APPLICATIONS, jobApplications);
 

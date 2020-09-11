@@ -35,4 +35,8 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
     @Query(value="SELECT j.* from jobs j " +
             "WHERE j.account_email=?1", nativeQuery = true)
     JobEntity findByEmail(String email);
+
+    @Query(value="SELECT j.* from jobs j " +
+            "WHERE j.id=?1", nativeQuery = true)
+    JobEntity findSingleById(Integer id);
 }

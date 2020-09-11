@@ -1,7 +1,12 @@
 package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
+import com.futumap.webapi.dao.entity.JobEntity;
+import com.futumap.webapi.dao.entity.UserEntity;
+import com.futumap.webapi.dto.JobApplicationDTO;
 import com.futumap.webapi.respository.JobApplicationRepository;
+import com.futumap.webapi.respository.JobRepository;
+import com.futumap.webapi.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +19,37 @@ public class JobApplicationService implements IJobApplicationService {
     @Autowired
     private JobApplicationRepository jobApplicationRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private JobRepository jobRepository;
+
     @Override
     public List<JobApplicationEntity> findAll() {
         return jobApplicationRepository.findAll();
     }
 
     @Override
-    public List<JobApplicationEntity> findNonApprovedJobApplications(int userId) {
-        return jobApplicationRepository.getNonApprovedJobApplications(userId);
+    public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
+        List<JobApplicationDTO> jobApplicationEntities = jobApplicationRepository.getNonApprovedJobApplications(userId);
+        UserEntity userEntity = userRepository.findSingleById(userId);
+        JobEntity jobEntity = jobRepository.findSingleById(userId);
+        for(int i=0; i<jobApplicationEntities.size(); i++){
+            jobApplicationEntities.get(i).setSetEmail(userEntity.getEmail());
+            jobApplicationEntities.get(i).setJobDescription(jobEntity.getDescription());
+            jobApplicationEntities.get(i).setJobSalary(jobEntity.getSalary());
+            jobApplicationEntities.get(i).setJobTitle(jobEntity.getTitle());
+        }
+
+        return jobApplicationEntities;
     }
+
+    private JobApplicationDTO convert(JobApplicationDTO myObject) {
+        // conversion here
+        return new JobApplicationDTO();
+    }
+
 
     @Override
     public List<JobApplicationEntity> findApprovedJobApplications(int userId) {
