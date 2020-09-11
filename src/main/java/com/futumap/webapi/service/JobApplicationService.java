@@ -4,14 +4,11 @@ import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.dao.entity.UserEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
+import com.futumap.webapi.respository.JobApplicationDTORepository;
 import com.futumap.webapi.respository.JobApplicationRepository;
-import com.futumap.webapi.respository.JobRepository;
-import com.futumap.webapi.respository.UserRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,10 +20,7 @@ public class JobApplicationService implements IJobApplicationService {
     private JobApplicationRepository jobApplicationRepository;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private JobRepository jobRepository;
+    private JobApplicationDTORepository jobApplicationDTORepository;
 
     @Override
     public List<JobApplicationEntity> findAll() {
@@ -35,22 +29,21 @@ public class JobApplicationService implements IJobApplicationService {
 
     @Override
     public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
-        List<JobApplicationEntity> jobApplicationEntities = jobApplicationRepository.getNonApprovedJobApplications(userId);
 
 
-        List<JobApplicationDTO> jobApplicationDTOS = new ArrayList<>();
+        /*List<JobApplicationDTO> jobApplicationDTOS = new ArrayList<>();
         for(int i=0; i<jobApplicationEntities.size(); i++){
 
             JobEntity jobEntity = jobRepository.findSingleById(jobApplicationEntities.get(i).getJob());
-            UserEntity userEntity = userRepository.findSingleById(jobApplicationEntities.get(i).getUserId());
+            UserEntity userEntity = jobApplicationRepository.(jobApplicationEntities.get(i).getUserId());
             JobApplicationDTO jobApplicationDTO = new JobApplicationDTO();
             jobApplicationDTO.setJobTitle(jobEntity.getTitle());
             jobApplicationDTO.setJobSalary(jobEntity.getSalary());
             jobApplicationDTO.setSetEmail(userEntity.getEmail());
             jobApplicationDTOS.add(jobApplicationDTO);
-        }
+        }*/
 
-        return jobApplicationDTOS;
+        return jobApplicationDTORepository.getNonApprovedJobApplications(userId);
     }
 
     private JobApplicationDTO convert(JobApplicationDTO myObject) {
