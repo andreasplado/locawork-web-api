@@ -6,7 +6,6 @@ public class JobApplicationDTO {
 
     private Integer id;
     private boolean isApproved;
-
     private Integer userId;
     private String email;
     private String jobTitle;
@@ -81,5 +80,21 @@ public class JobApplicationDTO {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
     }
 }

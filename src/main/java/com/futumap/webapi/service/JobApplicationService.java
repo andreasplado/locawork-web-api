@@ -29,25 +29,7 @@ public class JobApplicationService implements IJobApplicationService {
 
     @Override
     public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
-
-
-        return userRepository
-                .findAll()
-                .stream()
-                .map((UserEntity user) -> convertToUserLocationDTO(user))
-                .collect(Collectors.toList());
-    }
-
-    private JobApplicationDTO convertToUserLocationDTO(UserEntity user) {
-        JobApplicationDTO userLocationDTO = new JobApplicationDTO();
-        userLocationDTO.setUserId(user.getId());
-        userLocationDTO.setEmail(user.getEmail());
-        return userLocationDTO;
-    }
-
-    private JobApplicationDTO convert(JobApplicationDTO myObject) {
-        // conversion here
-        return new JobApplicationDTO();
+        return jobApplicationRepository.getNonApprovedJobApplications(userId);
     }
 
 
