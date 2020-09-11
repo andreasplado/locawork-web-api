@@ -7,9 +7,12 @@ import com.futumap.webapi.dto.JobApplicationDTO;
 import com.futumap.webapi.respository.JobApplicationRepository;
 import com.futumap.webapi.respository.JobRepository;
 import com.futumap.webapi.respository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,17 +35,21 @@ public class JobApplicationService implements IJobApplicationService {
 
     @Override
     public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
-        List<JobApplicationDTO> jobApplicationEntities = jobApplicationRepository.getNonApprovedJobApplications(userId);
+        List<JobApplicationEntity> jobApplicationEntities = jobApplicationRepository.getNonApprovedJobApplications(userId);
         UserEntity userEntity = userRepository.findSingleById(userId);
-        JobEntity jobEntity = jobRepository.findSingleById(userId);
+
+        List<JobApplicationDTO> jobApplicationDTOS = new ArrayList<>();
         for(int i=0; i<jobApplicationEntities.size(); i++){
-            jobApplicationEntities.get(i).setSetEmail(userEntity.getEmail());
-            jobApplicationEntities.get(i).setJobDescription(jobEntity.getDescription());
-            jobApplicationEntities.get(i).setJobSalary(jobEntity.getSalary());
-            jobApplicationEntities.get(i).setJobTitle(jobEntity.getTitle());
+
+            JobEntity jobEntity = jobRepository.findSingleById(jobApplicationEntities.get(i).getJob());
+            JobApplicationDTO jobApplicationDTO = new JobApplicationDTO();
+            jobApplicationDTO.setJobTitle(jobEntity.getTitle());
+            jobApplicationDTO.setJobSalary(jobEntity.getSalary());
+            jobApplicationDTO.setSetEmail(userEntity.getEmail());
+            jobApplicationDTOS.add(jobApplicationDTO);
         }
 
-        return jobApplicationEntities;
+        return jobApplicationDTOS;
     }
 
     private JobApplicationDTO convert(JobApplicationDTO myObject) {
