@@ -2,6 +2,7 @@ package com.futumap.webapi.dto;
 
 public class JobApplicationDTO {
 
+    private Integer id;
     private Integer userId;
     private Integer jobId;
     private String setEmail;
