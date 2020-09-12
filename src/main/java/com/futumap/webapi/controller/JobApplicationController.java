@@ -42,14 +42,11 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public ResponseEntity<HashMap<String, Object>> apply(@RequestParam int userId) {
-        List<JobApplicationDTO> jobApplications = jobApplicationService.apply(userId);
+        jobApplicationService.apply(userId);
+        ResponseModel responseModel = new ResponseModel();
+        responseModel.setMessage("You applied to job!");
         HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOB_APPLICATIONS, jobApplications);
-
-        if (combined.isEmpty()) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found!");
-        }
+        combined.put(KEY_JOB_APPLICATIONS, responseModel);
 
         return ResponseEntity.ok(combined);
     }

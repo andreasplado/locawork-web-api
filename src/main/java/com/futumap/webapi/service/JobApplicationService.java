@@ -33,8 +33,8 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
-    public List<JobApplicationDTO> apply(int userId) {
-        return jobApplicationRepository.apply(userId);
+    public void apply(int userId) {
+        jobApplicationRepository.apply(userId);
     }
 
 

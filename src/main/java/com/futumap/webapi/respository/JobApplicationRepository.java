@@ -3,6 +3,7 @@ package com.futumap.webapi.respository;
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -19,8 +20,9 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
     List<JobApplicationDTO> getNonApprovedJobApplications(@Param("user_id") int userId);
 
 
+    @Modifying
     @Query(value="DELETE FROM job_applications ja WHERE ja.user_id=?1", nativeQuery = true)
-    List<JobApplicationDTO> apply(@Param("user_id") int userId);
+    void apply(@Param("user_id") int userId);
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
             " INNER JOIN jobs j ON ja.fk_job = j.id" +
