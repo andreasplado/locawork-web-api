@@ -20,6 +20,10 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
             " WHERE j.user_id=?1 AND ja.is_approved=FALSE", nativeQuery = true)
     List<JobApplicationDTO> getNonApprovedJobApplications(@Param("user_id") int userId);
 
+    @Query(value="SELECT ja.* from job_applications ja " +
+            "WHERE ja.user_id=?1", nativeQuery = true)
+    List<JobApplicationEntity> existByUserId(@Param("user_id") int userId);
+
 
     @Modifying
     @Transactional

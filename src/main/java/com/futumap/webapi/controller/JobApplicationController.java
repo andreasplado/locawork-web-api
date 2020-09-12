@@ -22,8 +22,17 @@ public class JobApplicationController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody JobApplicationEntity jobApplicationEntity) {
-        jobApplicationService.save(jobApplicationEntity);
-        return ResponseEntity.ok(jobApplicationEntity);
+        List<JobApplicationEntity> jobApplicationEntities = jobApplicationService.existsByUserId(jobApplicationEntity.getUserId());
+        if(jobApplicationEntities.size() == 0){
+            jobApplicationService.save(jobApplicationEntity);
+            return ResponseEntity.ok(jobApplicationEntity);
+        }else{
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.setMessage("You have already applied to this job!");
+            return ResponseEntity.ok(responseModel);
+        }
+
+
     }
 
     @RequestMapping(value = "/get-non-approved-job-applications", method = RequestMethod.GET)
