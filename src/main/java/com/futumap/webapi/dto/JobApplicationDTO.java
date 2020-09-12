@@ -4,14 +4,14 @@ import java.util.Date;
 
 public interface JobApplicationDTO {
 
-    Integer getId();
-    Integer getUserId();
-    Boolean getIsApproved();
+    Integer id();
+    Integer userId();
+    Boolean isApproved();
     String getEmail();
-    String getJobTitle();
-    String getJobDescription();
-    Double getJobSalary();
-    Date getCreatedAt();
-    Date getUpdatedAt();
-    Integer getJobId();
+    String jobTitle();
+    String jobDescription();
+    Double jobSalary();
+    Date createdAt();
+    Date updatedAt();
+    Integer jobId();
 }
