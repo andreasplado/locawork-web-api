@@ -40,7 +40,7 @@ public class JobApplicationController {
         return ResponseEntity.ok(combined);
     }
 
-    @RequestMapping(value = "/apply", method = RequestMethod.GET)
+    @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public ResponseEntity<HashMap<String, Object>> apply(@RequestParam int userId) {
         List<JobApplicationDTO> jobApplications = jobApplicationService.apply(userId);
         HashMap<String, Object> combined = new HashMap<>();
