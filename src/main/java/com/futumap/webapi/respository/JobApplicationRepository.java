@@ -17,7 +17,7 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
     @Query(value="SELECT ja.id, j.title, j.description, j.salary, ja.created_at, ja.updated_at, ja.job_id, ja.user_id, u.account_email FROM job_applications ja" +
             " INNER JOIN jobs j ON ja.job_id = j.id" +
             " INNER JOIN users u ON ja.user_id = u.id" +
-            " WHERE j.user_id=?1 AND ja.is_approved=FALSE", nativeQuery = true)
+            " WHERE j.aplyer_id=?1 AND ja.is_approved=FALSE", nativeQuery = true)
     List<JobApplicationDTO> getNonApprovedJobApplications(@Param("user_id") int userId);
 
     @Query(value="SELECT ja.* from job_applications ja " +
