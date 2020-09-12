@@ -30,7 +30,7 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
-    public void apply(int userId) {
+    public void deleteJobApplications(int userId) {
         jobApplicationRepository.deleteJobApplication(userId);
     }
 
