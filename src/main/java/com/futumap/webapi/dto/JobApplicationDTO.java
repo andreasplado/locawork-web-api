@@ -1,9 +1,7 @@
 package com.futumap.webapi.dto;
 
-import javax.persistence.Entity;
 import java.util.Date;
 
-@Entity
 public class JobApplicationDTO {
 
     private Integer id;
@@ -15,9 +13,10 @@ public class JobApplicationDTO {
     private Double jobSalary;
     private Date createdAt;
     private Date updatedAt;
+    private Integer jobId;
 
     public JobApplicationDTO(Integer id, boolean isApproved, String jobTitle,
-                             String jobDescription, Double salary, Date createdAt, Date updatedAt) {
+                             String jobDescription, Double salary, Date createdAt, Date updatedAt, Integer jobId, Integer userId) {
         this.jobDescription = jobDescription;
         this.jobSalary = salary;
         this.createdAt = createdAt;
@@ -25,6 +24,8 @@ public class JobApplicationDTO {
         this.id = id;
         this.isApproved = isApproved;
         this.jobTitle = jobTitle;
+        this.jobId = jobId;
+        this.userId = userId;
 
     }
 
