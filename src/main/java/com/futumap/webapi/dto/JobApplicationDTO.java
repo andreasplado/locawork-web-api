@@ -1,7 +1,9 @@
 package com.futumap.webapi.dto;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class JobApplicationDTO {
 
     private Integer id;
