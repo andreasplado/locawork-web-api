@@ -6,7 +6,7 @@ public interface JobApplicationDTO {
 
     Integer id();
     Integer userId();
-    String getEmail();
+    String getAccountEmail();
     String jobTitle();
     String jobDescription();
     Double jobSalary();
