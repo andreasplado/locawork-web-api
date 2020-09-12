@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IJobApplicationDTO {
 
-    List<JobApplicationDTO> getJobApplicationDto();
+    List<JobApplicationDTO> getJobApplicationDto(Integer userId);
 }
