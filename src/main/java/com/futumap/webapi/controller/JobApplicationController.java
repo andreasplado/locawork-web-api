@@ -40,7 +40,7 @@ public class JobApplicationController {
         return ResponseEntity.ok(combined);
     }
 
-    @RequestMapping(value = "/deleteJobApplications", method = RequestMethod.POST)
+    @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> apply(@RequestParam Integer userId, @RequestParam Integer appyerId) {
         jobApplicationService.deleteJobApplications(userId);
         jobApplicationService.update(appyerId, userId);
