@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
 
 
     @Modifying
+    @Transactional
     @Query(value="DELETE FROM job_applications ja WHERE ja.user_id=?1", nativeQuery = true)
     void apply(@Param("user_id") int userId);
 
