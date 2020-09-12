@@ -7,10 +7,10 @@ public interface JobApplicationDTO {
     Integer id();
     Integer userId();
     String getAccountEmail();
-    String jobTitle();
-    String jobDescription();
-    Double jobSalary();
-    Date createdAt();
-    Date updatedAt();
-    Integer jobId();
+    String getJobTitle();
+    String getJobDescription();
+    Double getJobSalary();
+    Date getCreatedAt();
+    Date getUpdatedAt();
+    Integer getJobId();
 }
