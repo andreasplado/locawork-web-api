@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class JobApplicationService implements IJobApplicationService, IJobApplicationDTO {
+public class JobApplicationService implements IJobApplicationService {
 
     @Autowired
     private JobApplicationRepository jobApplicationRepository;
@@ -73,8 +73,4 @@ public class JobApplicationService implements IJobApplicationService, IJobApplic
         return jobApplicationRepository.existsById(id);
     }
 
-    @Override
-    public List<JobApplicationDTO> getJobApplicationDto(Integer userId) {
-        return jobApplicationRepository.getNonApprovedJobApplications(userId);
-    }
 }
