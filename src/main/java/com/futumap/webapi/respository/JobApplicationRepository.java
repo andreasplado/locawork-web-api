@@ -28,7 +28,7 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE jobs j SET j.applyer_id=?1 WHERE j.user_id=?2", nativeQuery = true)
+    @Query(value="UPDATE jobs SET applyer_id=?1 WHERE user_id=?2", nativeQuery = true)
     void updateJob(@Param("applyer_id") int applyerId, @Param("user_id") int userId);
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
