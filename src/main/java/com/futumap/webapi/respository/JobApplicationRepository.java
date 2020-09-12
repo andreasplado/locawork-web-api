@@ -23,7 +23,8 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
 
     @Modifying
     @Transactional
-    @Query(value="DELETE FROM job_applications ja AND jobs j WHERE j.user_id=?1 AND ja.user_id=?1", nativeQuery = true)
+    @Query(value="DELETE FROM job_applications ja WHERE ja.user_id=?1 AND " +
+            "UPDATE jobs j SET j.applyer_id=?1", nativeQuery = true)
     void apply(@Param("user_id") int userId);
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
