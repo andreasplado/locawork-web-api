@@ -41,14 +41,12 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
-    public ResponseEntity<HashMap<String, Object>> apply(@RequestParam int userId) {
+    public ResponseEntity<ResponseModel> apply(@RequestParam int userId) {
         jobApplicationService.apply(userId);
         ResponseModel responseModel = new ResponseModel();
         responseModel.setMessage("You applied to job!");
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOB_APPLICATIONS, responseModel);
 
-        return ResponseEntity.ok(combined);
+        return ResponseEntity.ok(responseModel);
     }
 
     @RequestMapping(value = "/get-approved-job-applications", method = RequestMethod.GET)
