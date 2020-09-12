@@ -3,6 +3,7 @@ package com.futumap.webapi.respository;
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
+import com.futumap.webapi.service.IJobApplicationDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,9 +12,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface JobApplicationRepository extends JpaRepository<JobApplicationEntity, Integer> {
+public interface JobApplicationRepository extends JpaRepository<JobApplicationEntity, Integer> , IJobApplicationDTO {
 
-    @Query(value="SELECT new com.futumap.webapi.dto.JobApplicationDTO(ja.id, ja.is_approved, j.title, j.description, j.salary, ja.created_at, ja.updated_at, ja.job_id, ja.user_id) FROM job_applications ja" +
+    @Query(value="SELECT ja.id, ja.is_approved, j.title, j.description, j.salary, ja.created_at, ja.updated_at, ja.job_id, ja.user_id FROM job_applications ja" +
             " INNER JOIN jobs j ON ja.job_id = j.id" +
             " INNER JOIN users u ON ja.user_id = u.id" +
             " WHERE ja.job_id!=?1 AND ja.is_approved=FALSE", nativeQuery = true)
