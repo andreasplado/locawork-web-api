@@ -10,6 +10,7 @@ public interface IJobApplicationService {
 
     List<JobApplicationEntity> findAll();
     List<JobApplicationDTO> findNonApprovedJobApplications(int userId);
+    List<JobApplicationDTO> apply(int userId);
     List<JobApplicationEntity> findApprovedJobApplications(int userId);
     JobApplicationEntity save(JobApplicationEntity jobEntity);
     JobApplicationEntity update(JobApplicationEntity jobEntity);
