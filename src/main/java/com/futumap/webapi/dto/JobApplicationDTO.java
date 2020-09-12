@@ -6,6 +6,7 @@ public interface JobApplicationDTO {
 
     Integer getId();
     Integer getUserId();
+    Boolean getIsApproved();
     String getEmail();
     String getJobTitle();
     String getJobDescription();
