@@ -1,8 +1,6 @@
 package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
-import com.futumap.webapi.dao.entity.JobEntity;
-import com.futumap.webapi.dao.entity.UserEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
 import com.futumap.webapi.respository.JobApplicationRepository;
 import com.futumap.webapi.respository.UserRepository;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class JobApplicationService implements IJobApplicationService {
@@ -34,7 +31,12 @@ public class JobApplicationService implements IJobApplicationService {
 
     @Override
     public void apply(int userId) {
-        jobApplicationRepository.apply(userId);
+        jobApplicationRepository.deleteJobApplication(userId);
+    }
+
+    @Override
+    public void update(int applyerId, int userId) {
+        jobApplicationRepository.updateJob(applyerId, userId);
     }
 
 

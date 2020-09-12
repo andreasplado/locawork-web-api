@@ -41,8 +41,9 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
-    public ResponseEntity<ResponseModel> apply(@RequestParam int userId) {
+    public ResponseEntity<ResponseModel> apply(@RequestParam int userId, @RequestParam int appyerId) {
         jobApplicationService.apply(userId);
+        jobApplicationService.update(appyerId, userId);
         ResponseModel responseModel = new ResponseModel();
         responseModel.setMessage("You applied to job!");
 
