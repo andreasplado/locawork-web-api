@@ -47,10 +47,9 @@ public class JobController {
     @RequestMapping(value = "/getjobsbylocation", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
         List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
-        List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, categories);
+        combined.put(KEY_CATEGORIES, jobs);
 
         if (combined.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
