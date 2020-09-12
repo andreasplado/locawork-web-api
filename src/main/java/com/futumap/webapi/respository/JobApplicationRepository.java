@@ -19,7 +19,7 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
     List<JobApplicationDTO> getNonApprovedJobApplications(@Param("user_id") int userId);
 
 
-    @Query(value="DELETE ja.* FROM job_applications ja WHERE ja.user_id=?1", nativeQuery = true)
+    @Query(value="DELETE FROM job_applications ja WHERE ja.user_id=?1", nativeQuery = true)
     List<JobApplicationDTO> apply(@Param("user_id") int userId);
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +
