@@ -5,7 +5,6 @@ import java.util.Date;
 public interface JobApplicationDTO {
 
     Integer getId();
-    boolean isApproved();
     Integer getUserId();
     String getEmail();
     String getJobTitle();
