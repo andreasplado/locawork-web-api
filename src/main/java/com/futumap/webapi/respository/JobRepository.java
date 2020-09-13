@@ -29,12 +29,12 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
     @Query(value="SELECT j.*, u.* from jobs j " +
             "INNER JOIN users u ON j.applyer_id = u.id " +
-            "WHERE j.applyer_id=0", nativeQuery = true)
-    List<JobEntity> findApplyedJobs();
+            "WHERE j.applyer_id=?1", nativeQuery = true)
+    List<JobEntity> findApplyedJobs(int userId);
 
     @Query(value="SELECT j.* from jobs j " +
-            "WHERE j.account_email=?1", nativeQuery = true)
-    JobEntity findByEmail(String email);
+            "WHERE j.applyer_id=?1", nativeQuery = true)
+    List<JobEntity> findByUserId(@Param("userId") Integer userId);
 
     @Query(value="SELECT j.* from jobs j " +
             "WHERE j.id=?1", nativeQuery = true)
