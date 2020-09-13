@@ -25,8 +25,8 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
-    public List<JobApplicationDTO> findNonApprovedJobApplications(int userId) {
-        return jobApplicationRepository.getNonApprovedJobApplications(userId);
+    public List<JobApplicationDTO> findNonApprovedJobApplications(int applyerId) {
+        return jobApplicationRepository.findNonApprovedJobApplications(applyerId);
     }
 
     @Override
