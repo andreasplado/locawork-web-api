@@ -4,6 +4,8 @@ import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.JobApplicationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,8 @@ import java.util.List;
 public class JobApplicationController {
 
     private static String KEY_JOB_APPLICATIONS = "job_applications";
+
+    Logger logger = LoggerFactory.getLogger(JobApplicationController.class);
 
     @Autowired
     private JobApplicationService jobApplicationService;
@@ -51,7 +55,8 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> apply(@RequestParam Integer userId, @RequestParam Integer applyerId) {
-        System.out.println("Params: " + userId + " applyerId: " + applyerId);
+        String lol = "Params: " + userId + " applyerId: " + applyerId;
+        logger.error(lol);
         jobApplicationService.deleteJobApplications(userId);
         jobApplicationService.update(applyerId, userId);
         ResponseModel responseModel = new ResponseModel();
