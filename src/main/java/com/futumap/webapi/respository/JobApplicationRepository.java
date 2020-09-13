@@ -21,8 +21,8 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
     List<JobApplicationDTO> findCandidates(@Param("user_id") int userId);
 
     @Query(value="SELECT ja.* from job_applications ja " +
-            "WHERE ja.user_id=?1", nativeQuery = true)
-    List<JobApplicationEntity> existByUserId(@Param("user_id") int userId);
+            "WHERE ja.user_id=?1 AND ja.job_id=?2", nativeQuery = true)
+    List<JobApplicationEntity> existJobByUserId(@Param("user_id") int userId, @Param("job_id") int jobId);
 
 
     @Modifying

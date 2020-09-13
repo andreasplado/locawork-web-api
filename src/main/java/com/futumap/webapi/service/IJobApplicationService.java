@@ -10,7 +10,7 @@ public interface IJobApplicationService {
 
     List<JobApplicationEntity> findAll();
     List<JobApplicationDTO> findCandidates(int userId);
-    List<JobApplicationEntity> existsByUserId(Integer userId);
+    List<JobApplicationEntity> existsJobByUserId(Integer userId, Integer jobId);
     void deleteJobApplications(int userId);
     void update(int applyerId, int userId);
     List<JobApplicationEntity> findApprovedJobApplications(int userId);

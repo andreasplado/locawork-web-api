@@ -26,7 +26,16 @@ public class JobApplicationController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody JobApplicationEntity jobApplicationEntity) {
-        jobApplicationService.save(jobApplicationEntity);
+        List<JobApplicationEntity> jobApplicationEntities = jobApplicationService.existsJobByUserId(jobApplicationEntity.getUserId(), jobApplicationEntity.getJob());
+        ResponseModel responseModel = new ResponseModel();
+        if(jobApplicationEntities.size() == 0) {
+            jobApplicationService.save(jobApplicationEntity);
+            responseModel.setMessage("You successfully applied to the job");
+        }else{
+            responseModel.setMessage("You have you have already applied to job!");
+        }
+
+
         return ResponseEntity.ok(jobApplicationEntity);
     }
 
