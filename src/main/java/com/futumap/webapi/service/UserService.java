@@ -37,16 +37,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserEntity saveUser(UserEntity userEntity) {
-        return null;
-    }
-
-    @Override
-    public UserEntity findByEmail(String email) {
-        return repository.findByEmail(email);
-    }
-
-    @Override
     public void delete(Integer id) {
         repository.deleteById(id);
     }
