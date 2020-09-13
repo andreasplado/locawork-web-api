@@ -36,7 +36,7 @@ public class JobApplicationController {
         }
 
 
-        return ResponseEntity.ok(jobApplicationEntity);
+        return ResponseEntity.ok(responseModel);
     }
 
     @RequestMapping(value = "/candidates", method = RequestMethod.GET)
