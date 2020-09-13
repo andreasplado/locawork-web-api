@@ -35,9 +35,9 @@ public class JobApplicationController {
 
     }
 
-    @RequestMapping(value = "/get-non-approved-job-applications", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String, Object>> getNonApprovedJobApplications(@RequestParam int userId) {
-        List<JobApplicationDTO> jobApplications = jobApplicationService.findNonApprovedJobApplications(userId);
+    @RequestMapping(value = "/candidates", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getNonApprovedJobApplications(@RequestParam Integer userId) {
+        List<JobApplicationDTO> jobApplications = jobApplicationService.findCandidates(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOB_APPLICATIONS, jobApplications);
 

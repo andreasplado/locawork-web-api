@@ -18,7 +18,7 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
             " INNER JOIN jobs j ON ja.job_id = j.id" +
             " INNER JOIN users u ON ja.user_id = u.id" +
             " WHERE j.applyer_id=?1 AND ja.is_approved=FALSE", nativeQuery = true)
-    List<JobApplicationDTO> findNonApprovedJobApplications(@Param("applyer_id") int applyerId);
+    List<JobApplicationDTO> findCandidates(@Param("applyer_id") int applyerId);
 
     @Query(value="SELECT ja.* from job_applications ja " +
             "WHERE ja.user_id=?1", nativeQuery = true)
@@ -32,7 +32,7 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE jobs SET applyer_id=?1 WHERE user_id=?2", nativeQuery = true)
+    @Query(value="UPDATE jobs j SET j.applyer_id=?1 WHERE user_id=?2", nativeQuery = true)
     void updateJob(@Param("applyer_id") int applyerId, @Param("user_id") int userId);
 
     @Query(value="SELECT ja.*, j.* FROM job_applications ja" +

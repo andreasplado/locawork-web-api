@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface IJobApplicationService {
 
     List<JobApplicationEntity> findAll();
-    List<JobApplicationDTO> findNonApprovedJobApplications(int userId);
+    List<JobApplicationDTO> findCandidates(int userId);
     List<JobApplicationEntity> existsByUserId(Integer userId);
     void deleteJobApplications(int userId);
     void update(int applyerId, int userId);
