@@ -26,17 +26,8 @@ public class JobApplicationController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody JobApplicationEntity jobApplicationEntity) {
-        List<JobApplicationEntity> jobApplicationEntities = jobApplicationService.existsByUserId(jobApplicationEntity.getUserId());
-        if(jobApplicationEntities.size() == 0){
-            jobApplicationService.save(jobApplicationEntity);
-            return ResponseEntity.ok(jobApplicationEntity);
-        }else{
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have already applied to this job!");
-            return ResponseEntity.ok(responseModel);
-        }
-
-
+        jobApplicationService.save(jobApplicationEntity);
+        return ResponseEntity.ok(jobApplicationEntity);
     }
 
     @RequestMapping(value = "/candidates", method = RequestMethod.GET)
@@ -85,7 +76,7 @@ public class JobApplicationController {
             responseModel.setMessage("You have no jobs found!");
 
             return ResponseEntity.ok(responseModel);
-        }else {
+        } else {
             jobApplicationService.delete(id);
 
             ResponseModel responseModel = new ResponseModel();
