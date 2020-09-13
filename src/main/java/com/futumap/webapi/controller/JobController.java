@@ -44,7 +44,7 @@ public class JobController {
         return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getjobsbylocation", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-available-jobs", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
         List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
         HashMap<String, Object> combined = new HashMap<>();
