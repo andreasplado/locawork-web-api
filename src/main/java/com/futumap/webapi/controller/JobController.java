@@ -2,7 +2,10 @@ package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
+import com.futumap.webapi.dto.JobApplicationDTO;
+import com.futumap.webapi.model.MainData;
 import com.futumap.webapi.model.ResponseModel;
+import com.futumap.webapi.service.JobApplicationService;
 import com.futumap.webapi.service.JobCategoryService;
 import com.futumap.webapi.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import sun.applet.Main;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +28,9 @@ public class JobController {
 
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private JobApplicationService jobApplicationService;
 
     @Autowired
     private JobCategoryService jobCategoryService;
@@ -175,6 +182,18 @@ public class JobController {
         }
 
         return ResponseEntity.ok(combined);
+    }
+
+    @RequestMapping(value = "/get-main-data", method = RequestMethod.GET)
+    public ResponseEntity<MainData> getMainData(@RequestParam Integer userId) {
+        List<JobEntity> applyedJobs = jobService.findApplyedJobs(userId);
+        List<JobApplicationDTO> myCandidates = jobApplicationService.findCandidates(userId);
+
+        MainData mainData = new MainData();
+        mainData.setMyUpcomingWorkNumber(applyedJobs.size());
+        mainData.setMyCandidatesNumber(myCandidates.size());
+
+        return ResponseEntity.ok(mainData);
     }
 
     @RequestMapping(value = "deleteall", method = RequestMethod.DELETE)

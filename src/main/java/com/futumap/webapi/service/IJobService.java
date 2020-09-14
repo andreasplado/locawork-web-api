@@ -2,6 +2,8 @@ package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dao.entity.JobEntity;
+import com.futumap.webapi.model.MainData;
+
 import java.util.List;
 import java.util.Optional;
 
