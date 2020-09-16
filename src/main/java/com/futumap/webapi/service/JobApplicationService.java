@@ -30,6 +30,11 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
+    public List<JobApplicationDTO> findMyApplications(int userId) {
+        return jobApplicationRepository.findMyApplications(userId);
+    }
+
+    @Override
     public List<JobApplicationEntity> existsJobByUserId(Integer userId, Integer jobId) {
         return jobApplicationRepository.existJobByUserId(userId, jobId);
     }

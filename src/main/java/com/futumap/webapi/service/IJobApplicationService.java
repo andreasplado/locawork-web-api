@@ -10,6 +10,7 @@ public interface IJobApplicationService {
 
     List<JobApplicationEntity> findAll();
     List<JobApplicationDTO> findCandidates(int userId);
+    List<JobApplicationDTO> findMyApplications(int userId);
     List<JobApplicationEntity> existsJobByUserId(Integer userId, Integer jobId);
     void deleteJobApplications(int userId);
     void update(int applyerId, int userId);
@@ -20,4 +21,5 @@ public interface IJobApplicationService {
     void deleteAll();
     Optional<JobApplicationEntity> findById(Integer id);
     boolean exists(Integer id);
+
 }
