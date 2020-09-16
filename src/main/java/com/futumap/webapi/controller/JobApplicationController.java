@@ -32,7 +32,7 @@ public class JobApplicationController {
             jobApplicationService.save(jobApplicationEntity);
             responseModel.setMessage("You successfully applied to the job");
         }else{
-            responseModel.setMessage("You have you have already applied to job!");
+            responseModel.setMessage("You already applied to job!");
         }
 
 
