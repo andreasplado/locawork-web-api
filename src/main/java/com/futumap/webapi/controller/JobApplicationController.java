@@ -28,10 +28,10 @@ public class JobApplicationController {
     public ResponseEntity<?> create(@RequestBody JobApplicationEntity jobApplicationEntity) {
         List<JobApplicationEntity> jobApplicationEntities = jobApplicationService.existsJobByUserId(jobApplicationEntity.getUserId(), jobApplicationEntity.getJob());
         ResponseModel responseModel = new ResponseModel();
-        if(jobApplicationEntities.size() == 0) {
+        if (jobApplicationEntities.size() == 0) {
             jobApplicationService.save(jobApplicationEntity);
             responseModel.setMessage("You successfully applied to the job");
-        }else{
+        } else {
             responseModel.setMessage("You already applied to job!");
         }
 
@@ -63,6 +63,16 @@ public class JobApplicationController {
             ResponseModel responseModel = new ResponseModel();
             responseModel.setMessage("You have no jobs found!");
         }
+
+        return ResponseEntity.ok(combined);
+    }
+
+    @RequestMapping(value = "/cancel-application", method = RequestMethod.DELETE)
+    public ResponseEntity<HashMap<String, Object>> deleteApplication(@RequestParam Integer applicationId) {
+        jobApplicationService.delete(applicationId);
+
+        ResponseModel responseModel = new ResponseModel();
+        responseModel.setMessage("You deleted job!");
 
         return ResponseEntity.ok(combined);
     }
