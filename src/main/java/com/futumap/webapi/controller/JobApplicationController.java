@@ -68,13 +68,13 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/cancel-application", method = RequestMethod.DELETE)
-    public ResponseEntity<HashMap<String, Object>> deleteApplication(@RequestParam Integer applicationId) {
+    public ResponseEntity<ResponseModel> deleteApplication(@RequestParam Integer applicationId) {
         jobApplicationService.delete(applicationId);
 
         ResponseModel responseModel = new ResponseModel();
         responseModel.setMessage("You deleted job!");
 
-        return ResponseEntity.ok(combined);
+        return ResponseEntity.ok(responseModel);
     }
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
