@@ -35,7 +35,12 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
     @Modifying
     @Transactional
     @Query(value="DELETE FROM job_applications ja WHERE ja.user_id=?1", nativeQuery = true)
-    void deleteJobApplication(@Param("user_id") int userId);
+    void deleteUserJobApplication(@Param("user_id") int userId);
+
+    @Modifying
+    @Transactional
+    @Query(value="DELETE FROM job_applications ja WHERE ja.id=?1", nativeQuery = true)
+    void deleteJobApplication(@Param("id") int jobApplicationId);
 
     @Modifying
     @Transactional

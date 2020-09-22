@@ -70,7 +70,7 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/cancel-application", method = RequestMethod.DELETE)
     public ResponseEntity<Integer> deleteApplication(@RequestParam Integer applicationId) {
-        jobApplicationService.delete(applicationId);
+        jobApplicationService.deleteJobApplication(applicationId);
 
 
         return ResponseEntity.ok(applicationId);
@@ -78,7 +78,7 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public ResponseEntity<ResponseModel> apply(@RequestParam Integer userId, @RequestParam Integer applyerId) {
-        jobApplicationService.deleteJobApplications(userId);
+        jobApplicationService.deleteUserJobApplications(userId);
         jobApplicationService.update(userId, applyerId);
         ResponseModel responseModel = new ResponseModel();
         responseModel.setMessage("You applied to job!");
@@ -109,7 +109,7 @@ public class JobApplicationController {
 
             return ResponseEntity.ok(responseModel);
         } else {
-            jobApplicationService.delete(id);
+            jobApplicationService.deleteJobApplication(id);
 
             ResponseModel responseModel = new ResponseModel();
             responseModel.setMessage("You deleted job successfully!");

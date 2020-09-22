@@ -41,8 +41,8 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
-    public void deleteJobApplications(int userId) {
-        jobApplicationRepository.deleteJobApplication(userId);
+    public void deleteUserJobApplications(int userId) {
+        jobApplicationRepository.deleteUserJobApplication(userId);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class JobApplicationService implements IJobApplicationService {
 
 
     @Override
-    public void delete(Integer id) {
+    public void deleteJobApplication(Integer id) {
         jobApplicationRepository.deleteJobApplication(id);
     }
 

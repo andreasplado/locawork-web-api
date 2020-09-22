@@ -13,12 +13,12 @@ public interface IJobApplicationService {
     List<JobApplicationDTO> findCandidates(int userId);
     List<MyApplicationDTO> findMyApplications(int userId);
     List<JobApplicationEntity> existsJobByUserId(Integer userId, Integer jobId);
-    void deleteJobApplications(int userId);
+    void deleteUserJobApplications(int userId);
     void update(int applyerId, int userId);
     List<JobApplicationEntity> findApprovedJobApplications(int userId);
     JobApplicationEntity save(JobApplicationEntity jobEntity);
     JobApplicationEntity update(JobApplicationEntity jobEntity);
-    void delete(Integer id);
+    void deleteJobApplication(Integer id);
     void deleteAll();
     Optional<JobApplicationEntity> findById(Integer id);
     boolean exists(Integer id);
