@@ -73,7 +73,6 @@ public class JobApplicationService implements IJobApplicationService {
 
     @Override
     public MyApplicationDTO delete(Integer id) {
-        jobApplicationRepository.deleteById(id);
         return jobApplicationRepository.deleteJobApplication(id);
     }
 
