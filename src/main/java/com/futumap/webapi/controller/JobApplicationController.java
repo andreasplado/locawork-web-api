@@ -70,7 +70,7 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/cancel-application", method = RequestMethod.DELETE)
     public ResponseEntity<Integer> deleteApplication(@RequestParam Integer applicationId) {
-        MyApplicationDTO jobApplicationEntity = jobApplicationService.delete(applicationId);
+        jobApplicationService.delete(applicationId);
 
 
         return ResponseEntity.ok(applicationId);
