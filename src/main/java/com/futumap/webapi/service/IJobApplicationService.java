@@ -18,7 +18,7 @@ public interface IJobApplicationService {
     List<JobApplicationEntity> findApprovedJobApplications(int userId);
     JobApplicationEntity save(JobApplicationEntity jobEntity);
     JobApplicationEntity update(JobApplicationEntity jobEntity);
-    MyApplicationDTO delete(Integer id);
+    void delete(Integer id);
     void deleteAll();
     Optional<JobApplicationEntity> findById(Integer id);
     boolean exists(Integer id);
