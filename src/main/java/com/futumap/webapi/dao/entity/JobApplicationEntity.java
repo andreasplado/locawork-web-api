@@ -28,6 +28,9 @@ public class JobApplicationEntity {
     @Column(name = "is_approved")
     private boolean isApproved;
 
+    @Column(name = "contact")
+    private String contact;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -104,6 +107,14 @@ public class JobApplicationEntity {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }
 
