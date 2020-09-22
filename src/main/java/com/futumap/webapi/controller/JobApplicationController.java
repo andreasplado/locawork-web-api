@@ -69,8 +69,8 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/cancel-application", method = RequestMethod.DELETE)
-    public ResponseEntity<JobApplicationEntity> deleteApplication(@RequestParam Integer applicationId) {
-        JobApplicationEntity jobApplicationEntity = jobApplicationService.delete(applicationId);
+    public ResponseEntity<MyApplicationDTO> deleteApplication(@RequestParam Integer applicationId) {
+        MyApplicationDTO jobApplicationEntity = jobApplicationService.delete(applicationId);
 
 
         return ResponseEntity.ok(jobApplicationEntity);
