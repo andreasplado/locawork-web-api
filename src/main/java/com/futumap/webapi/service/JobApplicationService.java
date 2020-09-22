@@ -72,8 +72,9 @@ public class JobApplicationService implements IJobApplicationService {
 
 
     @Override
-    public void delete(Integer id) {
+    public JobApplicationEntity delete(Integer id) {
         jobApplicationRepository.deleteById(id);
+        return jobApplicationRepository.getOne(id);
     }
 
     @Override
