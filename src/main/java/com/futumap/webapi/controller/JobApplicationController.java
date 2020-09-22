@@ -2,6 +2,7 @@ package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
+import com.futumap.webapi.dto.MyApplicationDTO;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.JobApplicationService;
 import org.slf4j.Logger;
@@ -55,7 +56,7 @@ public class JobApplicationController {
 
     @RequestMapping(value = "/my-applications", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String, Object>> getMyApplications(@RequestParam Integer userId) {
-        List<JobApplicationDTO> jobApplications = jobApplicationService.findMyApplications(userId);
+        List<MyApplicationDTO> jobApplications = jobApplicationService.findMyApplications(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOB_APPLICATIONS, jobApplications);
 

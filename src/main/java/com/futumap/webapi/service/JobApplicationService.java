@@ -2,6 +2,7 @@ package com.futumap.webapi.service;
 
 import com.futumap.webapi.dao.entity.JobApplicationEntity;
 import com.futumap.webapi.dto.JobApplicationDTO;
+import com.futumap.webapi.dto.MyApplicationDTO;
 import com.futumap.webapi.respository.JobApplicationRepository;
 import com.futumap.webapi.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
-    public List<JobApplicationDTO> findMyApplications(int userId) {
+    public List<MyApplicationDTO> findMyApplications(int userId) {
         return jobApplicationRepository.findMyApplications(userId);
     }
 
