@@ -169,10 +169,7 @@ public class JobController {
         }else {
             jobService.delete(id);
 
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You deleted job successfully!");
-
-            return ResponseEntity.ok(responseModel);
+            return ResponseEntity.ok(id);
         }
     }
 
