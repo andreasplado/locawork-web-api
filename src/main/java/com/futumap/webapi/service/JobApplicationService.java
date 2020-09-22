@@ -91,4 +91,9 @@ public class JobApplicationService implements IJobApplicationService {
         return jobApplicationRepository.existsById(id);
     }
 
+    @Override
+    public void deleteAllByJobId(Integer id) {
+        jobApplicationRepository.deleteAllByJobId(id);
+    }
+
 }

@@ -46,4 +46,9 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
             " INNER JOIN jobs j ON ja.fk_job = j.id" +
             " WHERE job_applications_pkey!=?1 AND ja.is_approved=TRUE", nativeQuery = true)
     List<JobApplicationEntity> getApprovedJobApplications(@Param("user_id") int userId);
+
+    @Modifying
+    @Transactional
+    @Query(value="DELETE FROM job_applications ja WHERE ja.job_id=?1", nativeQuery = true)
+    void deleteAllByJobId(@Param("job_id") Integer id);
 }
