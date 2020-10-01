@@ -43,6 +43,10 @@ public class JobEntity {
     @Column(name = "created_at")
     private Date createdAt;
 
+
+    @Column(name = "is_done")
+    private boolean isDone;
+
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
@@ -165,6 +169,14 @@ public class JobEntity {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }
 

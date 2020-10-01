@@ -20,6 +20,11 @@ public class JobService implements IJobService {
     }
 
     @Override
+    public List<JobEntity> findMyDoneWork() {
+        return null;
+    }
+
+    @Override
     public List<JobEntity> findOtherUsersNearestJobs(Double latitude, Double longitude, Double distance, Integer userId) {
         return repository.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
     }

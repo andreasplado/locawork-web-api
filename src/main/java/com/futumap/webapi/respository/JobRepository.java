@@ -35,4 +35,8 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
     @Query(value="SELECT j.* from jobs j " +
             "WHERE j.id=?1", nativeQuery = true)
     JobEntity findSingleById(Integer id);
+
+    @Query(value="SELECT j.* from jobs j " +
+            "WHERE j.applyer_id=?1", nativeQuery = true)
+    List<JobEntity> findDoneWorkByUserId(@Param("userId") Integer userId);
 }
