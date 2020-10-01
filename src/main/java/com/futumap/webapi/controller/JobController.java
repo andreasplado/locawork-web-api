@@ -133,13 +133,6 @@ public class JobController {
         return ResponseEntity.ok(job);
     }
 
-    @RequestMapping(value = "/start-work", method = RequestMethod.POST)
-    public ResponseEntity<?> apply(@RequestBody JobEntity job) {
-        jobService.delete(job.getId());
-        jobApplicationService.deleteAllByJobId(job.getId());
-        return ResponseEntity.ok(job);
-    }
-
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody JobEntity jobEntity) {
 
