@@ -20,6 +20,11 @@ public class JobService implements IJobService {
     }
 
     @Override
+    public void applyToJob(int applyerId) {
+        repository.applyToJob(applyerId);
+    }
+
+    @Override
     public List<JobEntity> findMyDoneWork() {
         return null;
     }

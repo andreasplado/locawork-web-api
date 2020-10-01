@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface IJobService {
 
     List<JobEntity> findAll();
+    void applyToJob(int applyerId);
     List<JobEntity> findMyDoneWork();
     List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, Integer userId);
     List<JobEntity> findApplyedJobs(Integer userId);

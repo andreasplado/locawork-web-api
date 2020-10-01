@@ -51,6 +51,16 @@ public class JobController {
         return new ResponseEntity<HashMap<String, Object>>(combined, HttpStatus.OK);
     }
 
+
+    @RequestMapping(value = "/start-work", method = RequestMethod.POST)
+    public ResponseEntity<ResponseModel> apply(@RequestParam Integer userId, @RequestParam Integer applyerId) {
+        jobService.applyToJob(userId);
+        ResponseModel responseModel = new ResponseModel();
+        responseModel.setMessage("You started work!");
+
+        return ResponseEntity.ok(responseModel);
+    }
+
     @RequestMapping(value = "/get-available-jobs", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
         List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
