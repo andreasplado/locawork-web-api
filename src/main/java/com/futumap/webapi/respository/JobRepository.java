@@ -36,6 +36,6 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE jobs SET is_done=true WHERE applyer_id=?1", nativeQuery = true)
+    @Query(value="UPDATE jobs SET is_done=t WHERE applyer_id=?1", nativeQuery = true)
     void applyToJob(@Param("applyer_id") int applyerId);
 }
