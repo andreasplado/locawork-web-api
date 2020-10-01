@@ -191,6 +191,21 @@ public class JobController {
         return ResponseEntity.ok(combined);
     }
 
+    @RequestMapping(value = "/getmydonework", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getMyDoneWork(@RequestParam Integer userId) {
+        List<JobEntity> jobs = jobService.findMyDoneWork(userId);
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOBS, jobs);
+        combined.put(KEY_CATEGORIES, jobs);
+
+        if (combined.isEmpty()) {
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.setMessage("You have no jobs found!");
+        }
+
+        return ResponseEntity.ok(combined);
+    }
+
     @RequestMapping(value = "/get-main-data", method = RequestMethod.GET)
     public ResponseEntity<MainData> getMainData(@RequestParam Integer userId) {
         List<JobEntity> applyedJobs = jobService.findApplyedJobs(userId);

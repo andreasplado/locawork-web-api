@@ -25,8 +25,8 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findMyDoneWork() {
-        return null;
+    public List<JobEntity> findMyDoneWork(int userId) {
+        return repository.findMyDoneWork(userId);
     }
 
     @Override
