@@ -53,7 +53,7 @@ public class JobController {
 
 
     @RequestMapping(value = "/start-work", method = RequestMethod.POST)
-    public ResponseEntity<ResponseModel> apply(@RequestParam Integer userId, @RequestParam Integer applyerId) {
+    public ResponseEntity<ResponseModel> apply(@RequestParam Integer userId) {
         jobService.applyToJob(userId);
         ResponseModel responseModel = new ResponseModel();
         responseModel.setMessage("You started work!");
