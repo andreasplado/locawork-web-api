@@ -64,15 +64,10 @@ public class JobController {
     @RequestMapping(value = "/get-available-jobs", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
         List<JobEntity> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, jobs);
-
-        if (combined.isEmpty()) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found");
-            return ResponseEntity.ok(responseModel);
-        }
+        combined.put(KEY_CATEGORIES, categories);
 
         return ResponseEntity.ok(combined);
     }
@@ -85,25 +80,11 @@ public class JobController {
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, categories);
 
-        if (combined.isEmpty()) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found!");
-
-            return ResponseEntity.ok(responseModel);
-        }
-
         return ResponseEntity.ok(combined);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public ResponseEntity<?> get(@PathVariable("id") Integer id) {
-
-        if (!jobService.exists(id)) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found!");
-
-            return ResponseEntity.ok(responseModel);
-        }
 
         Optional<JobEntity> job = jobService.findById(id);
         return ResponseEntity.ok(job);
@@ -112,16 +93,10 @@ public class JobController {
     @RequestMapping(value = "/getjobsbygoogleaccount", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(@RequestParam Integer userId) {
         List<JobEntity> jobs = jobService.findAllPostedJobs(userId);
+        List<JobCategoryEntity> categories = jobCategoryService.findAll();
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, jobs);
-
-        if (combined.isEmpty()) {
-            ResponseModel responseModel = new ResponseModel();
-            responseModel.setMessage("You have no jobs found!");
-
-            return ResponseEntity.ok(responseModel);
-        }
+        combined.put(KEY_CATEGORIES, categories);
 
         return ResponseEntity.ok(combined);
     }
