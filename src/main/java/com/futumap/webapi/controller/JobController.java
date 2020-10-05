@@ -151,7 +151,7 @@ public class JobController {
         }
     }
 
-    @RequestMapping(value = "/getappliedjobsbygoogleaccount", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-my-upcoming-work", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam Integer userId) {
         List<JobEntity> jobs = jobService.findApplyedJobs(userId);
         HashMap<String, Object> combined = new HashMap<>();
