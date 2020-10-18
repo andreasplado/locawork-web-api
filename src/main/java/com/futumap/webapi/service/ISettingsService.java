@@ -1,12 +1,12 @@
 package com.futumap.webapi.service;
 
-import com.futumap.webapi.dao.entity.JobEntity;
 import com.futumap.webapi.dao.entity.SettingsEntity;
 
 import java.util.List;
 
 public interface ISettingsService {
 
+    SettingsEntity save(SettingsEntity settingsEntity);
     List<SettingsEntity> findAll();
     List<SettingsEntity> getUserSettings(Integer userId);
     void updateRadius(Integer userId, Double radius);

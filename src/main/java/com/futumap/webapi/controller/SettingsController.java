@@ -33,6 +33,13 @@ public class SettingsController {
         return ResponseEntity.ok(settings);
     }
 
+    @RequestMapping(value = "/set-initial-settings", method = RequestMethod.POST)
+    public ResponseEntity<?> setInitialSettings(@RequestBody SettingsEntity settingsEntity) {
+        settingsService.save(settingsEntity);
+
+        return ResponseEntity.ok(settingsEntity);
+    }
+
 
     @RequestMapping(value = "/update-radius", method = RequestMethod.PUT)
     public ResponseEntity<?> updateRadius(@RequestParam Integer userId, @RequestParam Double radius) {

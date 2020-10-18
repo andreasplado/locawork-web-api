@@ -14,6 +14,11 @@ public class SettingsService implements ISettingsService {
     SettingsRepository settingsRepository;
 
     @Override
+    public SettingsEntity save(SettingsEntity settingsEntity) {
+        return settingsRepository.save(settingsEntity);
+    }
+
+    @Override
     public List<SettingsEntity> findAll() {
         return settingsRepository.findAll();
     }
