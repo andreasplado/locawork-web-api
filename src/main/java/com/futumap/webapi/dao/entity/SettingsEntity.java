@@ -29,10 +29,10 @@ public class SettingsEntity {
     private String viewByDefault;
 
     @Column(name = "ask_permissions_before_deleting_a_job")
-    private Boolean askPermissionsBeforeDeletingAJob;
+    private boolean askPermissionsBeforeDeletingAJob;
 
     @Column(name = "show_information_on_startup")
-    private Boolean showInformationOnStartup;
+    private boolean showInformationOnStartup;
 
     @Column(name = "created_at")
     private Date createdAt;
