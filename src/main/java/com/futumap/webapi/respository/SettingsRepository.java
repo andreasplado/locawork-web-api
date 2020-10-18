@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface SettingsRepository extends JpaRepository<SettingsEntity, Integer> {
 
-    @Query(value="SELECT s.* from settings s " +
+    @Query(value="SELECT from settings s " +
             "WHERE s.user_id=?1", nativeQuery = true)
     List<SettingsEntity> findUserSettings(@Param("user_id") Integer userId);
 

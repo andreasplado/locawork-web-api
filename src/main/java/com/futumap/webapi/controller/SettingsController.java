@@ -28,7 +28,7 @@ public class SettingsController {
 
     @RequestMapping(value = "/get-user-settings", method = RequestMethod.GET)
     public ResponseEntity<?> getSettings(@RequestParam Integer userId) {
-        List<SettingsEntity> settings = settingsService.getUserSettings(userId);
+        SettingsEntity settings = settingsService.getUserSettings(userId);
 
         return ResponseEntity.ok(settings);
     }
