@@ -3,9 +3,11 @@ package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.JobCategoryEntity;
 import com.futumap.webapi.dao.entity.SettingsEntity;
+import com.futumap.webapi.model.EmptyJsonResponse;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.SettingsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +31,9 @@ public class SettingsController {
     @RequestMapping(value = "/get-user-settings", method = RequestMethod.GET)
     public ResponseEntity<?> getSettings(@RequestParam Integer userId) {
         SettingsEntity settings = settingsService.getUserSettings(userId);
+        if (settings == null) {
+            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
+        }
 
         return ResponseEntity.ok(settings);
     }
@@ -37,17 +42,15 @@ public class SettingsController {
     public ResponseEntity<?> setInitialSettings(@RequestBody SettingsEntity settingsEntity) {
         ResponseModel responseModel = new ResponseModel();
 
-        if(!settingsService.exists(settingsEntity.getUserId())) {
+        if (!settingsService.exists(settingsEntity.getUserId())) {
             settingsService.save(settingsEntity);
 
             return ResponseEntity.ok(settingsEntity);
-        }else{
-            responseModel.setMessage("These settings for user with id: " + settingsEntity.getUserId() + "already exist!");
+        } else {
+            responseModel.setMessage("These settings for user with id: " + settingsEntity.getUserId() + " already exist!");
 
             return ResponseEntity.ok(responseModel);
         }
-
-
     }
 
 
