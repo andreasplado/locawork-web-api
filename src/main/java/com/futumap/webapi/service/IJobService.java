@@ -13,7 +13,7 @@ public interface IJobService {
     void applyToJob(int applyerId);
     List<JobEntity> findMyDoneWork(int userId);
     List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, Integer userId);
-    List<JobEntity> findApplyedJobs(Integer userId);
+    List<JobEntity> findUpcomingWork(Integer userId);
     List<JobEntity> findAllPostedJobs(Integer userId);
     List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance);
     JobEntity save (JobEntity jobEntity);
