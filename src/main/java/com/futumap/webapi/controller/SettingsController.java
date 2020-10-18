@@ -35,11 +35,19 @@ public class SettingsController {
 
     @RequestMapping(value = "/set-initial-settings", method = RequestMethod.POST)
     public ResponseEntity<?> setInitialSettings(@RequestBody SettingsEntity settingsEntity) {
+        ResponseModel responseModel = new ResponseModel();
+
         if(!settingsService.exists(settingsEntity.getUserId())) {
             settingsService.save(settingsEntity);
+
+            return ResponseEntity.ok(settingsEntity);
+        }else{
+            responseModel.setMessage("These settings for user with id: " + settingsEntity.getUserId() + "already exist!");
+
+            return ResponseEntity.ok(responseModel);
         }
 
-        return ResponseEntity.ok(settingsEntity);
+
     }
 
 
