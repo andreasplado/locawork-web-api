@@ -15,7 +15,7 @@ public interface SettingsRepository extends JpaRepository<SettingsEntity, Intege
 
     @Query(value="SELECT from settings s " +
             "WHERE s.user_id=?1", nativeQuery = true)
-    List<SettingsEntity> findUserSettings(@Param("user_id") Integer userId);
+    SettingsEntity findUserSettings(@Param("user_id") Integer userId);
 
     @Modifying
     @Transactional

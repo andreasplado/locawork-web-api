@@ -8,7 +8,7 @@ public interface ISettingsService {
 
     SettingsEntity save(SettingsEntity settingsEntity);
     List<SettingsEntity> findAll();
-    List<SettingsEntity> getUserSettings(Integer userId);
+    SettingsEntity getUserSettings(Integer userId);
     void updateRadius(Integer userId, Double radius);
     void updateViewByDefault(Integer userId, String value);
     void updateAskPermissionBeforeDeletingAJob(Integer userId, Boolean value);

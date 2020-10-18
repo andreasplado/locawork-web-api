@@ -24,7 +24,7 @@ public class SettingsService implements ISettingsService {
     }
 
     @Override
-    public List<SettingsEntity> getUserSettings(Integer userId) {
+    public SettingsEntity getUserSettings(Integer userId) {
         return settingsRepository.findUserSettings(userId);
     }
 
