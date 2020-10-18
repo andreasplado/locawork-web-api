@@ -31,10 +31,10 @@ public interface SettingsRepository extends JpaRepository<SettingsEntity, Intege
     @Modifying
     @Transactional
     @Query(value="UPDATE settings SET ask_permissions_before_deleting_a_job=?1 WHERE user_id=?2", nativeQuery = true)
-    void setAskPerMissionsBeforeDeletingAJob(@Param("value") String value, @Param("user_id") Integer userId);
+    void setAskPermissionsBeforeDeletingAJob(@Param("value") Boolean value, @Param("user_id") Integer userId);
 
     @Modifying
     @Transactional
     @Query(value="UPDATE settings SET show_information_on_startup=?1 WHERE user_id=?2", nativeQuery = true)
-    void setShowInformationOnStartup(@Param("value") String value, @Param("user_id") Integer userId);
+    void setShowInformationOnStartup(@Param("value") Boolean value, @Param("user_id") Integer userId);
 }

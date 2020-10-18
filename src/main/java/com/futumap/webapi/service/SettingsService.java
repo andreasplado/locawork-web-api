@@ -35,12 +35,12 @@ public class SettingsService implements ISettingsService {
 
     @Override
     public void updateAskPermissionBeforeDeletingAJob(Integer userId, Boolean value) {
-
+        settingsRepository.setAskPermissionsBeforeDeletingAJob(value, userId);
     }
 
     @Override
     public void updateShowInformationOnStartup(Integer userId, Boolean value) {
-
+        settingsRepository.setShowInformationOnStartup(value, userId);
     }
 
 }
