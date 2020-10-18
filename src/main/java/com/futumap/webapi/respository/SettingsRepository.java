@@ -17,6 +17,9 @@ public interface SettingsRepository extends JpaRepository<SettingsEntity, Intege
             "WHERE s.user_id=?1", nativeQuery = true)
     SettingsEntity findUserSettings(@Param("user_id") Integer userId);
 
+    @Query(value="SELECT CASE WHEN COUNT(s)> 0 then true else false end FROM settings s WHERE s.user_id=?1", nativeQuery = true)
+    boolean exists(@Param("user_id") Integer userId);
+
     @Modifying
     @Transactional
     @Query(value="UPDATE settings SET radius=?1 WHERE user_id=?2", nativeQuery = true)

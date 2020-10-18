@@ -35,7 +35,9 @@ public class SettingsController {
 
     @RequestMapping(value = "/set-initial-settings", method = RequestMethod.POST)
     public ResponseEntity<?> setInitialSettings(@RequestBody SettingsEntity settingsEntity) {
-        settingsService.save(settingsEntity);
+        if(!settingsService.exists(settingsEntity.getUserId())) {
+            settingsService.save(settingsEntity);
+        }
 
         return ResponseEntity.ok(settingsEntity);
     }

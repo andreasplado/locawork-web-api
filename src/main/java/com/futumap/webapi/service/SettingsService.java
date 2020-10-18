@@ -19,6 +19,11 @@ public class SettingsService implements ISettingsService {
     }
 
     @Override
+    public boolean exists(Integer userId) {
+        return settingsRepository.exists(userId);
+    }
+
+    @Override
     public List<SettingsEntity> findAll() {
         return settingsRepository.findAll();
     }
