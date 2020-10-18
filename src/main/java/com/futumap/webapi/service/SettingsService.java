@@ -3,9 +3,11 @@ package com.futumap.webapi.service;
 import com.futumap.webapi.dao.entity.SettingsEntity;
 import com.futumap.webapi.respository.SettingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SettingsService implements ISettingsService {
 
     @Autowired
