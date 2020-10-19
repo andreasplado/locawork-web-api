@@ -21,5 +21,6 @@ public interface IJobService {
     void delete(Integer id);
     void deleteAll();
     Optional<JobEntity> findById(Integer id);
+    JobEntity findSingleById(Integer id);
     boolean exists(Integer id);
 }

@@ -143,9 +143,11 @@ public class JobController {
 
             return ResponseEntity.ok(responseModel);
         }else {
+            JobEntity jobEntity = workService.findSingleById(id);
             workService.delete(id);
 
-            return ResponseEntity.ok(id);
+
+            return ResponseEntity.ok(jobEntity);
         }
     }
 

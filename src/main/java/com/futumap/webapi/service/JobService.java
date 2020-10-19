@@ -78,6 +78,10 @@ public class JobService implements IJobService {
         return repository.findById(id);
     }
 
+    @Override
+    public JobEntity findSingleById(Integer id) {
+        return repository.findSingle(id);
+    }
 
     @Override
     public boolean exists(Integer id) {
