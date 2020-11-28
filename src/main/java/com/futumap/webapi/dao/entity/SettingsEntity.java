@@ -34,6 +34,9 @@ public class SettingsEntity {
     @Column(name = "show_information_on_startup")
     private boolean showInformationOnStartup;
 
+    @Column(name = "currency")
+    private String currency;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -127,5 +130,13 @@ public class SettingsEntity {
 
     public void setShowInformationOnStartup(Boolean showInformationOnStartup) {
         this.showInformationOnStartup = showInformationOnStartup;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }
