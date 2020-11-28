@@ -60,4 +60,12 @@ public class UserService implements IUserService {
     public boolean exists(Integer id) {
         return repository.existsById(id);
     }
+
+    @Override
+    public boolean phoneNumberAndEmailMatches(String email, String phoneNumber) {
+        if(repository.emailAndPhoneNumberMatches(email, phoneNumber)){
+            return true;
+        }
+        return false;
+    }
 }

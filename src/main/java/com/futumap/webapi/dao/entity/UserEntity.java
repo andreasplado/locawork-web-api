@@ -33,9 +33,6 @@ public class UserEntity {
     @Column(name = "contact")
     private String contact;
 
-    @Column(name="is_active")
-    private boolean isActive;
-
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -106,13 +103,5 @@ public class UserEntity {
 
     public void setContact(String contact) {
         this.contact = contact;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 }

@@ -1,16 +1,12 @@
 package com.futumap.webapi.controller;
 
 import com.futumap.webapi.dao.entity.UserEntity;
-import com.futumap.webapi.dto.MyApplicationDTO;
 import com.futumap.webapi.model.ResponseModel;
 import com.futumap.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +32,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody UserEntity userEntity) {
-        if(!userService.existByEmail(userEntity.getEmail())){
+        if(!userService.existByEmail(userEntity.getEmail()) && !userService.phoneNumberAndEmailMatches(userEntity.getEmail(), userEntity.getContact())){
             userService.save(userEntity);
         }
 

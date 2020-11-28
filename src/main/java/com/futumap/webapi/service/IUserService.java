@@ -13,6 +13,7 @@ public interface IUserService {
     void delete(Integer id);
     Optional<UserEntity> findById(Integer id);
     boolean exists(Integer id);
+    boolean phoneNumberAndEmailMatches(String accountEmail, String phoneNumber);
     boolean existByEmail(String googleAccountId);
     UserEntity saveUser(UserEntity userEntity);
     UserEntity findByEmail(String email);

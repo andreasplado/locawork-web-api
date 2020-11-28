@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Query(value="SELECT u.* FROM users u WHERE u.id=?1", nativeQuery = true)
     UserEntity findSingleById(@Param("id") Integer id);
+
+    @Query(value="SELECT CASE WHEN COUNT(u)> 0 then true else false end FROM users u WHERE u.account_email=?1 AND u.contact=?2", nativeQuery = true)
+    boolean emailAndPhoneNumberMatches(@Param("account_email") String accountEmail, @Param("contact") String contact);
 }
