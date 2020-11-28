@@ -37,6 +37,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public boolean existsByEncryptedId(String encryptedId) {
+        return repository.existsByEncryptedId(encryptedId);
+    }
+
+    @Override
     public UserEntity saveUser(UserEntity userEntity) {
         return null;
     }
