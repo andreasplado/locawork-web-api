@@ -15,6 +15,7 @@ public interface IUserService {
     boolean exists(Integer id);
     boolean phoneNumberAndEmailMatches(String accountEmail, String phoneNumber);
     boolean existByEmail(String googleAccountId);
+    boolean existsByEncryptedId(String encryptedId);
     UserEntity saveUser(UserEntity userEntity);
     UserEntity findByEmail(String email);
 }

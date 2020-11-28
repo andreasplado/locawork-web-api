@@ -32,7 +32,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody UserEntity userEntity) {
-        if(!userService.existByEmail(userEntity.getEmail()) && !userService.phoneNumberAndEmailMatches(userEntity.getEmail(), userEntity.getContact())){
+        if(!userService.existByEmail(userEntity.getEmail()) && !userService.existsByEncryptedId(userEntity.getEncryptedId())){
             userService.save(userEntity);
         }
 

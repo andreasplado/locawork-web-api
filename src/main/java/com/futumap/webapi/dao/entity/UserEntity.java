@@ -33,6 +33,9 @@ public class UserEntity {
     @Column(name = "contact")
     private String contact;
 
+    @Column(name = "encryptedId", nullable = false)
+    private String encryptedId;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -103,5 +106,13 @@ public class UserEntity {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getEncryptedId() {
+        return encryptedId;
+    }
+
+    public void setEncryptedId(String encryptedId) {
+        this.encryptedId = encryptedId;
     }
 }
