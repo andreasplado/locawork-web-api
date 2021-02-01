@@ -13,4 +13,5 @@ public interface JobApplicationDTO {
     Date getcreated_at();
     Date getUpdated_at();
     Integer getJob_id();
+    String getContact();
 }
