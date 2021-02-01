@@ -4,7 +4,7 @@
 ```mvn spring-boot:run```
 
 #Connect to db:
-```heroku pg:psql postgresql-pointy-79328 --app futumap```
+```heroku pg:psql postgresql-pointy-79328 --app locawork-web-api```
 
 ##Adding Posgre SQL extensions:
 ```CREATE EXTENSION earthdistance;```
@@ -15,14 +15,14 @@
 ```spring.jpa.hibernate.ddl-auto=create```
 
 #View server logs
-```heroku logs --tail -a futumap```
+```heroku logs --tail -a locawork-web-api```
 
 #Endpoints
 ###Getting all jobs
-```https://futumap.herokuapp.com/jobs/```
+```https://locawork-web-api.herokuapp.com/jobs/```
 ### Updating job
 Updating job with id 4<br>
-``` https://futumap.herokuapp.com/jobs/4```
+``` https://locawork-web-api.herokuapp.com/jobs/4```
 ```
 {
 	"id": 4,
@@ -42,7 +42,7 @@ Gettin jobs by location in a distance. Distance is in METERS! Add your longitude
 Example with Longitude 152.522067 and latitude 58.698017<br>
 googleAccountId is currently logged in user to filter out account from finding job.
 
-```https://futumap.herokuapp.com/jobs/getjobsbylocation?longitude=-152.522067&latitude=58.698017&distance=10000000&googleAccountId=108921010361347349816```
+```https://locawork.herokuapp.com/jobs/getjobsbylocation?longitude=-152.522067&latitude=58.698017&distance=10000000&googleAccountId=108921010361347349816```
 
 
 
