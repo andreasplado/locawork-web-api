@@ -96,4 +96,9 @@ public class JobApplicationService implements IJobApplicationService {
         jobApplicationRepository.deleteAllByJobId(id);
     }
 
+    @Override
+    public List<JobApplicationDTO> findCandidatesWithFilter(Integer userId, String filter) {
+        return jobApplicationRepository.findCandidatesWithFilter(userId, filter);
+    }
+
 }

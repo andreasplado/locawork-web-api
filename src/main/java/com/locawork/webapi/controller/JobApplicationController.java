@@ -54,6 +54,20 @@ public class JobApplicationController {
         return ResponseEntity.ok(combined);
     }
 
+    @RequestMapping(value = "/candidates", method = RequestMethod.GET)
+    public ResponseEntity<HashMap<String, Object>> getCandidates(@RequestParam Integer userId, @RequestParam String filter) {
+        List<JobApplicationDTO> jobApplications = jobApplicationService.findCandidatesWithFilter(userId, filter);
+        HashMap<String, Object> combined = new HashMap<>();
+        combined.put(KEY_JOB_APPLICATIONS, jobApplications);
+
+        if (combined.isEmpty()) {
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.setMessage("You have no jobs found!");
+        }
+
+        return ResponseEntity.ok(combined);
+    }
+
     @RequestMapping(value = "/my-applications", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String, Object>> getMyApplications(@RequestParam Integer userId) {
         List<MyApplicationDTO> jobApplications = jobApplicationService.findMyApplications(userId);
@@ -116,7 +130,5 @@ public class JobApplicationController {
 
             return ResponseEntity.ok(responseModel);
         }
-
-
     }
 }

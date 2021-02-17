@@ -24,4 +24,6 @@ public interface IJobApplicationService {
     boolean exists(Integer id);
 
     void deleteAllByJobId(Integer id);
+
+    List<JobApplicationDTO> findCandidatesWithFilter(Integer userId, String filter);
 }
