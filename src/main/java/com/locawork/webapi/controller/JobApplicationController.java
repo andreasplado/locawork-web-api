@@ -54,7 +54,7 @@ public class JobApplicationController {
         return ResponseEntity.ok(combined);
     }
 
-    @RequestMapping(value = "/candidates", method = RequestMethod.GET)
+    @RequestMapping(value = "/candidates-filtered", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String, Object>> getCandidates(@RequestParam Integer userId, @RequestParam String filter) {
         List<JobApplicationDTO> jobApplications = jobApplicationService.findCandidatesWithFilter(userId, filter);
         HashMap<String, Object> combined = new HashMap<>();
