@@ -17,4 +17,5 @@ public interface IUserService {
     boolean existByEmail(String googleAccountId);
     UserEntity saveUser(UserEntity userEntity);
     UserEntity findByEmail(String email);
+    int findId(String email);
 }
