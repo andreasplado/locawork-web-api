@@ -18,6 +18,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query(value="SELECT CASE WHEN COUNT(u)> 0 then true else false end FROM users u WHERE u.account_email=?1 AND u.contact=?2", nativeQuery = true)
     boolean emailAndPhoneNumberMatches(@Param("account_email") String accountEmail, @Param("contact") String contact);
 
-    @Query(value="SELECT u.id FROM users u WHERE u.account_email=?1 LIMIT 1", nativeQuery = true)
+    @Query(value="SELECT FIRST 1 u.id FROM users u WHERE u.account_email=?1", nativeQuery = true)
     int findId(@Param("username") String username);
 }
