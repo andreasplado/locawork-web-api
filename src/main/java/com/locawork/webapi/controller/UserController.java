@@ -5,6 +5,7 @@ import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder){
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAll() {
@@ -39,6 +46,14 @@ public class UserController {
         userEntity = userService.findByEmail(userEntity.getEmail());
 
         return ResponseEntity.ok(userEntity);
+    }
+
+    @PostMapping("/signup")
+    public void signUp(@RequestBody UserEntity user)
+    {
+        user.setEmail(user.getEmail());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userService.save(user);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)

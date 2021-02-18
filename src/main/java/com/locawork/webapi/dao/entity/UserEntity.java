@@ -30,6 +30,9 @@ public class UserEntity {
     @Column(name = "account_email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "contact")
     private String contact;
 
@@ -103,5 +106,13 @@ public class UserEntity {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
