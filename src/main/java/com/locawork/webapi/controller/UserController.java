@@ -49,11 +49,14 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public void signUp(@RequestBody UserEntity user)
+    public ResponseEntity<?> signUp(@RequestBody UserEntity user)
     {
         user.setEmail(user.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.save(user);
+        user = userService.findByEmail(user.getEmail());
+
+        return ResponseEntity.ok(user);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)

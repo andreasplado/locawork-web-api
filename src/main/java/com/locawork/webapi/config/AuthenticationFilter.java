@@ -2,8 +2,10 @@ package com.locawork.webapi.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.locawork.webapi.dao.entity.UserEntity;
+import com.locawork.webapi.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,8 @@ import java.util.Date;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserService userService;
 
     public AuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
@@ -42,5 +46,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .signWith(SignatureAlgorithm.HS512, "SecretKeyToGenJWTs".getBytes())
                 .compact();
         response.addHeader("Authorization", "Bearer " + token);
+        response.addHeader("user_id", String.valueOf(+ userService.findByEmail(authentication.getName()).getId()));
     }
 }
