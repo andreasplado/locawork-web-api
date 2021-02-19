@@ -1,6 +1,7 @@
 package com.locawork.webapi.controller;
 
 import com.locawork.webapi.dao.entity.UserEntity;
+import com.locawork.webapi.data.Note;
 import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,9 @@ public class UserController {
         if(!userService.existByEmail(user.getEmail())){
             userService.save(user);
         }else{
-            return (ResponseEntity<?>) ResponseEntity.badRequest();
+            Note note = new Note();
+            note.setMessage("User with this email already exists!");
+            return ResponseEntity.ok(note);
         }
         user = userService.findByEmail(user.getEmail());
 
