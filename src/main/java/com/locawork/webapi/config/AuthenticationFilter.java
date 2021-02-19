@@ -50,5 +50,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .compact();
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("user_id", String.valueOf(userService.findId(((User) authentication.getPrincipal()).getUsername())));
+        response.addHeader("email", ((User) authentication.getPrincipal()).getUsername());
     }
 }
