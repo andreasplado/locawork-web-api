@@ -53,7 +53,12 @@ public class UserController {
     {
         user.setEmail(user.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userService.save(user);
+        user.setContact(user.getContact());
+        if(!userService.existByEmail(user.getEmail())){
+            userService.save(user);
+        }else{
+            return (ResponseEntity<?>) ResponseEntity.badRequest();
+        }
         user = userService.findByEmail(user.getEmail());
 
         return ResponseEntity.ok(user);

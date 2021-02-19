@@ -2,15 +2,19 @@ package com.locawork.webapi.controller;
 
 
 import com.locawork.webapi.dao.entity.SettingsEntity;
+import com.locawork.webapi.dao.entity.UserEntity;
 import com.locawork.webapi.model.EmptyJsonResponse;
 import com.locawork.webapi.model.ResponseModel;
+import com.locawork.webapi.model.UserSettings;
 import com.locawork.webapi.service.SettingsService;
+import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/settings")
@@ -18,6 +22,9 @@ public class SettingsController {
 
     @Autowired
     SettingsService settingsService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
@@ -29,6 +36,17 @@ public class SettingsController {
     @RequestMapping(value = "/get-user-settings", method = RequestMethod.GET)
     public ResponseEntity<?> getSettings(@RequestParam Integer userId) {
         SettingsEntity settings = settingsService.getUserSettings(userId);
+        UserEntity user = userService.findUserById(userId);
+        UserSettings userSettings = new UserSettings();
+        userSettings.setUserId(settings.getUserId());
+        userSettings.setAskPermissionsBeforeDeletingAJob(settings.getAskPermissionsBeforeDeletingAJob());
+        userSettings.setCreatedAt(settings.getCreatedAt());
+        userSettings.setCurrency(settings.getCurrency());
+        userSettings.setViewByDefault(settings.getViewByDefault());
+        userSettings.setShowInformationOnStartup(settings.getShowInformationOnStartup());
+        userSettings.setEmail(user.getEmail());
+
+
         if (settings == null) {
             return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
         }

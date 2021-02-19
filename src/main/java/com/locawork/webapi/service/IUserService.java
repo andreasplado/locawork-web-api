@@ -18,4 +18,5 @@ public interface IUserService {
     UserEntity saveUser(UserEntity userEntity);
     UserEntity findByEmail(String email);
     int findId(String email);
+    UserEntity findUserById(Integer id);
 }

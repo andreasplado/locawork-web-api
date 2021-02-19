@@ -52,6 +52,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public UserEntity findUserById(Integer id) {
+        return repository.findUserById(id);
+    }
+
+    @Override
     public void delete(Integer id) {
         repository.deleteById(id);
     }
