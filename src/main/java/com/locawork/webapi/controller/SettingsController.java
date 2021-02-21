@@ -46,11 +46,6 @@ public class SettingsController {
         userSettings.setShowInformationOnStartup(settings.getShowInformationOnStartup());
         userSettings.setEmail(user.getEmail());
 
-
-        if (settings == null) {
-            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
-        }
-
         return ResponseEntity.ok(settings);
     }
 
