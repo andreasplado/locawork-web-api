@@ -45,6 +45,7 @@ public class SettingsController {
         userSettings.setViewByDefault(settings.getViewByDefault());
         userSettings.setShowInformationOnStartup(settings.getShowInformationOnStartup());
         userSettings.setEmail(user.getEmail());
+        userSettings.setFullname(user.getFullname());
         userSettings.setUpdatedAt(userSettings.getUpdatedAt());
 
         return ResponseEntity.ok(userSettings);

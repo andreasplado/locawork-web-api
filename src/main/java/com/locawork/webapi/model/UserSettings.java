@@ -7,6 +7,8 @@ public class UserSettings {
 
     private int userId;
 
+    private String fullname;
+
     private String email;
 
     private Double radius;
@@ -93,5 +95,13 @@ public class UserSettings {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 }
