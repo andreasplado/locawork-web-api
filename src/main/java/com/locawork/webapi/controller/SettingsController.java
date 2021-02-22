@@ -46,7 +46,7 @@ public class SettingsController {
         userSettings.setShowInformationOnStartup(settings.getShowInformationOnStartup());
         userSettings.setEmail(user.getEmail());
 
-        return ResponseEntity.ok(settings);
+        return ResponseEntity.ok(userSettings);
     }
 
     @RequestMapping(value = "/set-initial-settings", method = RequestMethod.POST)
