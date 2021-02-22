@@ -43,7 +43,7 @@ public class UserController {
     public ResponseEntity<?> logout(@RequestParam String userId){
         Note note = new Note();
         note.setMessage("You logged out successfully");
-        new InMemoryTokenStore().clear();
+        new InMemoryTokenStore().findTokensByClientId(userId).clear();
         return ResponseEntity.ok(note);
     }
 
