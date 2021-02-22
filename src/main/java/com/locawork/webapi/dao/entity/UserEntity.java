@@ -24,8 +24,8 @@ public class UserEntity {
     )
     private Integer id;
 
-    @Column(name = "account_google_id")
-    private String accountGoogleId;
+    @Column(name = "fullname")
+    private String fullname;
 
     @Column(name = "account_email")
     private String email;
@@ -82,16 +82,6 @@ public class UserEntity {
         this.updatedAt = new Date();
     }
 
-
-
-    public String getAccountGoogleId() {
-        return accountGoogleId;
-    }
-
-    public void setAccountGoogleId(String accountGoogleId) {
-        this.accountGoogleId = accountGoogleId;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -114,5 +104,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 }
