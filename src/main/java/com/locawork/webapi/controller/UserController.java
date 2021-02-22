@@ -7,6 +7,7 @@ import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,14 @@ public class UserController {
         }
 
         return ResponseEntity.ok(userEntities);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestParam String userId){
+        Note note = new Note();
+        note.setMessage("You logged out successfully");
+        new InMemoryTokenStore().clear();
+        return ResponseEntity.ok(note);
     }
 
     @RequestMapping(method = RequestMethod.POST)
