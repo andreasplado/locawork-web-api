@@ -2,12 +2,14 @@ package com.locawork.webapi.controller;
 
 import com.locawork.webapi.dao.entity.JobCategoryEntity;
 import com.locawork.webapi.dao.entity.JobEntity;
+import com.locawork.webapi.dao.entity.UserEntity;
 import com.locawork.webapi.dto.JobApplicationDTO;
 import com.locawork.webapi.model.MainData;
 import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.service.JobApplicationService;
 import com.locawork.webapi.service.JobCategoryService;
 import com.locawork.webapi.service.JobService;
+import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,10 @@ public class JobController {
 
     private static String KEY_JOBS = "jobs";
     private static String KEY_CATEGORIES = "categories";
+    private static String KEY_USER = "user";
+
+    @Autowired
+    private UserService userservice;
 
     @Autowired
     private JobService workService;
@@ -63,9 +69,12 @@ public class JobController {
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
         List<JobEntity> jobs = workService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
+
+        UserEntity user = userservice.findUserById(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, categories);
+        combined.put(KEY_USER, user);
 
         return ResponseEntity.ok(combined);
     }
@@ -92,9 +101,11 @@ public class JobController {
     public ResponseEntity<?> getAll(@RequestParam Integer userId) {
         List<JobEntity> jobs = workService.findAllPostedJobs(userId);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
+        UserEntity user = userservice.findUserById(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, categories);
+        combined.put(KEY_USER, user);
 
         return ResponseEntity.ok(combined);
     }
