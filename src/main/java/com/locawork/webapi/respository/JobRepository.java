@@ -32,6 +32,11 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
             "WHERE j.applyer_id=?1 AND j.is_done=true", nativeQuery = true)
     List<JobEntity> findMyDoneWork(@Param("userId") Integer userId);
 
+    @Modifying
+    @Transactional
+    @Query(value="UPDATE jobs SET is_done=true WHERE applyer_id=?1", nativeQuery = true)
+    void applyToJob(@Param("applyer_id") int applyerId);
+
 
     @Query(value="SELECT j.*, u.* from jobs j " +
             "INNER JOIN users u ON j.user_id = u.id " +
