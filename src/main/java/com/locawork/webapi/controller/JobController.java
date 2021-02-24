@@ -97,7 +97,7 @@ public class JobController {
         return ResponseEntity.ok(job);
     }
 
-    @RequestMapping(value = "/getjobsbygoogleaccount", method = RequestMethod.GET)
+    @RequestMapping(value = "/getjobsbyaccount", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(@RequestParam Integer userId) {
         List<JobEntity> jobs = workService.findAllPostedJobs(userId);
         List<JobCategoryEntity> categories = jobCategoryService.findAll();
