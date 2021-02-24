@@ -105,7 +105,6 @@ public class JobController {
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, categories);
-        combined.put(KEY_USER, user);
 
         return ResponseEntity.ok(combined);
     }
