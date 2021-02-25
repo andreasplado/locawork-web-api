@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/jobapplications")
@@ -83,11 +84,12 @@ public class JobApplicationController {
     }
 
     @RequestMapping(value = "/cancel-application", method = RequestMethod.DELETE)
-    public ResponseEntity<Integer> deleteApplication(@RequestParam Integer applicationId) {
+    public ResponseEntity<?> deleteApplication(@RequestParam Integer applicationId) {
+        Optional<JobApplicationEntity> jobApplicationEntity = jobApplicationService.findById(applicationId);
         jobApplicationService.deleteJobApplication(applicationId);
 
 
-        return ResponseEntity.ok(applicationId);
+        return ResponseEntity.ok(jobApplicationEntity);
     }
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
