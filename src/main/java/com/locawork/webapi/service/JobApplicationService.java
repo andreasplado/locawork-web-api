@@ -92,6 +92,11 @@ public class JobApplicationService implements IJobApplicationService {
     }
 
     @Override
+    public JobApplicationDTO findJobApplication(Integer id) {
+        return jobApplicationRepository.findJobApplicationById(id);
+    }
+
+    @Override
     public void deleteAllByJobId(Integer id) {
         jobApplicationRepository.deleteAllByJobId(id);
     }

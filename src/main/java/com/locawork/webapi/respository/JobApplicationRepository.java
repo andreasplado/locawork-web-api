@@ -31,6 +31,11 @@ public interface JobApplicationRepository extends JpaRepository<JobApplicationEn
             "WHERE ja.user_id=?1 AND ja.job_id=?2", nativeQuery = true)
     List<JobApplicationEntity> existJobByUserId(@Param("user_id") int userId, @Param("job_id") int jobId);
 
+    @Query(value="SELECT ja.id, j.title, j.description, j.salary, ja.created_at, ja.updated_at, ja.job_id, ja.user_id, u.account_email, j.longitude, j.latitude FROM job_applications ja" +
+            " INNER JOIN jobs j ON ja.job_id = j.id" +
+            " INNER JOIN users u ON ja.user_id = u.id" +
+            " WHERE ja.id=?1 AND ja.is_approved=FALSE", nativeQuery = true)
+    JobApplicationDTO findJobApplicationById(@Param("user_id") int jobApplicationId);
 
     @Modifying
     @Transactional

@@ -22,6 +22,7 @@ public interface IJobApplicationService {
     void deleteAll();
     Optional<JobApplicationEntity> findById(Integer id);
     boolean exists(Integer id);
+    JobApplicationDTO findJobApplication(Integer id);
 
     void deleteAllByJobId(Integer id);
 
