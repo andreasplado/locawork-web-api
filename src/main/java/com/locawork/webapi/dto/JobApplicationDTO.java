@@ -10,6 +10,8 @@ public interface JobApplicationDTO {
     String getTitle();
     String getDescription();
     Double getSalary();
+    Double getLatitude();
+    Double getLongitude();
     Date getcreated_at();
     Date getUpdated_at();
     Integer getJob_id();
