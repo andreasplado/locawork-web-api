@@ -21,6 +21,8 @@ public class UserSettings {
 
     private String currency;
 
+    private String contact;
+
     private Date createdAt;
 
     private Date updatedAt;
@@ -103,5 +105,13 @@ public class UserSettings {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }
