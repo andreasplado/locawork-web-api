@@ -72,11 +72,14 @@ public class SettingsController {
     @RequestMapping(value = "/update-radius", method = RequestMethod.PUT)
     public ResponseEntity<?> updateRadius(@RequestParam Integer userId, @RequestParam Double radius) {
         ResponseModel responseModel = new ResponseModel();
-
         settingsService.updateRadius(userId, radius);
         if(userService.exists(userId)){
-            return (ResponseEntity<?>) ResponseEntity.notFound();
+            responseModel.setMessage("You updated");
+            responseModel.setValid(true);
+            return ResponseEntity.ok(responseModel);
         }else {
+            responseModel.setMessage("You failed");
+            responseModel.setValid(false);
             return ResponseEntity.ok(responseModel);
         }
     }
