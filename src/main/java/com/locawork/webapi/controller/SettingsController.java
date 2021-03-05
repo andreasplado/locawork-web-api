@@ -6,6 +6,7 @@ import com.locawork.webapi.dao.entity.UserEntity;
 import com.locawork.webapi.model.EmptyJsonResponse;
 import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.model.UserSettings;
+import com.locawork.webapi.respository.SettingsRepository;
 import com.locawork.webapi.service.SettingsService;
 import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +74,11 @@ public class SettingsController {
         ResponseModel responseModel = new ResponseModel();
 
         settingsService.updateRadius(userId, radius);
-        responseModel.setMessage("You updated radius!");
-
-        return ResponseEntity.ok(responseModel);
+        if(userService.exists(userId)){
+            return (ResponseEntity<?>) ResponseEntity.notFound();
+        }else {
+            return ResponseEntity.ok(responseModel);
+        }
     }
 
     @RequestMapping(value = "/update-view-by-default", method = RequestMethod.PUT)
