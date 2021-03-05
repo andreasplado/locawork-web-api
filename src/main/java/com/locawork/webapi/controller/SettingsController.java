@@ -76,10 +76,12 @@ public class SettingsController {
         if(userService.exists(userId)){
             responseModel.setMessage("You updated");
             responseModel.setValid(true);
+            responseModel.setRadius(radius);
             return ResponseEntity.ok(responseModel);
         }else {
             responseModel.setMessage("You failed");
             responseModel.setValid(false);
+            responseModel.setRadius(radius);
             return ResponseEntity.ok(responseModel);
         }
     }
