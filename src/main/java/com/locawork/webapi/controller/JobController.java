@@ -153,14 +153,11 @@ public class JobController {
 
             return ResponseEntity.ok(responseModel);
         }else {
+            JobEntity jobEntity = workService.findSingleById(id);
             workService.delete(id);
-            List<JobEntity> jobs = workService.findAll();
-            HashMap<String, Object> combined = new HashMap<>();
-            List<JobCategoryEntity> categories = jobCategoryService.findAll();
-            combined.put(KEY_JOBS, jobs);
-            combined.put(KEY_CATEGORIES, categories);
 
-            return ResponseEntity.ok(combined);
+
+            return ResponseEntity.ok(jobEntity);
         }
     }
 
