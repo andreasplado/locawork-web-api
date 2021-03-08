@@ -27,7 +27,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder().encode("password_b"))
                 .authorities("ROLE_B")
                 .scopes("all")
-                .authorizedGrantTypes("client_credentials");
+                .authorizedGrantTypes("client_credentials").accessTokenValiditySeconds(24 * 365 * 60 * 60);
     }
 
     @Bean
