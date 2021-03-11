@@ -5,7 +5,7 @@ import java.util.Date;
 
 public interface JobDTO {
 
-    int id();
+    Integer id();
 
     String title();
 
