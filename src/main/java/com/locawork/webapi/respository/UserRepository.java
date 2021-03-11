@@ -22,8 +22,11 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     int findId(@Param("username") String username);
 
     @Query(value="SELECT u.* FROM users u WHERE u.id=?1", nativeQuery = true)
-    UserEntity findUserById(@Param("id") Integer username);
+    UserEntity findUserById(@Param("id") Integer userId);
 
     @Query(value="SELECT u.firebase_token FROM users u WHERE u.id=?1", nativeQuery = true)
-    String getUserFirebaseToken(@Param("id") Integer username);
+    String getUserFirebaseToken(@Param("id") Integer userId);
+
+    @Query(value="UPDATE users SET firebase_token=?1 WHERE user_id=?2", nativeQuery = true)
+    void updateUserFirebaseToken(@Param("firebasetoken") String firebaseToken, @Param("id") Integer userId);
 }

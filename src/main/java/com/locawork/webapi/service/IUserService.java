@@ -20,4 +20,5 @@ public interface IUserService {
     int findId(String email);
     UserEntity findUserById(Integer id);
     String getUserFirebaseToken(Integer id);
+    void updateUserFirebaseToken(String firebaseToken, Integer id);
 }
