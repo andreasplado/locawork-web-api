@@ -25,8 +25,6 @@ public interface JobDTO {
 
     Date updatedAt();
 
-    Boolean is_done();
-
     String firebase_token();
 
 }
