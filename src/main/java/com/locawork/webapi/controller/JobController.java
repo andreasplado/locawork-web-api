@@ -74,7 +74,7 @@ public class JobController {
 
     @RequestMapping(value = "/getalljobsbylocation", method = RequestMethod.GET)
     public ResponseEntity<?> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
-        List<JobDTO> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
+        List<JobEntity> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
 
         return ResponseEntity.ok(jobs);
     }

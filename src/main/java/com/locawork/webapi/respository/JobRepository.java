@@ -29,7 +29,7 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
             "WHERE j.id=?1", nativeQuery = true)
     JobEntity findSingle(@Param("id") Integer id);
 
-    @Query(value="SELECT j.id, j.applyer_id, j.title, j.user_id, j.description, j.category_id, j.salary, j.latitude, j.longitude, j.is_done, u.firebase_token FROM jobs j " +
+    @Query(value="SELECT j.* " +
             "INNER JOIN users u ON j.user_id = u.id " +
             "WHERE j.applyer_id=?1 AND j.is_done=true", nativeQuery = true)
     List<JobEntity> findMyDoneWork(@Param("userId") Integer userId);
