@@ -23,8 +23,6 @@ public interface JobApplicationWithToken {
 
     Date createdAt();
 
-    Boolean isDone();
-
     Date updated_at();
 
     String firebase_token();
