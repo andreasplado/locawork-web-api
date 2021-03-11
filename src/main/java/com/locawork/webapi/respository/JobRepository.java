@@ -14,10 +14,10 @@ import java.util.List;
 @Repository
 public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
-    @Query(value="SELECT j.id, j.title, j.user_id, j.description, j.category_id, j.salary, j.latitude, j.longitude, j.applyer_id, j.is_done, u.firebase_token from jobs j " +
+    @Query(value="SELECT j.id, j.title, j.user_id, j.description, j.category_id, j.salary, j.latitude, j.longitude, j.is_done, u.firebase_token from jobs j  " +
             "INNER JOIN users u ON j.user_id = u.id " +
             "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND j.applyer_id IS NULL AND u.id!=?4 AND j.is_done=false", nativeQuery = true)
-    List<JobDTO> findAvailableJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("userId") Integer userId);
+    List<JobDTO> findOtherUsersNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance, @Param("userId") Integer userId);
 
     @Query(value="SELECT j.id, j.title, j.user_id, j.description, j.category_id, j.salary, j.latitude, j.longitude, j.is_done, u.firebase_token from jobs j " +
             "INNER JOIN users u ON j.user_id = u.id " +
