@@ -1,2 +1,2 @@
 ALTER TABLE users
-ADD COLUMN firebase_token;
+ADD COLUMN firebase_token VARCHAR;
