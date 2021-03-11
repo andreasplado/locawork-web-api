@@ -1,6 +1,5 @@
 package com.locawork.webapi.dto;
 
-import javax.persistence.*;
 import java.util.Date;
 
 public interface JobApplicationWithToken {
