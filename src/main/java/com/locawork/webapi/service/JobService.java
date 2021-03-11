@@ -26,7 +26,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobDTO> findMyDoneWork(int userId) {
+    public List<JobEntity> findMyDoneWork(int userId) {
         return repository.findMyDoneWork(userId);
     }
 

@@ -160,7 +160,7 @@ public class JobController {
 
     @RequestMapping(value = "/getmydonework", method = RequestMethod.GET)
     public ResponseEntity<?> getMyDoneWork(@RequestParam Integer userId) {
-        List<JobDTO> jobs = jobService.findMyDoneWork(userId);
+        List<JobEntity> jobs = jobService.findMyDoneWork(userId);
 
         if (jobs.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
