@@ -57,6 +57,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public String getUserFirebaseToken(Integer id) {
+        return repository.getUserFirebaseToken(id);
+    }
+
+    @Override
     public void delete(Integer id) {
         repository.deleteById(id);
     }

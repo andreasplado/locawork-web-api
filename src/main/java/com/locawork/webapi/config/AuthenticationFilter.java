@@ -2,6 +2,7 @@ package com.locawork.webapi.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.locawork.webapi.dao.entity.UserEntity;
+import com.locawork.webapi.service.NotificationService;
 import com.locawork.webapi.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -25,6 +26,9 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     public AuthenticationFilter(AuthenticationManager authenticationManager, ApplicationContext ctx) {
         this.authenticationManager = authenticationManager;
@@ -51,5 +55,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         response.addHeader("Authorization", "Bearer " + token);
         response.addHeader("user_id", String.valueOf(userService.findId(((User) authentication.getPrincipal()).getUsername())));
         response.addHeader("email", ((User) authentication.getPrincipal()).getUsername());
+        response.addHeader("firebase_token", userService.getUserFirebaseToken(userService.findId(((User) authentication.getPrincipal()).getUsername())));
     }
 }
