@@ -9,11 +9,11 @@ public interface JobDTO {
 
     String title();
 
-    Integer userId();
-
     String description();
 
-    Integer categoryId();
+    Integer user_id();
+
+    Integer category_id();
 
     Double salary();
 
