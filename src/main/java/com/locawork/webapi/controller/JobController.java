@@ -171,7 +171,7 @@ public class JobController {
 
     @RequestMapping(value = "/getmydonework", method = RequestMethod.GET)
     public ResponseEntity<HashMap<String, Object>> getMyDoneWork(@RequestParam Integer userId) {
-        List<JobEntity> jobs = jobService.findMyDoneWork(userId);
+        List<JobDTO> jobs = jobService.findMyDoneWork(userId);
         HashMap<String, Object> combined = new HashMap<>();
         combined.put(KEY_JOBS, jobs);
         combined.put(KEY_CATEGORIES, jobs);
