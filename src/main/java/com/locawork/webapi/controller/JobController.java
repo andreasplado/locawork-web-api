@@ -75,12 +75,8 @@ public class JobController {
     @RequestMapping(value = "/getalljobsbylocation", method = RequestMethod.GET)
     public ResponseEntity<?> getAllJobsByLocation(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance) {
         List<JobDTO> jobs = jobService.findAllNearestJobs(latitude, longitude, distance);
-        List<JobCategoryEntity> categories = jobCategoryService.findAll();
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, categories);
 
-        return ResponseEntity.ok(combined);
+        return ResponseEntity.ok(jobs);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -93,13 +89,9 @@ public class JobController {
     @RequestMapping(value = "/getjobsbyaccount", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(@RequestParam Integer userId) {
         List<JobDTO> jobs = jobService.findAllPostedJobs(userId);
-        List<JobCategoryEntity> categories = jobCategoryService.findAll();
-        UserEntity user = userservice.findUserById(userId);
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, categories);
 
-        return ResponseEntity.ok(combined);
+
+        return ResponseEntity.ok(jobs);
     }
 
 
