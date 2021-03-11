@@ -25,7 +25,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findMyDoneWork(int userId) {
+    public List<JobDTO> findMyDoneWork(int userId) {
         return repository.findMyDoneWork(userId);
     }
 
@@ -40,12 +40,12 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance) {
+    public List<JobDTO> findAllNearestJobs(Double latitude, Double longitude, Double distance) {
         return repository.findAllNearestJobs(latitude, longitude, distance);
     }
 
     @Override
-    public List<JobEntity> findAllPostedJobs(Integer userId) {
+    public List<JobDTO> findAllPostedJobs(Integer userId) {
         return repository.findPostedJobs(userId);
     }
 

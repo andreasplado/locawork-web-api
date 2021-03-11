@@ -10,11 +10,11 @@ public interface IJobService {
 
     List<JobEntity> findAll();
     void applyToJob(int applyerId);
-    List<JobEntity> findMyDoneWork(int userId);
+    List<JobDTO> findMyDoneWork(int userId);
     List<JobDTO> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, Integer userId);
     List<JobEntity> findUpcomingWork(Integer userId);
-    List<JobEntity> findAllPostedJobs(Integer userId);
-    List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance);
+    List<JobDTO> findAllPostedJobs(Integer userId);
+    List<JobDTO> findAllNearestJobs(Double latitude, Double longitude, Double distance);
     JobEntity save (JobEntity jobEntity);
     JobEntity update(JobEntity jobEntity);
     void delete(Integer id);
