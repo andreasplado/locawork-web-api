@@ -36,6 +36,9 @@ public class UserEntity {
     @Column(name = "contact")
     private String contact;
 
+    @Column(name = "firebase_token")
+    private String firebaseToken;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -112,5 +115,13 @@ public class UserEntity {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getFirebaseToken() {
+        return firebaseToken;
+    }
+
+    public void setFirebaseToken(String firebaseToken) {
+        this.firebaseToken = firebaseToken;
     }
 }
