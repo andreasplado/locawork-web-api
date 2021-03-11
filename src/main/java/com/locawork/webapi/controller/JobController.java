@@ -69,16 +69,7 @@ public class JobController {
     @RequestMapping(value = "/get-available-jobs", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
         List<JobDTO> jobs = jobService.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
-        List<JobCategoryEntity> categories = jobCategoryService.findAll();
-
-        UserEntity user = userservice.findUserById(userId);
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, categories);
-        combined.put(KEY_FIREBASE_TOKEN, userservice.getUserFirebaseToken(userId));
-
-
-        return ResponseEntity.ok(combined);
+        return ResponseEntity.ok(jobs);
     }
 
     @RequestMapping(value = "/getalljobsbylocation", method = RequestMethod.GET)

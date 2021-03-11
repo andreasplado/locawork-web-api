@@ -5,6 +5,8 @@ import java.util.Date;
 
 public interface JobDTO {
 
+    int id();
+
     String title();
 
     Integer userId();
@@ -20,6 +22,8 @@ public interface JobDTO {
     Double longitude();
 
     Date createdAt();
+
+    Date updatedAt();
 
     boolean isDone();
 
