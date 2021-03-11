@@ -31,7 +31,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobApplicationWithToken> findAvailableJobsWithUserToken(Double latitude, Double longitude, Double distance, Integer userId) {
+    public List<JobEntity> findAvailableJobsWithUserToken(Double latitude, Double longitude, Double distance, Integer userId) {
         return repository.findAvailableJobs(latitude, longitude, distance, userId);
     }
 
@@ -46,7 +46,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobDTO> findAllPostedJobs(Integer userId) {
+    public List<JobEntity> findAllPostedJobs(Integer userId) {
         return repository.findPostedJobs(userId);
     }
 

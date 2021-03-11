@@ -68,7 +68,7 @@ public class JobController {
 
     @RequestMapping(value = "/get-available-jobs", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
-        List<JobApplicationWithToken> jobs = jobService.findAvailableJobsWithUserToken(latitude, longitude, distance, userId);
+        List<JobEntity> jobs = jobService.findAvailableJobsWithUserToken(latitude, longitude, distance, userId);
         return ResponseEntity.ok(jobs);
     }
 
@@ -88,7 +88,7 @@ public class JobController {
 
     @RequestMapping(value = "/getjobsbyaccount", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(@RequestParam Integer userId) {
-        List<JobDTO> jobs = jobService.findAllPostedJobs(userId);
+        List<JobEntity> jobs = jobService.findAllPostedJobs(userId);
 
 
         return ResponseEntity.ok(jobs);
