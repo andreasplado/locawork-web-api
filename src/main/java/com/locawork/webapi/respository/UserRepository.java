@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Query(value="SELECT CASE WHEN COUNT(u)> 0 then true else false end FROM users u WHERE u.account_email=?1", nativeQuery = true)
@@ -29,6 +30,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     String getUserFirebaseToken(@Param("id") Integer userId);
 
     @Modifying
+    @Transactional
     @Query(value="UPDATE users SET firebase_token=?1 WHERE id=?2", nativeQuery = true)
     void updateUserFirebaseToken(@Param("firebasetoken") String firebaseToken, @Param("id") Integer userId);
 }
