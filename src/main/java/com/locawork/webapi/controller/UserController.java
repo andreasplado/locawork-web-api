@@ -98,9 +98,9 @@ public class UserController {
 
     @RequestMapping(value = "/get-offerer-firebase-token", method = RequestMethod.GET)
     public ResponseEntity<?> updateUserFirebaseToken(@RequestParam Integer offererId) {
-        userService.getUserFirebaseToken(offererId);
+        String token = userService.getUserFirebaseToken(offererId);
 
-        return ResponseEntity.ok(firebaseToken);
+        return ResponseEntity.ok(token);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
