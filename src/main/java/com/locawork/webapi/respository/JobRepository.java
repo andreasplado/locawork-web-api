@@ -32,7 +32,7 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
     @Query(value="SELECT j.id, j.applyer_id, j.title, j.user_id, j.description, j.category_id, j.salary, j.latitude, j.longitude, j.is_done, u.firebase_token FROM jobs j " +
             "INNER JOIN users u ON j.user_id = u.id " +
             "WHERE j.applyer_id=?1 AND j.is_done=true", nativeQuery = true)
-    List<JobDTO> findMyDoneWork(@Param("userId") Integer userId);
+    List<JobEntity> findMyDoneWork(@Param("userId") Integer userId);
 
     @Modifying
     @Transactional
@@ -43,9 +43,9 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
     @Query(value="SELECT j.id, j.title, j.user_id, j.description, j.category_id, j.salary, j.latitude, j.longitude, j.is_done, u.firebase_token from jobs j " +
             "INNER JOIN users u ON j.user_id = u.id " +
             "WHERE earth_box(ll_to_earth(?1,?2),?3) @> ll_to_earth(j.latitude,j.longitude) AND j.applyer_id IS NULL AND j.is_done=false", nativeQuery = true)
-    List<JobDTO> findAllNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance);
+    List<JobEntity> findAllNearestJobs(@Param("latitude") Double latitude, @Param("longitude") Double longitude, @Param("distance") Double distance);
 
     @Query(value="SELECT j.* from jobs j " +
             "WHERE j.applyer_id=?1 AND j.is_done=false", nativeQuery = true)
-    List<JobDTO> findByUserId(@Param("userId") Integer userId);
+    List<JobEntity> findByUserId(@Param("userId") Integer userId);
 }

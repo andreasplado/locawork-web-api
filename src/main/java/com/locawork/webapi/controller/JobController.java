@@ -148,7 +148,7 @@ public class JobController {
 
     @RequestMapping(value = "/get-my-upcoming-work", method = RequestMethod.GET)
     public ResponseEntity<?> getAppliedJobsByGooogleAccount(@RequestParam Integer userId) {
-        List<JobDTO> jobs = jobService.findUpcomingWork(userId);
+        List<JobEntity> jobs = jobService.findUpcomingWork(userId);
 
         if (jobs.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
