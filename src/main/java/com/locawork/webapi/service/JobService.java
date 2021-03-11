@@ -1,8 +1,6 @@
 package com.locawork.webapi.service;
 
 import com.locawork.webapi.dao.entity.JobEntity;
-import com.locawork.webapi.dto.JobApplicationWithToken;
-import com.locawork.webapi.dto.JobDTO;
 import com.locawork.webapi.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

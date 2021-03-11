@@ -1,8 +1,6 @@
 package com.locawork.webapi.service;
 
 import com.locawork.webapi.dao.entity.JobEntity;
-import com.locawork.webapi.dto.JobApplicationWithToken;
-import com.locawork.webapi.dto.JobDTO;
 
 import java.util.List;
 import java.util.Optional;

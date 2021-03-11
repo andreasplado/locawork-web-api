@@ -3,8 +3,6 @@ package com.locawork.webapi.controller;
 import com.locawork.webapi.dao.entity.JobCategoryEntity;
 import com.locawork.webapi.dao.entity.JobEntity;
 import com.locawork.webapi.dto.JobApplicationDTO;
-import com.locawork.webapi.dto.JobApplicationWithToken;
-import com.locawork.webapi.dto.JobDTO;
 import com.locawork.webapi.model.MainData;
 import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.service.JobApplicationService;
@@ -172,7 +170,7 @@ public class JobController {
 
     @RequestMapping(value = "/get-main-data", method = RequestMethod.GET)
     public ResponseEntity<MainData> getMainData(@RequestParam Integer userId) {
-        List<JobDTO> applyedJobs = jobService.findUpcomingWork(userId);
+        List<JobEntity> applyedJobs = jobService.findUpcomingWork(userId);
         List<JobApplicationDTO> myCandidates = jobApplicationService.findCandidates(userId);
 
         MainData mainData = new MainData();

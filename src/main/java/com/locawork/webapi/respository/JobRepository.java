@@ -1,8 +1,6 @@
 package com.locawork.webapi.respository;
 
 import com.locawork.webapi.dao.entity.JobEntity;
-import com.locawork.webapi.dto.JobApplicationWithToken;
-import com.locawork.webapi.dto.JobDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
