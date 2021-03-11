@@ -35,6 +35,7 @@ public class NotificationService {
     private String firebaseConfig;
 
     private FirebaseApp firebaseApp;
+    private static final Logger LOGGER=LoggerFactory.getLogger(NotificationService.class);
 
     @PostConstruct
     private void initialize() {
@@ -81,7 +82,7 @@ public class NotificationService {
         try {
             response = FirebaseMessaging.getInstance().send(message);
         } catch (FirebaseMessagingException e) {
-            //log.error("Fail to send firebase notification", e);
+            LOGGER.error("Fail to send firebase notification", e);
         }
 
         return response;
@@ -99,7 +100,7 @@ public class NotificationService {
         try {
             FirebaseMessaging.getInstance().send(message);
         } catch (FirebaseMessagingException e) {
-            //log.error("Fail to send firebase notification", e);
+            LOGGER.error("Fail to send firebase notification", e);
         }
 
         return response;
