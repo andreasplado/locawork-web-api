@@ -185,6 +185,6 @@ public class JobController {
     @RequestMapping(value = "deleteall", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteaLL() {
         jobService.deleteAll();
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
