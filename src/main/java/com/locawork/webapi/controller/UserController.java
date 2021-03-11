@@ -96,6 +96,13 @@ public class UserController {
         return ResponseEntity.ok(firebaseToken);
     }
 
+    @RequestMapping(value = "/get-offerer-firebase-token", method = RequestMethod.GET)
+    public ResponseEntity<?> updateUserFirebaseToken(@RequestParam Integer offererId) {
+        userService.getUserFirebaseToken(userId);
+
+        return ResponseEntity.ok(firebaseToken);
+    }
+
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         Optional<UserEntity> userEntity = userService.findById(id);
