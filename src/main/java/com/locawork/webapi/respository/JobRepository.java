@@ -46,5 +46,5 @@ public interface JobRepository extends JpaRepository<JobEntity, Integer> {
 
     @Query(value="SELECT j.* from jobs j " +
             "WHERE j.applyer_id=?1 AND j.is_done=false", nativeQuery = true)
-    List<JobEntity> findByUserId(@Param("userId") Integer userId);
+    List<JobDTO> findByUserId(@Param("userId") Integer userId);
 }

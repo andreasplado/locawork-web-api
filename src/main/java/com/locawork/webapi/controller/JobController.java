@@ -147,38 +147,32 @@ public class JobController {
     }
 
     @RequestMapping(value = "/get-my-upcoming-work", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String, Object>> getAppliedJobsByGooogleAccount(@RequestParam Integer userId) {
-        List<JobEntity> jobs = jobService.findUpcomingWork(userId);
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, jobs);
+    public ResponseEntity<?> getAppliedJobsByGooogleAccount(@RequestParam Integer userId) {
+        List<JobDTO> jobs = jobService.findUpcomingWork(userId);
 
-        if (combined.isEmpty()) {
+        if (jobs.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
             responseModel.setMessage("You have no jobs found!");
         }
 
-        return ResponseEntity.ok(combined);
+        return ResponseEntity.ok(jobs);
     }
 
     @RequestMapping(value = "/getmydonework", method = RequestMethod.GET)
-    public ResponseEntity<HashMap<String, Object>> getMyDoneWork(@RequestParam Integer userId) {
+    public ResponseEntity<?> getMyDoneWork(@RequestParam Integer userId) {
         List<JobDTO> jobs = jobService.findMyDoneWork(userId);
-        HashMap<String, Object> combined = new HashMap<>();
-        combined.put(KEY_JOBS, jobs);
-        combined.put(KEY_CATEGORIES, jobs);
 
-        if (combined.isEmpty()) {
+        if (jobs.isEmpty()) {
             ResponseModel responseModel = new ResponseModel();
             responseModel.setMessage("You have no jobs found!");
         }
 
-        return ResponseEntity.ok(combined);
+        return ResponseEntity.ok(jobs);
     }
 
     @RequestMapping(value = "/get-main-data", method = RequestMethod.GET)
     public ResponseEntity<MainData> getMainData(@RequestParam Integer userId) {
-        List<JobEntity> applyedJobs = jobService.findUpcomingWork(userId);
+        List<JobDTO> applyedJobs = jobService.findUpcomingWork(userId);
         List<JobApplicationDTO> myCandidates = jobApplicationService.findCandidates(userId);
 
         MainData mainData = new MainData();
