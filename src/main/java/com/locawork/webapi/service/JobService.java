@@ -1,6 +1,7 @@
 package com.locawork.webapi.service;
 
 import com.locawork.webapi.dao.entity.JobEntity;
+import com.locawork.webapi.dto.JobApplicationWithToken;
 import com.locawork.webapi.dto.JobDTO;
 import com.locawork.webapi.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findAvailableJobsWithUserToken(Double latitude, Double longitude, Double distance, Integer userId) {
+    public List<JobApplicationWithToken> findAvailableJobsWithUserToken(Double latitude, Double longitude, Double distance, Integer userId) {
         return repository.findAvailableJobs(latitude, longitude, distance, userId);
     }
 
