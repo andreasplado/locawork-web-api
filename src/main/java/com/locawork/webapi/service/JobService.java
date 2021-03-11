@@ -1,6 +1,7 @@
 package com.locawork.webapi.service;
 
 import com.locawork.webapi.dao.entity.JobEntity;
+import com.locawork.webapi.dto.JobDTO;
 import com.locawork.webapi.respository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findOtherUsersNearestJobs(Double latitude, Double longitude, Double distance, Integer userId) {
+    public List<JobDTO> findOtherUsersNearestJobs(Double latitude, Double longitude, Double distance, Integer userId) {
         return repository.findOtherUsersNearestJobs(latitude, longitude, distance, userId);
     }
 

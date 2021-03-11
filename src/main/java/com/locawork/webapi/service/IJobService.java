@@ -1,6 +1,7 @@
 package com.locawork.webapi.service;
 
 import com.locawork.webapi.dao.entity.JobEntity;
+import com.locawork.webapi.dto.JobDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ public interface IJobService {
     List<JobEntity> findAll();
     void applyToJob(int applyerId);
     List<JobEntity> findMyDoneWork(int userId);
-    List<JobEntity> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, Integer userId);
+    List<JobDTO> findOtherUsersNearestJobs(Double longitude, Double latitude, Double distance, Integer userId);
     List<JobEntity> findUpcomingWork(Integer userId);
     List<JobEntity> findAllPostedJobs(Integer userId);
     List<JobEntity> findAllNearestJobs(Double latitude, Double longitude, Double distance);
