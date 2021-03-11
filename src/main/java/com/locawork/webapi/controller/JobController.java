@@ -3,6 +3,7 @@ package com.locawork.webapi.controller;
 import com.locawork.webapi.dao.entity.JobCategoryEntity;
 import com.locawork.webapi.dao.entity.JobEntity;
 import com.locawork.webapi.dto.JobApplicationDTO;
+import com.locawork.webapi.dto.JobApplicationWithToken;
 import com.locawork.webapi.dto.JobDTO;
 import com.locawork.webapi.model.MainData;
 import com.locawork.webapi.model.ResponseModel;
@@ -67,7 +68,7 @@ public class JobController {
 
     @RequestMapping(value = "/get-available-jobs", method = RequestMethod.GET)
     public ResponseEntity<?> getUserOffers(@RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Double distance, @RequestParam Integer userId) {
-        List<JobEntity> jobs = jobService.findAvailableJobsWithUserToken(latitude, longitude, distance, userId);
+        List<JobApplicationWithToken> jobs = jobService.findAvailableJobsWithUserToken(latitude, longitude, distance, userId);
         return ResponseEntity.ok(jobs);
     }
 
