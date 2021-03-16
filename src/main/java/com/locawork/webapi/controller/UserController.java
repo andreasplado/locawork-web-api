@@ -100,7 +100,10 @@ public class UserController {
     public ResponseEntity<?> updateUserFirebaseToken(@RequestParam Integer offererId) {
         String token = userService.getUserFirebaseToken(offererId);
 
-        return ResponseEntity.ok(token);
+        Note note = new Note();
+        note.setMessage(token);
+
+        return ResponseEntity.ok(note);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
