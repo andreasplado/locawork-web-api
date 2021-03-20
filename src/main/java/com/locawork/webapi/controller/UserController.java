@@ -92,14 +92,13 @@ public class UserController {
 
     @RequestMapping(value = "/update-role", method = RequestMethod.PUT)
     public ResponseEntity<?> updateRole(@RequestParam String userRole, @RequestParam Integer id) {
-        Optional<UserEntity> userEntity = null;
-        if (userService.exists(id)) {
-            userEntity = userService.findById(id);
-            userService.updateUserRole(userRole, id);
+        if (!userService.exists(id)) {
+            return ResponseEntity.ok(false);
         }
 
+        userService.updateUserRole(userRole, id);
 
-        return ResponseEntity.ok(userEntity);
+        return ResponseEntity.ok(true);
     }
 
     @RequestMapping(value = "/update-firebase-token", method = RequestMethod.POST)
