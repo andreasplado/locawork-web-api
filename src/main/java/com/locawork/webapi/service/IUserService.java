@@ -21,4 +21,5 @@ public interface IUserService {
     UserEntity findUserById(Integer id);
     String getUserFirebaseToken(Integer id);
     void updateUserFirebaseToken(String firebaseToken, Integer id);
+    void updateUserRole(String role, Integer id);
 }

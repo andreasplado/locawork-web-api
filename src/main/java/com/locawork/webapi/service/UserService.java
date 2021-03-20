@@ -67,6 +67,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void updateUserRole(String role, Integer id) {
+        repository.updateUserRole(role, id);
+    }
+
+    @Override
     public void delete(Integer id) {
         repository.deleteById(id);
     }

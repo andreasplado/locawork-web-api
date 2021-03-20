@@ -33,4 +33,9 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Transactional
     @Query(value="UPDATE users SET firebase_token=?1 WHERE id=?2", nativeQuery = true)
     void updateUserFirebaseToken(@Param("firebasetoken") String firebaseToken, @Param("id") Integer userId);
+
+    @Modifying
+    @Transactional
+    @Query(value="UPDATE users SET role=?1 WHERE id=?2", nativeQuery = true)
+    void updateUserRole(@Param("role") String role, @Param("id") Integer id);
 }
