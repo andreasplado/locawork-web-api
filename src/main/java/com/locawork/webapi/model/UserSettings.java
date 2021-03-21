@@ -21,6 +21,8 @@ public class UserSettings {
 
     private String currency;
 
+    private String role;
+
     private String contact;
 
     private Date createdAt;
@@ -113,5 +115,13 @@ public class UserSettings {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

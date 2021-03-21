@@ -49,6 +49,8 @@ public class SettingsController {
         userSettings.setFullname(user.getFullname());
         userSettings.setUpdatedAt(user.getUpdatedAt());
         userSettings.setContact(user.getContact());
+        userSettings.setRadius(settings.getRadius());
+        userSettings.setRole(user.getRole());
 
         return ResponseEntity.ok(userSettings);
     }

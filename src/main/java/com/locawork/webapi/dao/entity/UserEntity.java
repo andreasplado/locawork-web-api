@@ -39,6 +39,9 @@ public class UserEntity {
     @Column(name = "firebase_token")
     private String firebaseToken;
 
+    @Column(name = "role")
+    private String role;
+
     @Column(name = "created_at")
     private Date createdAt;
 
@@ -123,5 +126,13 @@ public class UserEntity {
 
     public void setFirebaseToken(String firebaseToken) {
         this.firebaseToken = firebaseToken;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
