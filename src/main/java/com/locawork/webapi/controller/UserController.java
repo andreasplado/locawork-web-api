@@ -1,8 +1,10 @@
 package com.locawork.webapi.controller;
 
+import com.locawork.webapi.dao.entity.SettingsEntity;
 import com.locawork.webapi.dao.entity.UserEntity;
 import com.locawork.webapi.data.Note;
 import com.locawork.webapi.model.ResponseModel;
+import com.locawork.webapi.service.SettingsService;
 import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SettingsService settingsService;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -64,8 +70,20 @@ public class UserController {
         user.setEmail(user.getEmail());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setContact(user.getContact());
+
         if(!userService.existByEmail(user.getEmail())){
             userService.save(user);
+
+            int userId = userService.findId(user.getEmail());
+            SettingsEntity settingsEntity = new SettingsEntity();
+            settingsEntity.setBiometric(false);
+            settingsEntity.setCreatedAt(new Date());
+            settingsEntity.setCurrency("euro");
+            settingsEntity.setUserId(userId);
+            settingsEntity.setRadius(0.0);
+            settingsEntity.setViewByDefault("available");
+            settingsEntity.setAskPermissionsBeforeDeletingAJob(true);
+            settingsService.save(settingsEntity);
         }else{
             Note note = new Note();
             note.setMessage("User with this email already exists!");
