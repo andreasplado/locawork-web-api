@@ -134,7 +134,6 @@ public class UserController {
     @RequestMapping(value = "/does-exists", method = RequestMethod.GET)
         public ResponseEntity<Boolean> getMyApplications(@RequestParam String email) {
         boolean userExists = userService.existByEmail(email);
-
         return ResponseEntity.ok(userExists);
     }
 }

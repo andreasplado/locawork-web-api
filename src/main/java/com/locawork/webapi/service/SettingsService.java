@@ -53,4 +53,9 @@ public class SettingsService implements ISettingsService {
         settingsRepository.setShowInformationOnStartup(value, userId);
     }
 
+    @Override
+    public void updateBiometric(Integer userId, Boolean value) {
+        settingsRepository.updateBiometric(value, userId);
+    }
+
 }

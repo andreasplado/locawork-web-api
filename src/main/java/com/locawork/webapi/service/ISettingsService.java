@@ -14,5 +14,6 @@ public interface ISettingsService {
     void updateViewByDefault(Integer userId, String value);
     void updateAskPermissionBeforeDeletingAJob(Integer userId, Boolean value);
     void updateShowInformationOnStartup(Integer userId, Boolean value);
+    void updateBiometric(Integer userId, Boolean value);
 
 }

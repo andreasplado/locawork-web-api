@@ -108,6 +108,16 @@ public class SettingsController {
         return ResponseEntity.ok(responseModel);
     }
 
+    @RequestMapping(value = "/update-biometric", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateBiometric(@RequestParam Integer userId, @RequestParam Boolean value) {
+        ResponseModel responseModel = new ResponseModel();
+
+        settingsService.updateBiometric(userId, value);
+        responseModel.setMessage("You updated your biometric!");
+
+        return ResponseEntity.ok(responseModel);
+    }
+
     @RequestMapping(value = "/update-show-information-on-startup", method = RequestMethod.PUT)
     public ResponseEntity<?> updateShowInformationOnStartup(@RequestParam Integer userId, @RequestParam Boolean value) {
         ResponseModel responseModel = new ResponseModel();
