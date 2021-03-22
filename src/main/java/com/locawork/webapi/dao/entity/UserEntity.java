@@ -42,8 +42,7 @@ public class UserEntity {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "is_biometric")
-    private boolean isBiometric;
+
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -137,13 +136,5 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public boolean isBiometric() {
-        return isBiometric;
-    }
-
-    public void setBiometric(boolean biometric) {
-        isBiometric = biometric;
     }
 }

@@ -34,6 +34,9 @@ public class SettingsEntity {
     @Column(name = "show_information_on_startup")
     private boolean showInformationOnStartup;
 
+    @Column(name = "is_biometric")
+    private boolean isBiometric;
+
     @Column(name = "currency")
     private String currency;
 
@@ -42,6 +45,8 @@ public class SettingsEntity {
 
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
+
+
 
 
     public SettingsEntity() {
@@ -138,5 +143,13 @@ public class SettingsEntity {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public boolean isBiometric() {
+        return isBiometric;
+    }
+
+    public void setBiometric(boolean biometric) {
+        isBiometric = biometric;
     }
 }
