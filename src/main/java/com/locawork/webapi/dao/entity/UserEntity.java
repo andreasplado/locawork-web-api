@@ -42,8 +42,6 @@ public class UserEntity {
     @Column(name = "role")
     private String role;
 
-
-
     @Column(name = "created_at")
     private Date createdAt;
 
