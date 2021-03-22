@@ -39,6 +39,6 @@ public interface SettingsRepository extends JpaRepository<SettingsEntity, Intege
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE users SET is_biometric=?1 WHERE id=?2", nativeQuery = true)
+    @Query(value="UPDATE settings SET is_biometric=?1 WHERE id=?2", nativeQuery = true)
     void updateBiometric(Boolean value, Integer userId);
 }
