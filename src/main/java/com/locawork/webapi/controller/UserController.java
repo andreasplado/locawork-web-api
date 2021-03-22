@@ -111,7 +111,7 @@ public class UserController {
     @RequestMapping(value = "/update-role", method = RequestMethod.PUT)
     public ResponseEntity<?> updateRole(@RequestParam String userRole, @RequestParam Integer id) {
         if (!userService.exists(id)) {
-            return ResponseEntity.ok(userRole);
+            return ResponseEntity.ok("");
         }
 
         userService.updateUserRole(userRole, id);
