@@ -23,6 +23,8 @@ public class UserSettings {
 
     private String role;
 
+    private boolean isBiometric;
+
     private String contact;
 
     private Date createdAt;
@@ -123,5 +125,13 @@ public class UserSettings {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isBiometric() {
+        return isBiometric;
+    }
+
+    public void setBiometric(boolean biometric) {
+        isBiometric = biometric;
     }
 }

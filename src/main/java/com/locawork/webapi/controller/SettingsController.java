@@ -51,6 +51,7 @@ public class SettingsController {
         userSettings.setContact(user.getContact());
         userSettings.setRadius(settings.getRadius());
         userSettings.setRole(user.getRole());
+        userSettings.setBiometric(settings.isBiometric());
 
         return ResponseEntity.ok(userSettings);
     }
