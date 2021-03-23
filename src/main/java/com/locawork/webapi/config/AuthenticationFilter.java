@@ -61,6 +61,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         response.addHeader("user_id", String.valueOf(userService.findId(((User) authentication.getPrincipal()).getUsername())));
         response.addHeader("email", ((User) authentication.getPrincipal()).getUsername());
         response.addHeader("firebase_token", userService.getUserFirebaseToken(userService.findId(((User) authentication.getPrincipal()).getUsername())));
-        response.addHeader("radius", String.valueOf(settingsService.getUserSettings(userService.findId(((User) authentication.getPrincipal()).getUsername()))));
+        response.addHeader("radius", String.valueOf(settingsService
+                .getUserSettings(userService.findId(((User) authentication.getPrincipal()).getUsername()))
+                .getRadius()));
     }
 }
