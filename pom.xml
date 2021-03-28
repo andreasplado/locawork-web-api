@@ -93,6 +93,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- stripe -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>20.44.0</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
         <dependency>
