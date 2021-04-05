@@ -72,6 +72,14 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public String memberRole(Integer id) {
+        if(repository.existsById(id)){
+            return repository.getMemberRole(id);
+        }
+        return "";
+    }
+
+    @Override
     public void delete(Integer id) {
         repository.deleteById(id);
     }

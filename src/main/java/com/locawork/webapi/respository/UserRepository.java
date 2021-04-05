@@ -38,4 +38,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
     @Transactional
     @Query(value="UPDATE users SET role=?1 WHERE id=?2", nativeQuery = true)
     void updateUserRole(@Param("role") String role, @Param("id") Integer id);
+
+    @Query(value="SELECT u.role FROM users u WHERE u.id=?1", nativeQuery = true)
+    String getMemberRole(@Param("id") Integer id);
+
 }

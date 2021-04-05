@@ -154,4 +154,11 @@ public class UserController {
         boolean userExists = userService.existByEmail(email);
         return ResponseEntity.ok(userExists);
     }
+
+    @RequestMapping(value = "/is-member", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> isMember(@RequestParam int userId) {
+        boolean userExists = userService.isMember(userId);
+
+        return ResponseEntity.ok(userExists);
+    }
 }

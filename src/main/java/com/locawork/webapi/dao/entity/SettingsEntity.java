@@ -37,6 +37,9 @@ public class SettingsEntity {
     @Column(name = "is_biometric")
     private boolean isBiometric;
 
+    @Column(name = "member_role")
+    private String memberRole;
+
     @Column(name = "currency")
     private String currency;
 
@@ -151,5 +154,13 @@ public class SettingsEntity {
 
     public void setBiometric(boolean biometric) {
         isBiometric = biometric;
+    }
+
+    public String getMemberRole() {
+        return memberRole;
+    }
+
+    public void setMemberRole(String memberRole) {
+        this.memberRole = memberRole;
     }
 }
