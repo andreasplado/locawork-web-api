@@ -166,4 +166,12 @@ public class SettingsEntity {
     public void setMemberRole(String memberRole) {
         this.memberRole = memberRole;
     }
+
+    public Date getMemberStartTime() {
+        return memberStartTime;
+    }
+
+    public void setMemberStartTime(Date memberStartTime) {
+        this.memberStartTime = memberStartTime;
+    }
 }
