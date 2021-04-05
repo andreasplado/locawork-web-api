@@ -155,7 +155,7 @@ public class UserController {
         return ResponseEntity.ok(userExists);
     }
 
-    @RequestMapping(value = "/is-member", method = RequestMethod.GET)
+    @RequestMapping(value = "/member-role", method = RequestMethod.GET)
     public ResponseEntity<String> isMember(@RequestParam int userId) {
         String memberRole = userService.memberRole(userId);
 
