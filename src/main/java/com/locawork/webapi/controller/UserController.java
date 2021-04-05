@@ -156,9 +156,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/is-member", method = RequestMethod.GET)
-    public ResponseEntity<Boolean> isMember(@RequestParam int userId) {
-        boolean userExists = userService.isMember(userId);
+    public ResponseEntity<String> isMember(@RequestParam int userId) {
+        String memberRole = userService.memberRole(userId);
 
-        return ResponseEntity.ok(userExists);
+        return ResponseEntity.ok(memberRole);
     }
 }
