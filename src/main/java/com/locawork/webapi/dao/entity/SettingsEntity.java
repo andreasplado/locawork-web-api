@@ -40,6 +40,9 @@ public class SettingsEntity {
     @Column(name = "member_role")
     private String memberRole;
 
+    @Column(name = "member_start_time")
+    private Date memberStartTime;
+
     @Column(name = "currency")
     private String currency;
 

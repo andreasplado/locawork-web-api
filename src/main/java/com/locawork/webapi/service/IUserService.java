@@ -23,4 +23,7 @@ public interface IUserService {
     void updateUserFirebaseToken(String firebaseToken, Integer id);
     void updateUserRole(String role, Integer id);
     String memberRole(Integer id);
+    void setMemberRole(Integer id, String memberRole);
+
+    void removeAllPersonsWhoAreNotMemberAnyMore();
 }

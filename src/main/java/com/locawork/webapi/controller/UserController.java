@@ -8,6 +8,7 @@ import com.locawork.webapi.service.SettingsService;
 import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.web.bind.annotation.*;
@@ -160,5 +161,18 @@ public class UserController {
         String memberRole = userService.memberRole(userId);
 
         return ResponseEntity.ok(memberRole);
+    }
+
+    @RequestMapping(value = "/set-role", method = RequestMethod.GET)
+    public ResponseEntity<String> setRole(@RequestParam int userId) {
+        String memberRole = userService.memberRole(userId);
+
+        return ResponseEntity.ok(memberRole);
+    }
+
+
+    @Scheduled(cron = "0 1 1 * * ?")
+    public void myScheduledMethod() {
+        userService.removeAllPersonsWhoAreNotMemberAnyMore();
     }
 }
