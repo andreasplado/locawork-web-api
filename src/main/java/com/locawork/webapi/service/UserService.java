@@ -87,11 +87,6 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void removeAllPersonsWhoAreNotMemberAnyMore() {
-        repository.removeAllRoles();
-    }
-
-    @Override
     public void delete(Integer id) {
         repository.deleteById(id);
     }

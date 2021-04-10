@@ -11,51 +11,61 @@ import java.util.List;
 public class SettingsService implements ISettingsService {
 
     @Autowired
-    SettingsRepository settingsRepository;
+    SettingsRepository repository;
 
     @Override
     public SettingsEntity save(SettingsEntity settingsEntity) {
-        return settingsRepository.save(settingsEntity);
+        return repository.save(settingsEntity);
     }
 
     @Override
     public boolean exists(Integer userId) {
-        return settingsRepository.exists(userId);
+        return repository.exists(userId);
     }
 
     @Override
     public List<SettingsEntity> findAll() {
-        return settingsRepository.findAll();
+        return repository.findAll();
     }
 
     @Override
     public SettingsEntity getUserSettings(Integer userId) {
-        return settingsRepository.findUserSettings(userId);
+        return repository.findUserSettings(userId);
     }
 
     @Override
     public void updateRadius(Integer userId, Double radius) {
-        settingsRepository.setRadius(radius, userId);
+        repository.setRadius(radius, userId);
     }
 
     @Override
     public void updateViewByDefault(Integer userId, String value) {
-        settingsRepository.setViewByDefault(value, userId);
+        repository.setViewByDefault(value, userId);
     }
 
     @Override
     public void updateAskPermissionBeforeDeletingAJob(Integer userId, Boolean value) {
-        settingsRepository.setAskPermissionsBeforeDeletingAJob(value, userId);
+        repository.setAskPermissionsBeforeDeletingAJob(value, userId);
     }
 
     @Override
     public void updateShowInformationOnStartup(Integer userId, Boolean value) {
-        settingsRepository.setShowInformationOnStartup(value, userId);
+        repository.setShowInformationOnStartup(value, userId);
     }
 
     @Override
     public void updateBiometric(Integer userId, Boolean value) {
-        settingsRepository.updateBiometric(value, userId);
+        repository.updateBiometric(value, userId);
+    }
+
+    @Override
+    public void removeAllPersonsWhoAreNotMemberAnyMore() {
+        repository.removeAllRoles();
+    }
+
+    @Override
+    public void purchaseMember(String role, Integer userId) {
+        repository.purchaseMember(role, userId);
     }
 
 }

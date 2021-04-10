@@ -36,14 +36,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value="UPDATE users SET role=?1 WHERE id=?2, member_start_time=NOW()", nativeQuery = true)
+    @Query(value="UPDATE users SET role=?1 WHERE id=?2", nativeQuery = true)
     void updateUserRole(@Param("role") String role, @Param("id") Integer id);
-
-
-    @Modifying
-    @Transactional
-    @Query(value="UPDATE users SET role='' WHERE member_start_time < DATE_SUB(CURDATE(),INTERVAL 1 MONTH)", nativeQuery = true)
-    void removeAllRoles();
 
 
     @Modifying

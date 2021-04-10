@@ -169,10 +169,4 @@ public class UserController {
 
         return ResponseEntity.ok(memberRole);
     }
-
-
-    @Scheduled(cron = "0 1 1 * * ?")
-    public void myScheduledMethod() {
-        userService.removeAllPersonsWhoAreNotMemberAnyMore();
-    }
 }

@@ -12,6 +12,7 @@ import com.locawork.webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -127,5 +128,10 @@ public class SettingsController {
         responseModel.setMessage("You updated view by default!");
 
         return ResponseEntity.ok(responseModel);
+    }
+
+    @Scheduled(cron = "0 1 1 * * ?")
+    public void myScheduledMethod() {
+        settingsService.removeAllPersonsWhoAreNotMemberAnyMore();
     }
 }

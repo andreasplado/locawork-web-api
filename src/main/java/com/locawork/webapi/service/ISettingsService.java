@@ -15,5 +15,6 @@ public interface ISettingsService {
     void updateAskPermissionBeforeDeletingAJob(Integer userId, Boolean value);
     void updateShowInformationOnStartup(Integer userId, Boolean value);
     void updateBiometric(Integer userId, Boolean value);
-
+    void removeAllPersonsWhoAreNotMemberAnyMore();
+    void purchaseMember(String role, Integer userId);
 }
