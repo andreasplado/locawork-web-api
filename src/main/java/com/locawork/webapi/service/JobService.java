@@ -44,7 +44,7 @@ public class JobService implements IJobService {
     }
 
     @Override
-    public List<JobEntity> findAllPostedJobs(Integer userId) {
+    public List<JobEntity> findAllPostedJobs(Integer userId){
         return repository.findPostedJobs(userId);
     }
 
