@@ -4,7 +4,7 @@ import com.locawork.webapi.dao.entity.JobApplicationEntity;
 import com.locawork.webapi.dto.JobApplicationDTO;
 import com.locawork.webapi.dto.MyApplicationDTO;
 import com.locawork.webapi.respository.JobApplicationRepository;
-import com.locawork.webapi.respository.UserRepository;
+import com.locawork.webapi.respository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class JobApplicationService implements IJobApplicationService {
     private JobApplicationRepository jobApplicationRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDataRepository userDataRepository;
 
     @Override
     public List<JobApplicationEntity> findAll() {

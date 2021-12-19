@@ -1,7 +1,7 @@
 package com.locawork.webapi.config;
 
 import com.locawork.webapi.dao.entity.UserEntity;
-import com.locawork.webapi.service.UserService;
+import com.locawork.webapi.service.UserDataService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,17 +12,17 @@ import java.util.Collections;
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private UserService userService;
+    private UserDataService userDataService;
 
-    public UserDetailsServiceImpl(UserService userService) {
-        this.userService = userService;
+    public UserDetailsServiceImpl(UserDataService userDataService) {
+        this.userDataService = userDataService;
     }
 
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        UserEntity user = userService.findByEmail(email);
+        UserEntity user = userDataService.findByEmail(email);
 
         if (user == null) {
 

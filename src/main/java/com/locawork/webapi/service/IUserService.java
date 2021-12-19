@@ -23,5 +23,7 @@ public interface IUserService {
     void updateUserFirebaseToken(String firebaseToken, Integer id);
     void updateUserRole(String role, Integer id);
     String memberRole(Integer id);
+    boolean tokenExists();
     void setMemberRole(Integer id, String memberRole);
+    boolean userAuthenticated(String username, String password);
 }

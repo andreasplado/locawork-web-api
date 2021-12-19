@@ -8,7 +8,7 @@ import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.service.JobApplicationService;
 import com.locawork.webapi.service.JobCategoryService;
 import com.locawork.webapi.service.JobService;
-import com.locawork.webapi.service.UserService;
+import com.locawork.webapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class JobController {
     private static String KEY_FIREBASE_TOKEN = "firebasetoken";
 
     @Autowired
-    private UserService userservice;
+    private UserDataService userservice;
 
     @Autowired
     private JobService jobService;

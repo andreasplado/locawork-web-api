@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface UserRepository extends JpaRepository<UserEntity, Integer> {
+public interface UserDataRepository extends JpaRepository<UserEntity, Integer> {
     @Query(value="SELECT CASE WHEN COUNT(u)> 0 then true else false end FROM users u WHERE u.account_email=?1", nativeQuery = true)
     boolean existsByEmail(@Param("account_email") String accountEmail);
 
@@ -47,5 +47,11 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     @Query(value="SELECT u.role FROM users u WHERE u.id=?1", nativeQuery = true)
     String getMemberRole(@Param("id") Integer id);
+
+    @Query(value="SELECT u.password FROM users u WHERE u.account_email=?1", nativeQuery = true)
+    String getUserPassword(@Param("id") String username);
+
+    @Query(value="SELECT CASE WHEN COUNT(u)> 0 then true else false end FROM users u WHERE u.account_email=?1 AND u.password=?2", nativeQuery = true)
+    boolean userAuthenticated(@Param("username") String username, @Param("password") String password);
 
 }

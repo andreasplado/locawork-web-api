@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.locawork.webapi.dao.entity.UserEntity;
 import com.locawork.webapi.service.NotificationService;
 import com.locawork.webapi.service.SettingsService;
-import com.locawork.webapi.service.UserService;
+import com.locawork.webapi.service.UserDataService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userService;
+    private UserDataService userDataService;
 
     @Autowired
     private SettingsService settingsService;
@@ -36,7 +36,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     public AuthenticationFilter(AuthenticationManager authenticationManager, ApplicationContext ctx) {
         this.authenticationManager = authenticationManager;
-        this.userService= ctx.getBean(UserService.class);
+        this.userDataService = ctx.getBean(UserDataService.class);
         this.settingsService= ctx.getBean(SettingsService.class);
         setFilterProcessesUrl("/login");
     }
@@ -58,11 +58,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .signWith(SignatureAlgorithm.HS512, "SecretKeyToGenJWTs".getBytes())
                 .compact();
         response.addHeader("Authorization", "Bearer " + token);
-        response.addHeader("user_id", String.valueOf(userService.findId(((User) authentication.getPrincipal()).getUsername())));
+        response.addHeader("user_id", String.valueOf(userDataService.findId(((User) authentication.getPrincipal()).getUsername())));
         response.addHeader("email", ((User) authentication.getPrincipal()).getUsername());
-        response.addHeader("firebase_token", userService.getUserFirebaseToken(userService.findId(((User) authentication.getPrincipal()).getUsername())));
+        response.addHeader("firebase_token", userDataService.getUserFirebaseToken(userDataService.findId(((User) authentication.getPrincipal()).getUsername())));
         response.addHeader("radius", String.valueOf(settingsService
-                .getUserSettings(userService.findId(((User) authentication.getPrincipal()).getUsername()))
+                .getUserSettings(userDataService.findId(((User) authentication.getPrincipal()).getUsername()))
                 .getRadius()));
     }
 }

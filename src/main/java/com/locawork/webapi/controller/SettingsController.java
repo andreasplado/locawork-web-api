@@ -3,20 +3,16 @@ package com.locawork.webapi.controller;
 
 import com.locawork.webapi.dao.entity.SettingsEntity;
 import com.locawork.webapi.dao.entity.UserEntity;
-import com.locawork.webapi.model.EmptyJsonResponse;
 import com.locawork.webapi.model.ResponseModel;
 import com.locawork.webapi.model.UserSettings;
-import com.locawork.webapi.respository.SettingsRepository;
 import com.locawork.webapi.service.SettingsService;
-import com.locawork.webapi.service.UserService;
+import com.locawork.webapi.service.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/settings")
@@ -26,7 +22,7 @@ public class SettingsController {
     SettingsService settingsService;
 
     @Autowired
-    UserService userService;
+    UserDataService userDataService;
 
     @GetMapping
     public ResponseEntity<?> getAll() {
@@ -38,7 +34,7 @@ public class SettingsController {
     @RequestMapping(value = "/get-user-settings", method = RequestMethod.GET)
     public ResponseEntity<?> getSettings(@RequestParam Integer userId) {
         SettingsEntity settings = settingsService.getUserSettings(userId);
-        UserEntity user = userService.findUserById(userId);
+        UserEntity user = userDataService.findUserById(userId);
         UserSettings userSettings = new UserSettings();
         userSettings.setUserId(settings.getUserId());
         userSettings.setAskPermissionsBeforeDeletingAJob(settings.getAskPermissionsBeforeDeletingAJob());
@@ -77,7 +73,7 @@ public class SettingsController {
     public ResponseEntity<?> updateRadius(@RequestParam Integer userId, @RequestParam Double radius) {
         ResponseModel responseModel = new ResponseModel();
         settingsService.updateRadius(userId, radius);
-        if(userService.exists(userId)){
+        if(userDataService.exists(userId)){
             responseModel.setMessage("You updated");
             responseModel.setValid(true);
             responseModel.setRadius(radius);

@@ -1,5 +1,6 @@
 package com.locawork.webapi.dao.entity;
 
+import com.locawork.webapi.util.AttributeEncryptor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,6 +32,7 @@ public class UserEntity {
     private String email;
 
     @Column(name = "password")
+    @Convert(converter = AttributeEncryptor.class)
     private String password;
 
     @Column(name = "contact")
@@ -47,6 +49,18 @@ public class UserEntity {
 
     @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
+
+    @Column(name = "is_expired")
+    private Boolean isExpired;
+
+    @Column(name = "is_credentials_none_expired")
+    private Boolean isCredentialsNonExpired;
+
+    @Column(name = "is_locked")
+    private Boolean isLocked;
+
+    @Column(name = "is_enabled")
+    private Boolean isEnabled;
 
     public Integer getId() {
         return id;
@@ -134,5 +148,37 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Boolean getExpired() {
+        return isExpired;
+    }
+
+    public void setExpired(Boolean expired) {
+        isExpired = expired;
+    }
+
+    public Boolean getLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(Boolean locked) {
+        isLocked = locked;
+    }
+
+    public Boolean getEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public Boolean getCredentialsNonExpired() {
+        return isCredentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        isCredentialsNonExpired = credentialsNonExpired;
     }
 }

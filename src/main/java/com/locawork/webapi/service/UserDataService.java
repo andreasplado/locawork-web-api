@@ -1,18 +1,21 @@
 package com.locawork.webapi.service;
 
 import com.locawork.webapi.dao.entity.UserEntity;
-import com.locawork.webapi.respository.UserRepository;
+import com.locawork.webapi.respository.UserDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements IUserService {
+public class UserDataService implements IUserService {
 
     @Autowired
-    private UserRepository repository;
+    private UserDataRepository repository;
+
     @Override
     public List<UserEntity> findAll() {
         return repository.findAll();
@@ -80,10 +83,22 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public boolean tokenExists() {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        return userDetails.isCredentialsNonExpired();
+    }
+
+    @Override
     public void setMemberRole(Integer id, String memberRole) {
         if(repository.existsById(id)){
             repository.setMemberRole(memberRole, id);
         }
+    }
+
+    @Override
+    public boolean userAuthenticated(String username, String password) {
+        return repository.userAuthenticated(username, password);
     }
 
     @Override
