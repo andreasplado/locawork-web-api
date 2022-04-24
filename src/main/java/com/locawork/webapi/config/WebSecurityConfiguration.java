@@ -46,8 +46,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
+    
     @Qualifier(value="user-details")
+    @Bean
     public UserDetailsService userDetailsService() {
         return super.userDetailsService();
     }
@@ -68,7 +69,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     @Qualifier(value="auth")
     @Bean
-    @Primary
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
