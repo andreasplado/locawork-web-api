@@ -46,12 +46,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    
+    /**
     @Qualifier(value="user-details")
     @Bean
     public UserDetailsService userDetailsService() {
         return super.userDetailsService();
-    }
+    }**/
 
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
