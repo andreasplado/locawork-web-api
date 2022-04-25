@@ -46,25 +46,25 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    /**
+    
     @Qualifier(value="user-details")
     @Bean
     public UserDetailsService userDetailsService() {
         return super.userDetailsService();
-    }**/
+    }
 
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
         authenticationManagerBuilder.parentAuthenticationManager(authenticationManagerBean())
                 .userDetailsService(userDetailsService);
-    }/**
+    }
     @Qualifier(value="cors")
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
-    }**/
+    }
 
     @Override
     @Qualifier(value="auth")
