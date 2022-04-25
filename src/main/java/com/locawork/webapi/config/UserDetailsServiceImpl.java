@@ -14,9 +14,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserDataService userDataService;
 
-    public UserDetailsServiceImpl(UserDataService userDataService) {
+    /**public UserDetailsServiceImpl(UserDataService userDataService) {
         this.userDataService = userDataService;
-    }
+    }**/
 
 
     @Override
