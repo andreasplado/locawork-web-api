@@ -58,13 +58,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.parentAuthenticationManager(authenticationManagerBean())
                 .userDetailsService(userDetailsService);
     }
-    @Qualifier(value="cors")
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
-        return source;
-    }
 
     @Override
     @Qualifier(value="auth")
