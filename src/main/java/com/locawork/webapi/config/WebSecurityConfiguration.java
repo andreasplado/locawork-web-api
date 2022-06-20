@@ -54,17 +54,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.userDetailsService();
     }
 
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-        authenticationManagerBuilder.parentAuthenticationManager(authenticationManagerBean())
-                .userDetailsService(userDetailsService);
-    }
+
 
 
     @Bean
     public PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder();
+    }
+
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        authenticationManagerBuilder.parentAuthenticationManager(authenticationManagerBean())
+                .userDetailsService(userDetailsService);
     }
 
     @Override
