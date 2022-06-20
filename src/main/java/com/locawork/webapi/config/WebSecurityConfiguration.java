@@ -30,9 +30,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/webjars/**"
     };
 
-    public WebSecurityConfiguration(/**UserDetailsService userDetailsService**/ BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public WebSecurityConfiguration(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        //this.userDetailsService = userDetailsService;
+        this.userDetailsService = userDetailsService;
     }
 
     protected void configure(HttpSecurity httpSecurity) throws Exception {
