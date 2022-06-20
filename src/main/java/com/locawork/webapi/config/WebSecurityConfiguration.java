@@ -63,12 +63,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-        authenticationManagerBuilder.parentAuthenticationManager(authenticationManagerBean())
-                .userDetailsService(userDetailsService);
-    }
-
     @Override
     @Qualifier(value="auth")
     @Bean
