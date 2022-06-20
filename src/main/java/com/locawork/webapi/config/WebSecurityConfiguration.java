@@ -19,8 +19,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private UserDetailsService userDetailsService;
     private static final String[] AUTH_WHITELIST = {
             "/v2/api-docs",
             "/swagger-resources",
@@ -31,9 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/webjars/**"
     };
 
-    public WebSecurityConfiguration(UserDetailsService userDetailsService) {
-        //this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userDetailsService = userDetailsService;
+    public WebSecurityConfiguration() {
     }
 
     protected void configure(HttpSecurity httpSecurity) throws Exception {
