@@ -1,3 +1,4 @@
+
 package com.locawork.webapi.respository;
 
 import com.locawork.webapi.dao.entity.UserEntity;
@@ -10,7 +11,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface UserAuthRepository extends JpaRepository<UserDetails, String> {
+public interface UserAuthRepository extends JpaRepository<User, String> {
 
     @Query(value="SELECT CASE WHEN COUNT(s)> 0 then true else false end FROM users u WHERE u.username=?1 AND u.password=?2", nativeQuery = true)
     boolean isAuthenticated(@Param("username") String username, @Param("password") String password);
